@@ -1,0 +1,39 @@
+<header>
+  <!-- colours for toolbar here-->
+  <nav class="navbar sticky-top navbar-expand-sm navbar-toggleable-sm navbar- bg- box-shadow mb-3" style="background-color: #2a2f5f;">
+    <!-- <a href="index.html" class="logo"><strong> Edge </strong> <span>Parking</span></a>  -->
+
+    <div class="container">
+
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse"
+              aria-label="Toggle navigation"
+              [attr.aria-expanded]="isExpanded"
+              (click)="toggle()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
+           [ngClass]="{ show: isExpanded }">
+
+        <ul class="navbar-nav ">
+          <li class="nav-item"
+              [routerLinkActive]="['link-active']"
+              [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link text-light" [routerLink]="['/']">Home</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-light" [routerLink]="['/One']">Page One</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-light" [routerLink]="['/Two']">Page Two</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <nav>
+      <a href="#menu">Sign In</a>
+    </nav>
+  </nav>
+</header>
