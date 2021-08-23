@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "type": "secrets.user"
+    },
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/cob-edge/databases/IoTDB",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:IoTDB",
+      "secretStore": "LocalSecretsFile"
+    }
+  }
+}
