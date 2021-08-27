@@ -43,11 +43,11 @@
             <h2>Our Technology</h2>
           </header>
           <p>
-              <b>
-                  team Edge have used the technology of the future to devise a system to help you park faster and more efficiently. We have created a decentralised vehicle parking system, using the secure Ethereum Blockchain Netwerk. <br>
-                  <br>
-                  Current Parking Systems are expensive and tedious, and are not designed for the current environment we live in. Edge Parking provides more. Read Below for more information.
-              </b>
+            <b>
+              team Edge have used the technology of the future to devise a system to help you park faster and more efficiently. We have created a decentralised vehicle parking system, using the secure Ethereum Blockchain Netwerk. <br>
+              <br>
+              Current Parking Systems are expensive and tedious, and are not designed for the current environment we live in. Edge Parking provides more. Read Below for more information.
+            </b>
           </p>
         </div>
       </section>
@@ -146,6 +146,41 @@
           </section>
         </div>
       </section>
+
+      <p *ngIf="!iots"><em>Loading...</em></p>
+      <!-- Tabele Test -->
+      <div class="tableFixHead">
+        <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="iots">
+          <b>
+          <thead>
+            <tr>
+              <th>SensorId</th>
+              <th>TimeStamp</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>V1</th>
+              <th>V2</th>
+              <th>V3</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let iot of iots">
+              <td>{{ iot.sensorId }}</td>
+              <td>{{ iot.timeStamp }}</td>
+              <td>{{ iot.description }}</td>
+              <td>{{ iot.type }}</td>
+              <td>{{ iot.v1 }}</td>
+              <td>{{ iot.v2 }}</td>
+              <td>{{ iot.v3 }}</td>
+              <td>{{ iot.latitude }}</td>
+              <td>{{ iot.longitude }}</td>
+            </tr>
+          </tbody>
+          </b>
+        </table>
+      </div>
 
       <!-- Footer -->
       <footer id="footer">
