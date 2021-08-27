@@ -21,13 +21,9 @@
           <img src="../../assets/images/business3.jpeg" alt="centre centre" />
         </span>
         <header class="major">
-          <h1>Business Pass</h1>
+          <h1>Testing Page</h1>
         </header>
         <div class="content">
-          <p>
-            For the regular customer<br />
-            Park More. Pay Less.
-          </p>
         </div>
       </div>
     </section>
@@ -39,83 +35,47 @@
       <section id="one">
         <div class="inner">
           <header class="major">
-            <h2>What You Get</h2>
           </header>
-          <p>
-              <b>
-                  The Edge Business Pass, provides you with the flexibility of being able to park wherever, whenever, with our competitive pricing for people who travel with a vehicle more frequently. The Pass automatically applies your discount at the transaction for hassle free parking.
 
-                  Read below to find out some of the features when you have the pass linked to your account.
-              </b>
-          </p>
         </div>
       </section>
 
       <!-- Two -->
       <section id="two" class="spotlights">
-        <section>
-          <a href="cost.html" class="image">
-            <img src="../../assets/images/business2.jpeg" alt="" data-position="center center" />
-          </a>
-          <div class="content">
-            <div class="inner">
-              <header class="major">
-                <h3>Discounts</h3>
-                <h4>Save As A Regular With Our Discount Fees</h4>
-              </header>
-              <ul class="actions">
-                <li><a href="cost.html" class="button">Our Costs</a></li>
-              </ul>
-            </div>
+          <p *ngIf="!iots"><em>Loading...</em></p>
+          <!-- Tabele Test -->
+          <div class="tableFixHead">
+              <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="iots">
+                  <thead>
+                      <tr>
+                          <th>SensorId</th>
+                          <th>TimeStamp</th>
+                          <th>Description</th>
+                          <th>Type</th>
+                          <th>V1</th>
+                          <th>V2</th>
+                          <th>V3</th>
+                          <th>Latitude</th>
+                          <th>Longitude</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let iot of iots">
+                          <td>{{ iot.SensorId }}</td>
+                          <td>{{ iot.TimeStamp }}</td>
+                          <td>{{ iot.Description }}</td>
+                          <td>{{ iot.Type }}</td>
+                          <td>{{ iot.V1 }}</td>
+                          <td>{{ iot.V2 }}</td>
+                          <td>{{ iot.V3 }}</td>
+                          <td>{{ iot.Latitude }}</td>
+                          <td>{{ iot.Longitude }}</td>
+                      </tr>
+                  </tbody>
+              </table>
           </div>
-        </section>
-        <section>
-          <a href="map.html" class="image">
-            <img src="../../assets/images/business4.jpeg" alt="" data-position="top center" />
-          </a>
-          <div class="content">
-            <div class="inner">
-              <header class="major">
-                <h3>Dedicated, Secure Parking</h3>
-                <h4>24/7 Security</h4>
-              </header>
-              <ul class="actions">
-                <li><a href="howitworkslanding.html" class="button">See How It Works</a></li>
-              </ul>
-            </div>
-          </div>
-        </section>
-        <section>
-          <a href="map.html" class="image">
-            <img src="../../assets/images/business5.jpeg" alt="" data-position="25% 25%" />
-          </a>
-          <div class="content">
-            <div class="inner">
-              <header class="major">
-                <h3>Bonus Gifts</h3>
-                <h4>Car Detailing, Our Shout</h4>
-              </header>
-              <ul class="actions">
-                <li><a href="map.html" class="button">See Our Premium Locations</a></li>
-              </ul>
-            </div>
-          </div>
-        </section>
-      </section>
 
-      <!-- Three -->
-      <section id="three">
-        <div class="inner">
-          <header class="major">
-            <h2>Want the Business Pass?</h2>
-          </header>
-          <ul class="actions">
-            <li><a href="generic.html" class="button next">Get Started</a></li>
-          </ul>
-        </div>
       </section>
-
-    </div>
 
     <!-- Contact -->
     <section id="contact">
