@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,12 +23,13 @@ namespace Harley.UAT.Controllers
         [HttpGet]
         public IEnumerable<IoT> Get()
         {
-            //var rng = new Random();
+            // Having trouble linking DB objects to web elements on page 4
+
             return Enumerable.Range(1, 5).Select(index => new IoT
             {
                 SensorId = 1,
                 TimeStamp = DateTime.Now,
-                Description = "hello world desc",
+                Description = "Hello World",
                 Type = "type",
                 V1 = 1.11, 
                 V2 = 2.22, 
@@ -64,36 +66,34 @@ namespace Harley.UAT.Controllers
                     Console.WriteLine("SQL Connection Exception: " + e2.Message);
                 }
             }
-        }
 
-        /*
-        public void Read()
-        {
-            //Read DB table 
-            SqlCommand cmd = new SqlCommand(@"
-               SELECT * FROM dbo.IOT
-               ", sqlc);
-            DataTable Results = new DataTable();
-            // Read table from database and store it
-            sqlc.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-            Results.Load(reader);
-            sqlc.Close();
-            foreach (DataRow row in Results.Rows)
+            public void Read()
             {
-                JsonMsg jsonMsg = new JsonMsg();
-                jsonMsg.id = (int)row["SensorId"];
-                jsonMsg.Timestamp = row["TimeStamp"].ToString();
-                jsonMsg.v1 = (int)row["V1"];
-                jsonMsg.v2 = (int)row["V2"];
-                jsonMsg.v3 = (int)row["V3"];
-                jsonMsg.Desc = row["Description"].ToString();
-                jsonMsg.EntityType = row["Type"].ToString();
-                jsonMsg.Latitude = Convert.ToSingle(row["Latitude"]);
-                jsonMsg.Longitude = Convert.ToSingle(row["Longitude"]);
-                Console.WriteLine(jsonMsg.GetLogString());
+                //Read DB table 
+                SqlCommand cmd = new SqlCommand(@"
+                SELECT * FROM [dbo].[IOT]
+                ", sqlc);
+                DataTable Results = new DataTable();
+                // Read table from database and store it
+                sqlc.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                Results.Load(reader);
+                sqlc.Close();
+                foreach (DataRow row in Results.Rows)
+                {
+                    IoT jsonMsg = new IoT();
+                    jsonMsg.SensorId = (int)row["SensorId"];
+                    jsonMsg.TimeStamp = (DateTime)row["TimeStamp"];
+                    jsonMsg.V1 = (int)row["V1"];
+                    jsonMsg.V2 = (int)row["V2"];
+                    jsonMsg.V3 = (int)row["V3"];
+                    jsonMsg.Description = row["Description"].ToString();
+                    jsonMsg.Type = row["Type"].ToString();
+                    jsonMsg.Latitude = Convert.ToSingle(row["Latitude"]);
+                    jsonMsg.Longitude = Convert.ToSingle(row["Longitude"]);
+                }
             }
         }
-        */
+        
     }
 }

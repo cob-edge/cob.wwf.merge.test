@@ -35,7 +35,6 @@
   <!-- Tabele Test -->
   <div class="tableFixHead">
     <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="iots">
-      <b>
       <thead>
         <tr>
           <th>SensorId</th>
@@ -51,18 +50,17 @@
       </thead>
       <tbody>
         <tr *ngFor="let iot of iots">
-          <td>{{ iot.sensorId }}</td>
-          <td>{{ iot.timeStamp }}</td>
-          <td>{{ iot.description }}</td>
-          <td>{{ iot.type }}</td>
-          <td>{{ iot.v1 }}</td>
-          <td>{{ iot.v2 }}</td>
-          <td>{{ iot.v3 }}</td>
-          <td>{{ iot.latitude }}</td>
-          <td>{{ iot.longitude }}</td>
+          <td>{{ iot.SensorId }}</td>
+          <td>{{ iot.TimeStamp }}</td>
+          <td>{{ iot.Description }}</td>
+          <td>{{ iot.Type }}</td>
+          <td>{{ iot.V1 }}</td>
+          <td>{{ iot.V2 }}</td>
+          <td>{{ iot.V3 }}</td>
+          <td>{{ iot.Latitude }}</td>
+          <td>{{ iot.Longitude }}</td>
         </tr>
       </tbody>
-      </b>
     </table>
   </div>
 
