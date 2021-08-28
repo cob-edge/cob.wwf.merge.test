@@ -23,20 +23,21 @@ namespace Harley.UAT.Controllers
         [HttpGet]
         public IEnumerable<IoT> Get()
         {
-            // Having trouble linking DB objects to web elements on page 4
+            IoT jsonMsg = new IoT();
 
             return Enumerable.Range(1, 5).Select(index => new IoT
             {
-                SensorId = 1,
-                TimeStamp = DateTime.Now,
-                Description = "Hello World",
-                Type = "type",
-                V1 = 1.11, 
-                V2 = 2.22, 
-                V3 = 3.33, 
-                Latitude = 6.66, 
-                Longitude = 9.99
+                SensorId = jsonMsg.SensorId,
+                TimeStamp = jsonMsg.TimeStamp,
+                Description = jsonMsg.Description,
+                Type = jsonMsg.Type,
+                V1 = jsonMsg.V1,
+                V2 = jsonMsg.V2,
+                V3 = jsonMsg.V3,
+                Latitude = jsonMsg.Latitude,
+                Longitude = jsonMsg.Longitude
             })
+
             .ToArray();
         }
 
@@ -49,6 +50,7 @@ namespace Harley.UAT.Controllers
             public SQLWraper()
             {
                 connectionString = "Server=tcp:cob-edge.database.windows.net,1433;Initial Catalog=IoTDB;Persist Security Info=False;User ID=cob.edge.admin;Password=Aoed7Test;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+                //connectionString = "Data Source=.\\sqlexpress; Initial Catalog=IoTDB; Integrated Security=True";
                 Connect();
             }
             public void Connect()
@@ -71,7 +73,7 @@ namespace Harley.UAT.Controllers
             {
                 //Read DB table 
                 SqlCommand cmd = new SqlCommand(@"
-                SELECT * FROM [dbo].[IOT]
+                SELECT * FROM dbo.IOT
                 ", sqlc);
                 DataTable Results = new DataTable();
                 // Read table from database and store it
