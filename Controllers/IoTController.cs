@@ -23,7 +23,7 @@ namespace Harley.UAT.Controllers
         [HttpGet]
         public IEnumerable<IoT> Get()
         {
-            //onnect();
+            //Connect();
             //Read();
 
             //var rng = new Random(); //range is how many times they will appears
