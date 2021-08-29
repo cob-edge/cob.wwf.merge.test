@@ -20,6 +20,12 @@ namespace Harley.UAT.Controllers
             _logger = logger;
         }
 
+        private int i = 0;
+        private int nextInt()
+        {
+            return i++;
+        }
+
         [HttpGet]
         public IEnumerable<IoT> Get()
         {
@@ -27,17 +33,17 @@ namespace Harley.UAT.Controllers
             Read();
 
             //var rng = new Random(); //range is how many times they will appears
-            return Enumerable.Range(1, 2).Select(index => new IoT
+            return Enumerable.Range(1, 1000).Select(index => new IoT
             {
-                SensorId = IoTs[0].SensorId,
+                SensorId = IoTs[i].SensorId,
                 TimeStamp = DateTime.Now,
-                Description = IoTs[0].Description,
-                Type = IoTs[0].Type,
-                V1 = IoTs[0].V1, 
-                V2 = IoTs[0].V2, 
-                V3 = IoTs[0].V3, 
-                Latitude = IoTs[0].Latitude, 
-                Longitude = IoTs[0].Longitude
+                Description = IoTs[i].Description,
+                Type = IoTs[i].Type,
+                V1 = IoTs[i].V1, 
+                V2 = IoTs[i].V2, 
+                V3 = IoTs[i].V3, 
+                Latitude = IoTs[i].Latitude, 
+                Longitude = IoTs[nextInt()].Longitude
             })
             .ToArray();
         }
@@ -107,6 +113,5 @@ namespace Harley.UAT.Controllers
                 */
             }
         }
-        
     }
 }
