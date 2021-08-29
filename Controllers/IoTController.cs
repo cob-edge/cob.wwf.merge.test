@@ -23,21 +23,21 @@ namespace Harley.UAT.Controllers
         [HttpGet]
         public IEnumerable<IoT> Get()
         {
-            //Connect();
-            //Read();
+            Connect();
+            Read();
 
             //var rng = new Random(); //range is how many times they will appears
-            return Enumerable.Range(1, 5).Select(index => new IoT
+            return Enumerable.Range(1, 2).Select(index => new IoT
             {
-                SensorId = 1,
+                SensorId = IoTs[0].SensorId,
                 TimeStamp = DateTime.Now,
-                Description = "hello world desc",
-                Type = "type",
-                V1 = 1.11, 
-                V2 = 2.22, 
-                V3 = 3.33, 
-                Latitude = 6.66, 
-                Longitude = 9.99 
+                Description = IoTs[0].Description,
+                Type = IoTs[0].Type,
+                V1 = IoTs[0].V1, 
+                V2 = IoTs[0].V2, 
+                V3 = IoTs[0].V3, 
+                Latitude = IoTs[0].Latitude, 
+                Longitude = IoTs[0].Longitude
             })
             .ToArray();
         }
@@ -61,7 +61,7 @@ namespace Harley.UAT.Controllers
         }
 
         private IoT[] IoTs;
-        public void Read() //coould me modified for specific queires, then just retreive whole table
+        public void Read() //could me modified for specific queires, then just retreive whole table
         {
             //Read DB table 
             SqlCommand cmd = new SqlCommand(@"
