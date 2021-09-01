@@ -31,18 +31,17 @@ namespace Harley.UAT.Controllers
         {
             Connect();
             Read();
-
             //var rng = new Random(); //range is how many times they will appears
-            return Enumerable.Range(1, 1000).Select(index => new IoT
+            return Enumerable.Range(1, 10).Select(index => new IoT
             {
                 SensorId = IoTs[i].SensorId,
                 TimeStamp = DateTime.Now,
                 Description = IoTs[i].Description,
                 Type = IoTs[i].Type,
-                V1 = IoTs[i].V1, 
-                V2 = IoTs[i].V2, 
-                V3 = IoTs[i].V3, 
-                Latitude = IoTs[i].Latitude, 
+                V1 = IoTs[i].V1,
+                V2 = IoTs[i].V2,
+                V3 = IoTs[i].V3,
+                Latitude = IoTs[i].Latitude,
                 Longitude = IoTs[nextInt()].Longitude
             })
             .ToArray();
@@ -111,6 +110,37 @@ namespace Harley.UAT.Controllers
                 jsonMsg.Longitude = Convert.ToSingle(row["Longitude"]);
                 Console.WriteLine(jsonMsg.GetLogString());
                 */
+            }
+        }
+
+        private IoT liveIoT;
+        public void LiveRead() //could me modified for specific queires, then just retreive whole table
+        {
+            //Read DB table 
+            SqlCommand cmd = new SqlCommand(@"
+               SELECT TOP 1 * FROM IOT ORDER BY TimeStamp DESC
+               ", sqlc);
+            DataTable Results = new DataTable();
+            // Read table from database and store it
+            sqlc.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            Results.Load(reader);
+            int SizeIoTs = Results.Rows.Count;
+            sqlc.Close();
+
+            while (true)
+            {
+                liveIoT = new IoT {
+                    SensorId = (int)Results.Rows[0]["SensorId"],
+                    TimeStamp = DateTime.Now /* row["TimeStamp"].ToString() */,
+                    Description = Results.Rows[0]["Description"].ToString(),
+                    Type = Results.Rows[0]["Type"].ToString(),
+                    V1 = (int)Results.Rows[0]["V1"],
+                    V2 = (int)Results.Rows[0]["V2"],
+                    V3 = (int)Results.Rows[0]["V3"],
+                    Latitude = Convert.ToSingle(Results.Rows[0]["Latitude"]),
+                    Longitude = Convert.ToSingle(Results.Rows[0]["Longitude"])
+                };
             }
         }
     }
