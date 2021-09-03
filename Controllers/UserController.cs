@@ -11,11 +11,11 @@ namespace Harley.UAT.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class IoTController : ControllerBase
+    public class UserController : ControllerBase
     {
-        private readonly ILogger<IoTController> _logger;
+        private readonly ILogger<UserController> _logger;
 
-        public IoTController(ILogger<IoTController> logger)
+        public UserController(ILogger<UserController> logger)
         {
             _logger = logger;
         }
@@ -27,22 +27,18 @@ namespace Harley.UAT.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<IoT> Get()
+        public IEnumerable<User> Get()
         {
             Connect();
             Read();
 
-            return Enumerable.Range(5, 10).Select(index => new IoT
+            return Enumerable.Range(5, 10).Select(index => new User
             {
-                SensorId = IoTData[i].SensorId,
-                TimeStamp = IoTData[i].TimeStamp,
-                Description = IoTData[i].Description,
-                Type = IoTData[i].Type,
-                V1 = IoTData[i].V1,
-                V2 = IoTData[i].V2,
-                V3 = IoTData[i].V3,
-                Latitude = IoTData[i].Latitude,
-                Longitude = IoTData[NextInt()].Longitude
+                User_ID = UserData[i].User_ID,
+                User_FirstName = UserData[i].User_FirstName,
+                User_LastName = UserData[i].User_LastName,
+                UserType = UserData[i].UserType,
+                User_Email = UserData[NextInt()].User_Email
             })
 
             .ToArray();
@@ -68,38 +64,35 @@ namespace Harley.UAT.Controllers
             }
         }
 
-        private IoT[] IoTData;
+        private User[] UserData;
 
         public void Read()
         {
             //Read DB table 
             SqlCommand cmd = new SqlCommand
-                (@"SELECT TOP 10 * FROM [dbo].[IOT]", sqlc);
+            (@"SELECT TOP 10 * FROM [dbo].[User]", sqlc);
+            //(@"SELECT TOP 10 [User_ID], [User_FirstName], [User_LastName], [UserType] FROM [dbo].[User]", sqlc);
             DataTable Results = new DataTable();
 
             // Read table from database and store it
             sqlc.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             Results.Load(reader);
-            int IoTSize = Results.Rows.Count;
+            int UserSize = Results.Rows.Count;
             sqlc.Close();
 
-            IoTData = new IoT[IoTSize];
+            UserData = new User[UserSize];
             int i = 0;
 
             foreach (DataRow row in Results.Rows)
             {
-                IoTData[i] = new IoT
+                UserData[i] = new User
                 {
-                    SensorId = (int)row["SensorId"],
-                    TimeStamp = row["TimeStamp"].ToString(),
-                    V1 = (int)row["V1"],
-                    V2 = (int)row["V2"],
-                    V3 = (int)row["V3"],
-                    Description = row["Description"].ToString(),
-                    Type = row["Type"].ToString(),
-                    Latitude = Convert.ToSingle(row["Latitude"]),
-                    Longitude = Convert.ToSingle(row["Longitude"]),
+                    User_ID = (int)row["User_ID"],
+                    User_FirstName = row["User_FirstName"].ToString(),
+                    User_LastName = row["User_LastName"].ToString(),
+                    UserType = row["UserType"].ToString(),
+                    User_Email = row["User_Email"].ToString()
                 };
                 i++;
             }

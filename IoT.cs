@@ -6,7 +6,7 @@ namespace Harley.UAT
     {
         public int SensorId { get; set; }
 
-        public DateTime TimeStamp { get; set; }
+        public string TimeStamp { get; set; }
 
         public string Description { get; set; }
 
