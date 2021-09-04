@@ -22,4 +22,9 @@ namespace Harley.UAT
 
         public double Longitude { get; set; }
     }
+
+    public class RecentV1
+    {
+        public double[] Recent10 { get; set; }
+    }
 }

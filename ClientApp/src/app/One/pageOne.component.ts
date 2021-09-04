@@ -18,17 +18,36 @@ export class One implements OnInit {
   chart;
 
   //api declaration
+  /*
   public iots: IoT[];
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<IoT[]>(baseUrl + 'iot').subscribe(result => {
       this.iots = result;
     }, error => console.error(error));
   }
+  */
+
+  //api declaration
+  public recentV1s: RecentV1[];
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    http.get<RecentV1[]>(baseUrl + 'recentV1').subscribe(result => {
+      this.recentV1s = result;
+    }, error => console.error(error));
+  }
+
+  public http: HttpClient;
+  @Inject('BASE_URL') baseUrl: string;
+  //api updates from database
+  updateApiCall(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    http.get<RecentV1[]>(baseUrl + 'recentV1').subscribe(result => {
+      this.recentV1s = result;
+    }, error => console.error(error));
+  }
 
   ngOnInit() {
     this.createTestChart();
     
-    this.updateSubscription = interval(1000).subscribe(
+    this.updateSubscription = interval(2000).subscribe(
       (val) => { this.updateStats() });
   }
 
@@ -44,7 +63,7 @@ export class One implements OnInit {
         },
       },
       data: {
-        labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August'],
+        labels: ['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10'],
         datasets: [
           {
             type: 'bar',
@@ -59,11 +78,17 @@ export class One implements OnInit {
   }
 
   updateStats() { //this method here does the live data refresh
-    this.chart.data.datasets[0].data = [10, 3, 6, 11, 38, 5, 6, 17];
+    //this.updateApiCall(this.http, this.baseUrl);  //HERE NEEDS FIX WITH UPDATES SO API CAN CONSTANTLY REFRESH
+    console.log("hello from update status " + this.recentV1s[0].recent10);
+    this.chart.data.datasets[0].data = this.recentV1s[0].recent10;
     this.chart.update();
+    //console.log("NEW DATA UPDATE");
   }
 }
 
+interface RecentV1 {
+  recent10: number[];
+}
 
 interface IoT {
   sensorId: number;

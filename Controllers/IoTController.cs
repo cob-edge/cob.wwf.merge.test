@@ -113,6 +113,11 @@ namespace Harley.UAT.Controllers
             }
         }
 
+
+
+
+
+        /* //old code for a live read method, no longer nessary
         private IoT liveIoT;
         public void LiveRead() //could me modified for specific queires, then just retreive whole table
         {
@@ -132,7 +137,7 @@ namespace Harley.UAT.Controllers
             {
                 liveIoT = new IoT {
                     SensorId = (int)Results.Rows[0]["SensorId"],
-                    TimeStamp = DateTime.Now /* row["TimeStamp"].ToString() */,
+                    TimeStamp = DateTime.Now /* row["TimeStamp"].ToString() ,
                     Description = Results.Rows[0]["Description"].ToString(),
                     Type = Results.Rows[0]["Type"].ToString(),
                     V1 = (int)Results.Rows[0]["V1"],
@@ -143,5 +148,6 @@ namespace Harley.UAT.Controllers
                 };
             }
         }
+        */
     }
 }
