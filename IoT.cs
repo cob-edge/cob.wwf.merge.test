@@ -1,5 +1,3 @@
-using System;
-
 namespace Harley.UAT
 {
     public class IoT
