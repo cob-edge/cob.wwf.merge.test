@@ -38,6 +38,43 @@
       </div>
     </section>
 
+    <!-- Two -->
+    <section id="two" class="spotlights">
+      <p *ngIf="!iots"><em>Loading...</em></p>
+      <!-- Tabele Test -->
+      <div class="tableFixHead">
+        <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="iots">
+          <thead>
+            <tr>
+              <th>SensorId</th>
+              <th>TimeStamp</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>V1</th>
+              <th>V2</th>
+              <th>V3</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let iot of iots">
+              <td>{{ iot.sensorId }}</td>
+              <td>{{ iot.timeStamp }}</td>
+              <td>{{ iot.description }}</td>
+              <td>{{ iot.type }}</td>
+              <td>{{ iot.v1 }}</td>
+              <td>{{ iot.v2 }}</td>
+              <td>{{ iot.v3 }}</td>
+              <td>{{ iot.latitude }}</td>
+              <td>{{ iot.longitude }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
   <!-- Contact -->
   <section id="contact">
     <div class="inner">
