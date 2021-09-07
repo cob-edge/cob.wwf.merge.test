@@ -22,17 +22,16 @@
 
 
                 <label for="user">Username:</label>
-                <input type="text" name="demo-name" id="demo-name" value="" placeholder="" />
+                <input type="text" name="demo-name" id="demo-name" value="" placeholder="" required />
             </div>
             <div class="col-6 col-12-xsmall">
                 
                 <label for="pass">Password:</label>
-                <input type="password" id="pass" name="password"
-                       minlength="8" required />
+                <input type="password" id="pass" name="passwords" inlength="8" required />
             </div>
             <div>
                 <li class="nav-item" [routerLinkActive]="['link-active']">
-                    <a class="nav-link text-light" [routerLink]="['/customerLanding']">Sign In</a>
+                    <a class="nav-link text-light" [routerLink]="['/Twelve']">Sign In</a>
                 </li>
                 <!-- <a href="customerLanding.html" class="button primary">Sign in</a> -->
             </div>

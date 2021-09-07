@@ -21,6 +21,8 @@ import { Nine } from './Nine/pageNine.component';
 import { Ten } from './Ten/pageTen.component';
 import { Eight } from './Eight/pageEight.component';
 import { Eleven } from './Eleven/pageEleven.component';
+import { Twelve } from './Twelve/pageTwelve.component';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { Eleven } from './Eleven/pageEleven.component';
     Eight,
     Nine,
     Ten,
-    Eleven
+    Eleven,
+    Twelve
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -61,7 +65,8 @@ import { Eleven } from './Eleven/pageEleven.component';
       { path: 'Eight', component: Eight },
       { path: 'Nine', component: Nine },
       { path: 'Ten', component: Ten },
-      { path: 'Eleven', component: Eleven }
+      { path: 'Eleven', component: Eleven },
+      { path: 'Twelve', component: Twelve },
     ])
   ],
   providers: [],
