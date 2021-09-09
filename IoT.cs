@@ -1,10 +1,12 @@
+using System;
+
 namespace Harley.UAT
 {
     public class IoT
     {
         public int SensorId { get; set; }
 
-        public string TimeStamp { get; set; }
+        public DateTime TimeStamp { get; set; }
 
         public string Description { get; set; }
 
