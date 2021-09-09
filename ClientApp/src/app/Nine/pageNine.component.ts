@@ -1,5 +1,9 @@
+<<<<<<< Updated upstream
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+=======
+import { Component } from '@angular/core';
+>>>>>>> Stashed changes
 
 @Component({
   selector: 'app-Nine',
@@ -7,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['../../assets/css/main.css']
 })
 export class Nine {
+<<<<<<< Updated upstream
   public users: User[];
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
@@ -22,5 +27,7 @@ interface User {
   user_LastName: string;
   userType: string;
   user_Email: string;
+=======
+>>>>>>> Stashed changes
 }
 

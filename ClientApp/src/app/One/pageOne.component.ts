@@ -1,13 +1,18 @@
+<<<<<<< Updated upstream
 import { Component, OnInit, Inject } from '@angular/core';
 /import { Chart } from 'chart.js';/
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subscription, interval } from 'rxjs';
+=======
+import { Component } from '@angular/core';
+>>>>>>> Stashed changes
 
 @Component({
   selector: 'app-one',
   templateUrl: './pageOne.component.html',
   styleUrls: ['../../assets/css/main.css']
 })
+<<<<<<< Updated upstream
 export class One implements OnInit {
 
   title = 'livechart';
@@ -63,3 +68,8 @@ interface IoT {
   latitude: number;
   longitude: number;
 }
+=======
+export class One {
+}
+
+>>>>>>> Stashed changes

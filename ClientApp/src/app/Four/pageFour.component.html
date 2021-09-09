@@ -2,6 +2,10 @@
   <!-- Wrapper -->
 <div id="wrapper">
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
   <!-- Menu -->
   <nav id="menu">
     <ul class="links">
@@ -30,6 +34,7 @@
     </section>
   </div>
 
+<<<<<<< Updated upstream
   <!-- Tabele Test -->
   <div class="tableFixHead">
     <header class="major">
@@ -38,6 +43,12 @@
     <p *ngIf="!iots"><em>Loading...</em></p>
     <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="iots">
       <b>
+=======
+  <p *ngIf="!iots"><em>Loading...</em></p>
+  <!-- Tabele Test -->
+  <div class="tableFixHead">
+    <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="iots">
+>>>>>>> Stashed changes
       <thead>
         <tr>
           <th>SensorId</th>
@@ -53,6 +64,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let iot of iots">
+<<<<<<< Updated upstream
           <td>{{ iot.sensorId }}</td>
           <td>{{ iot.timeStamp }}</td>
           <td>{{ iot.description }}</td>
@@ -65,6 +77,19 @@
         </tr>
       </tbody>
       </b>
+=======
+          <td>{{ iot.SensorId }}</td>
+          <td>{{ iot.TimeStamp }}</td>
+          <td>{{ iot.Description }}</td>
+          <td>{{ iot.Type }}</td>
+          <td>{{ iot.V1 }}</td>
+          <td>{{ iot.V2 }}</td>
+          <td>{{ iot.V3 }}</td>
+          <td>{{ iot.Latitude }}</td>
+          <td>{{ iot.Longitude }}</td>
+        </tr>
+      </tbody>
+>>>>>>> Stashed changes
     </table>
   </div>
 
@@ -98,25 +123,41 @@
           <div class="contact-method">
             <span class="icon solid alt fa-envelope"></span>
             <h3>Email</h3>
+<<<<<<< Updated upstream
             <b href="#">information@untitled.tld</b>
+=======
+            <a href="#">information@untitled.tld</a>
+>>>>>>> Stashed changes
           </div>
         </section>
         <section>
           <div class="contact-method">
             <span class="icon solid alt fa-phone"></span>
             <h3>Phone</h3>
+<<<<<<< Updated upstream
             <b>(000) 000-0000 x12387</b>
+=======
+            <span>(000) 000-0000 x12387</span>
+>>>>>>> Stashed changes
           </div>
         </section>
         <section>
           <div class="contact-method">
             <span class="icon solid alt fa-home"></span>
             <h3>Address</h3>
+<<<<<<< Updated upstream
             <b>
               1234 Somewhere Road #5432<br />
               Nashville, TN 00000<br />
               United States of America
             </b>
+=======
+            <span>
+              1234 Somewhere Road #5432<br />
+              Nashville, TN 00000<br />
+              United States of America
+            </span>
+>>>>>>> Stashed changes
           </div>
         </section>
       </section>

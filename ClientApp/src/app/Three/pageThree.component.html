@@ -1,5 +1,6 @@
 
   <!-- Wrapper -->
+<<<<<<< Updated upstream
 <div id="wrapper">
 
   <!-- Menu -->
@@ -40,6 +41,84 @@
 
         </div>
     </section>
+=======
+  <div id="wrapper">
+
+ 
+
+    <!-- Menu -->
+    <nav id="menu">
+      <ul class="actions stacked">
+        <li><a href="customerindex.html" class="button primary fit"> Log In With Google </a> </li>
+        <li><a href="employeeindex.html" class="button fit"> Administrator Sign In </a></li>
+        <li><a href=# class="button fit"> Contact Us </a> </li>
+      </ul>
+    </nav>
+
+    <!-- Banner -->
+    <!-- Note: The "styleN" class below should match that of the header element. -->
+    <section id="banner" class="style2">
+      <div class="inner">
+        <span class="image">
+          <img src="../../assets/images/business3.jpeg" alt="centre centre" />
+        </span>
+        <header class="major">
+          <h1>Testing Page</h1>
+        </header>
+        <div class="content">
+        </div>
+      </div>
+    </section>
+
+    <!-- Main -->
+    <div id="main">
+
+      <!-- One -->
+      <section id="one">
+        <div class="inner">
+          <header class="major">
+          </header>
+
+        </div>
+      </section>
+
+      <!-- Two -->
+      <section id="two" class="spotlights">
+          <p *ngIf="!iots"><em>Loading...</em></p>
+          <!-- Tabele Test -->
+          <div class="tableFixHead">
+              <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="iots">
+                  <thead>
+                      <tr>
+                          <th>SensorId</th>
+                          <th>TimeStamp</th>
+                          <th>Description</th>
+                          <th>Type</th>
+                          <th>V1</th>
+                          <th>V2</th>
+                          <th>V3</th>
+                          <th>Latitude</th>
+                          <th>Longitude</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let iot of iots">
+                          <td>{{ iot.SensorId }}</td>
+                          <td>{{ iot.TimeStamp }}</td>
+                          <td>{{ iot.Description }}</td>
+                          <td>{{ iot.Type }}</td>
+                          <td>{{ iot.V1 }}</td>
+                          <td>{{ iot.V2 }}</td>
+                          <td>{{ iot.V3 }}</td>
+                          <td>{{ iot.Latitude }}</td>
+                          <td>{{ iot.Longitude }}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+
+      </section>
+>>>>>>> Stashed changes
 
     <!-- Contact -->
     <section id="contact">
@@ -71,25 +150,41 @@
             <div class="contact-method">
               <span class="icon solid alt fa-envelope"></span>
               <h3>Email</h3>
+<<<<<<< Updated upstream
               <b href="#">info@edgecity.com.au</b>
+=======
+              <a href="#">info@edgecity.com.au</a>
+>>>>>>> Stashed changes
             </div>
           </section>
           <section>
             <div class="contact-method">
               <span class="icon solid alt fa-phone"></span>
               <h3>Phone</h3>
+<<<<<<< Updated upstream
               <b>0400000000</b>
+=======
+              <span>0400000000</span>
+>>>>>>> Stashed changes
             </div>
           </section>
           <section>
             <div class="contact-method">
               <span class="icon solid alt fa-home"></span>
               <h3>Address</h3>
+<<<<<<< Updated upstream
               <b>
                 Plenty Road & Kinsbury Drive<br />
                 Bundoora 3083<br />
                 Victoria, Australia
               </b>
+=======
+              <span>
+                Plenty Road & Kinsbury Drive<br />
+                Bundoora 3083<br />
+                Victoria, Australia
+              </span>
+>>>>>>> Stashed changes
             </div>
           </section>
         </section>
@@ -111,8 +206,13 @@
         </ul>
       </div>
     </footer>
+<<<<<<< Updated upstream
   </div>
 </div>
+=======
+
+  </div>
+>>>>>>> Stashed changes
 
   <!-- Scripts -->
   <script src="assets/js/jquery.min.js"></script>

@@ -20,9 +20,12 @@ import { Seven } from './Seven/pageSeven.component';
 import { Nine } from './Nine/pageNine.component';
 import { Ten } from './Ten/pageTen.component';
 import { Eight } from './Eight/pageEight.component';
+<<<<<<< Updated upstream
 import { Eleven } from './Eleven/pageEleven.component';
 import { Twelve } from './Twelve/pageTwelve.component';
 
+=======
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -41,10 +44,14 @@ import { Twelve } from './Twelve/pageTwelve.component';
     Seven,
     Eight,
     Nine,
+<<<<<<< Updated upstream
     Ten,
     Eleven,
     Twelve
 
+=======
+    Ten
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -64,9 +71,13 @@ import { Twelve } from './Twelve/pageTwelve.component';
       { path: 'Seven', component: Seven },
       { path: 'Eight', component: Eight },
       { path: 'Nine', component: Nine },
+<<<<<<< Updated upstream
       { path: 'Ten', component: Ten },
       { path: 'Eleven', component: Eleven },
       { path: 'Twelve', component: Twelve },
+=======
+      { path: 'Ten', component: Ten }
+>>>>>>> Stashed changes
     ])
   ],
   providers: [],

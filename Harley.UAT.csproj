@@ -11,9 +11,12 @@
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
     <UserSecretsId>9c2ea508-c5cd-4a47-b1e9-1ebae82b887c</UserSecretsId>
+<<<<<<< Updated upstream
     <ApplicationIcon />
     <OutputType>Exe</OutputType>
     <StartupObject />
+=======
+>>>>>>> Stashed changes
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,10 +26,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+<<<<<<< Updated upstream
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.4.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+=======
+>>>>>>> Stashed changes
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
@@ -35,9 +41,12 @@
     <Content Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     <None Remove="ClientApp\src\assets\images\Report_2.JPG" />
+<<<<<<< Updated upstream
     <None Remove="ClientApp\src\app\Four %28copy%29\" />
     <None Remove="ClientApp\src\app\home %28copy%29\" />
     <None Remove="ClientApp\src\app\Five %28copy%29\" />
+=======
+>>>>>>> Stashed changes
   </ItemGroup>
 
   <ItemGroup>
@@ -45,11 +54,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
+<<<<<<< Updated upstream
   <ItemGroup>
     <Folder Include="ClientApp\src\app\Eleven\" />
     <Folder Include="ClientApp\src\app\customerLanding\" />
     <Folder Include="ClientApp\src\app\Twelve\" />
   </ItemGroup>
+=======
+>>>>>>> Stashed changes
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

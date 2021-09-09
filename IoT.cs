@@ -1,10 +1,19 @@
+<<<<<<< Updated upstream
+=======
+using System;
+
+>>>>>>> Stashed changes
 namespace Harley.UAT
 {
     public class IoT
     {
         public int SensorId { get; set; }
 
+<<<<<<< Updated upstream
         public string TimeStamp { get; set; }
+=======
+        public DateTime TimeStamp { get; set; }
+>>>>>>> Stashed changes
 
         public string Description { get; set; }
 
