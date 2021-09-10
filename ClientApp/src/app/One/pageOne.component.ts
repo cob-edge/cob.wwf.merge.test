@@ -18,16 +18,6 @@ export class One implements OnInit {
   chart;
 
   //api declaration
-  /*
-  public iots: IoT[];
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<IoT[]>(baseUrl + 'iot').subscribe(result => {
-      this.iots = result;
-    }, error => console.error(error));
-  }
-  */
-
-  //api declaration
   public recentV1s: RecentV1[];
   public one: One;
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
@@ -47,6 +37,7 @@ export class One implements OnInit {
     }, error => console.error(error));
   }
 
+  //run
   ngOnInit() {
     this.createTestChart();
     
@@ -57,20 +48,23 @@ export class One implements OnInit {
   createTestChart() {
     //chart creation
     this.chart = new Chart('canvas', {
-      type: 'bar',
+      type: 'line',
       options: {
         responsive: true,
         title: {
           display: true,
           text: 'Realtime Charts'
         },
+        scales: {
+          
+        }
       },
       data: {
         labels: ['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10'],
         datasets: [
           {
-            type: 'bar',
-            label: 'Test Chart',
+            type: 'line',
+            label: 'Live Speed detected by sensor',
             //data: [10, 3, 6, 11, 38, 5, 6, 17],
             backgroundColor: '#3F3FBF',
             fill: false
@@ -81,27 +75,14 @@ export class One implements OnInit {
   }
 
   updateStats() { //this method here does the live data refresh
-    this.updateApiCall(this.http, this.baseUrl);
+    this.updateApiCall(this.http, this.baseUrl); //re runs the sql query to get 10 most recent v1 values
 
     console.log("hello from update status " + this.recentV1s[0].recent10);
     this.chart.data.datasets[0].data = this.recentV1s[0].recent10;
     this.chart.update();
-    //console.log("NEW DATA UPDATE");
   }
 }
 
 interface RecentV1 {
   recent10: number[];
-}
-
-interface IoT {
-  sensorId: number;
-  timeStamp: string;
-  description: string;
-  type: string;
-  v1: number;
-  v2: number;
-  v3: number;
-  latitude: number;
-  longitude: number;
 }

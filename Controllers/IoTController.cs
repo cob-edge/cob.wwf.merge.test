@@ -97,57 +97,7 @@ namespace Harley.UAT.Controllers
                     Longitude = Convert.ToSingle(row["Longitude"])
                 };
                 i++;
-                /*
-                JsonMsg jsonMsg = new JsonMsg();
-                jsonMsg.id = (int)row["SensorId"];
-                jsonMsg.Timestamp = row["TimeStamp"].ToString();
-                jsonMsg.v1 = (int)row["V1"];
-                jsonMsg.v2 = (int)row["V2"];
-                jsonMsg.v3 = (int)row["V3"];
-                jsonMsg.Desc = row["Description"].ToString();
-                jsonMsg.EntityType = row["Type"].ToString();
-                jsonMsg.Latitude = Convert.ToSingle(row["Latitude"]);
-                jsonMsg.Longitude = Convert.ToSingle(row["Longitude"]);
-                Console.WriteLine(jsonMsg.GetLogString());
-                */
             }
         }
-
-
-
-
-
-        /* //old code for a live read method, no longer nessary
-        private IoT liveIoT;
-        public void LiveRead() //could me modified for specific queires, then just retreive whole table
-        {
-            //Read DB table 
-            SqlCommand cmd = new SqlCommand(@"
-               SELECT TOP 1 * FROM IOT ORDER BY TimeStamp DESC
-               ", sqlc);
-            DataTable Results = new DataTable();
-            // Read table from database and store it
-            sqlc.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-            Results.Load(reader);
-            int SizeIoTs = Results.Rows.Count;
-            sqlc.Close();
-
-            while (true)
-            {
-                liveIoT = new IoT {
-                    SensorId = (int)Results.Rows[0]["SensorId"],
-                    TimeStamp = DateTime.Now /* row["TimeStamp"].ToString() ,
-                    Description = Results.Rows[0]["Description"].ToString(),
-                    Type = Results.Rows[0]["Type"].ToString(),
-                    V1 = (int)Results.Rows[0]["V1"],
-                    V2 = (int)Results.Rows[0]["V2"],
-                    V3 = (int)Results.Rows[0]["V3"],
-                    Latitude = Convert.ToSingle(Results.Rows[0]["Latitude"]),
-                    Longitude = Convert.ToSingle(Results.Rows[0]["Longitude"])
-                };
-            }
-        }
-        */
     }
 }

@@ -27,4 +27,14 @@ namespace Harley.UAT
     {
         public double[] Recent10 { get; set; }
     }
+
+    public class RecentV2
+    {
+        public double[] Recent10 { get; set; }
+    }
+
+    public class RecentV3
+    {
+        public double[] Recent10 { get; set; }
+    }
 }
