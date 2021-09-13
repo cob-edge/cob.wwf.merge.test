@@ -37,7 +37,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\Five %28copy%29\" />
+    <Folder Include="ClientApp\src\app\Eleven\" />
+    <Folder Include="ClientApp\src\app\Twelve\" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
