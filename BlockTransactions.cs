@@ -37,6 +37,6 @@ namespace Harley.UAT
 
     public class RecentGas
     {
-        public double[] Recent10 { get; set; }
+        public long[] Recent10 { get; set; }
     }
 }

@@ -19,7 +19,6 @@ export class One implements OnInit {
 
   //api declaration
   public recentV1s: RecentV1[];
-  public one: One;
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<RecentV1[]>(baseUrl + 'recentV1').subscribe(result => {
       this.recentV1s = result;
