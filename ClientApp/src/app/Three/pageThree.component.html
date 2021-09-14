@@ -30,6 +30,51 @@
   <div id="main">
 
     <!-- One -->
+    <div class="container">
+      <b>
+        <section id="two" class="spotlights">
+          <h1>Forms Testing Section</h1>
+
+          <form #test="ngForm" (ngSubmit)="onSubmit(test)" novalidate>
+            <div class="form-gorup">
+              <label for="email">Email Address</label><br>
+              <input #email="ngModel" required minlength="5" maxlength="255" type="text" name="email" class="form-control" ngModel>
+              <div *ngIf="email.touched && email.invalid" class="alert alert-warning">You must enter a valid email address</div>
+
+            </div>
+            <pre></pre>
+            <div class="form-gorup">
+              <label for="firstname">Firstname</label><br>
+              <input #firstname="ngModel" required maxlength="50" type="text" name="firstname" class="form-control" ngModel>
+              <div *ngIf="firstname.touched && firstname.invalid" class="alert alert-warning">
+                <p *ngIf="firstname.errors.required">Firstname required</p>
+              </div>
+
+            </div>
+            <pre></pre>
+            <div class="form-gorup">
+              <label for="surname">Surname</label><br>
+              <input #surname="ngModel" required maxlength="50" type="text" name="Surname" class="form-control" ngModel>
+              <div *ngIf="surname.touched && surname.invalid" class="alert alert-warning">
+                <p *ngIf="surname.errors.required">Surname required</p>
+              </div>
+
+            </div>
+            <pre></pre>
+            <div class="form-gorup">
+              <label for="phone">Phone Number</label><br>
+              <input type="number" name="phone" class="form-control" ngModel>
+
+            </div>
+            <pre></pre>
+            <button class="btn btn-primary" type="submit">Submit</button>
+
+          </form>
+        </section>
+      </b>
+    </div>
+
+    <!-- Two -->
     <section id="one">
       <div class="inner">
         <b>
@@ -40,10 +85,6 @@
           </header>
         </b>
       </div>
-    </section>
-
-    <!-- Two -->
-    <section id="two" class="spotlights">
     </section>
 
     <!-- Contact -->
