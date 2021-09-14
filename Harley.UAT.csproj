@@ -39,6 +39,7 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\app\Eleven\" />
     <Folder Include="ClientApp\src\app\Twelve\" />
+    <Folder Include="ClientApp\src\app\Fifteen\" />
     <Folder Include="ClientApp\src\app\Sixteen\" />
     <Folder Include="ClientApp\src\app\Seventeen\" />
   </ItemGroup>
