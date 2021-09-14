@@ -21,7 +21,8 @@ import { Nine } from './Nine/pageNine.component';
 import { Ten } from './Ten/pageTen.component';
 import { Eight } from './Eight/pageEight.component';
 import { Eleven } from './Eleven/pageEleven.component';
-import { Twelve } from './Twelve/pageTwelve.component'
+import { Twelve } from './Twelve/pageTwelve.component';
+import { Thirteen } from './Thirteen/pageThirteen.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { Twelve } from './Twelve/pageTwelve.component'
     Nine,
     Ten,
     Eleven,
-    Twelve
+    Twelve,
+    Thirteen
  
 
   ],
@@ -66,7 +68,8 @@ import { Twelve } from './Twelve/pageTwelve.component'
       { path: 'Nine', component: Nine },
       { path: 'Ten', component: Ten },
       { path: 'Eleven', component: Eleven },
-      { path: 'Twelve', component: Twelve }
+      { path: 'Twelve', component: Twelve },
+      { path: 'Thirteen', component: Thirteen },
     ])
   ],
   providers: [],
