@@ -29,6 +29,7 @@
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     <None Remove="ClientApp\src\assets\images\Report_2.JPG" />
     <None Remove="ClientApp\src\app\Five %28copy%29\" />
+    <None Remove="ClientApp\src\app\Three %28copy%29\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,9 +40,7 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\app\Eleven\" />
     <Folder Include="ClientApp\src\app\Twelve\" />
-    <Folder Include="ClientApp\src\app\Fifteen\" />
-    <Folder Include="ClientApp\src\app\Sixteen\" />
-    <Folder Include="ClientApp\src\app\Seventeen\" />
+    <Folder Include="ClientApp\src\app\Thirteen\" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
