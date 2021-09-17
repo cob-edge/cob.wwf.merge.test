@@ -20,6 +20,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.4.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
@@ -30,12 +34,22 @@
     <None Remove="ClientApp\src\assets\images\Report_2.JPG" />
     <None Remove="ClientApp\src\app\Five %28copy%29\" />
     <None Remove="ClientApp\src\app\Three %28copy%29\" />
+    <None Remove="Server\server.js" />
+    <None Remove="Tester.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="$(SpaRoot)**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Test - Copy.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Server\server.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ClientApp\src\app\Eleven\" />
@@ -65,7 +79,7 @@
     <ItemGroup>
       <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
       <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
-      <ResolvedFileToPublish Include="@(DistFiles-&gt;'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
         <RelativePath>%(DistFiles.Identity)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
