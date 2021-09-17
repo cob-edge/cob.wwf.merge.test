@@ -44,6 +44,9 @@
     <Folder Include="ClientApp\src\app\Fifteen\" />
     <Folder Include="ClientApp\src\app\Sixteen\" />
     <Folder Include="ClientApp\src\app\Seventeen\" />
+    <Folder Include="ClientApp\src\app\Eighteen\" />
+    <Folder Include="ClientApp\src\app\Twenty\" />
+    <Folder Include="ClientApp\src\app\Nineteen\" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
