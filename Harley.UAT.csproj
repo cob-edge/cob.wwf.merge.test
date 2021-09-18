@@ -27,7 +27,6 @@
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
-    <None Remove="ClientApp\src\app\One\pageOne - Copy.component.ts" />
     <None Remove="ClientApp\src\assets\images\Report_2.JPG" />
   </ItemGroup>
 
