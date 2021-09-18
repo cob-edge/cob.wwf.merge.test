@@ -40,7 +40,7 @@ export class Four implements OnInit {
   ngOnInit() {
     this.createTestChart();
 
-    this.updateSubscription = interval(2000).subscribe(
+    this.updateSubscription = interval(3000).subscribe(
       (val) => { this.updateStats() });
   }
 
@@ -78,9 +78,9 @@ export class Four implements OnInit {
 
     //this.updateApiCall(this.http, this.baseUrl); //re runs the sql query to get 10 most recent v1 values
 
-    console.log("hello from update status " + this.recentGases[0].recent10);
-    this.chart.data.datasets[0].data = this.recentGases[0].recent10;
-    this.chart.update();
+    //console.log("hello from update status " + this.recentGases[0].recent10);
+    //this.chart.data.datasets[0].data = this.recentGases[0].recent10;
+    //this.chart.update();
   }
 
 
