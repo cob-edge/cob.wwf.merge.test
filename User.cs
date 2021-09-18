@@ -10,7 +10,7 @@ namespace Harley.UAT
 
         public string User_LastName { get; set; }
 
-        public char User_Type { get; set; }
+        public string User_Type { get; set; }
 
         public string User_Email { get; set; }
 

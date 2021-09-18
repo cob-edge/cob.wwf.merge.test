@@ -36,7 +36,7 @@ namespace Harley.UAT.Controllers
                 User_ID = UserData[i].User_ID,
                 User_FirstName = UserData[i].User_FirstName,
                 User_LastName = UserData[i].User_LastName,
-                UserType = UserData[i].UserType,
+                User_Type = UserData[i].User_Type,
                 User_Email = UserData[NextInt()].User_Email
             })
 
@@ -90,7 +90,7 @@ namespace Harley.UAT.Controllers
                     User_ID = (int)row["User_ID"],
                     User_FirstName = row["User_FirstName"].ToString(),
                     User_LastName = row["User_LastName"].ToString(),
-                    UserType = row["UserType"].ToString(),
+                    User_Type = row["UserType"].ToString(),
                     User_Email = row["User_Email"].ToString()
                 };
                 i++;
