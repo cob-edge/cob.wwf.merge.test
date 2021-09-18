@@ -12,41 +12,43 @@
   <!-- One -->
   <section id="one">
 
-    <header class="major">
-      <h1>Motorist and General User Sign In</h1>
-    </header>
+    <div class="inner">
+      <header class="major">
+        <h1>Customer. Motorist and General User Login</h1>
+      </header>
 
-
-    <div class="row gtr-uniform">
+      <div class="row gtr-uniform">
         <div class="col-6 col-12-xsmall">
-            <label for="pass">LoginID:</label>
-            <input type="text" name="demo-name" id="demo-name" value="" placeholder="" />
+          <label for="email">Login Email:</label>
+          <input type="text" name="email" id="email" value="" placeholder="" />
         </div>
-      <div class="col-6 col-12-xsmall">
-         
-          <label for="pass">Password:</label>
-          <input type="password" id="pass" name="password"
+        <div class="col-6 col-12-xsmall">
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password"
                  minlength="8" required>
-      </div>
-      <div>
+        </div>
+
+        <div class="col-6 col-12-small">
+          <input type="checkbox" id="demo-human" name="demo-human" checked>
+          <label for="demo-human">Remember Sign In</label>
+        </div>
+
+        <ul class="actions">
+          <li><input type="submit" value="Login" class="primary" /></li>
+          <li><input type="reset" value="Clear" /></li>
+        </ul>
+
+        <div>
           <li class="button-primary" [routerLinkActive]="['link-active']">
-              <a class="nav-link text-light" [routerLink]="['/Eleven']">Sign In</a>
+            <a class="nav-link text-light" [routerLink]="['/Eleven']">If You Do Not Have Login Details Please Click Here</a>
           </li>
+        </div>
+
       </div>
-
-      <div class="col-6 col-12-small">
-        <input type="checkbox" id="demo-human" name="demo-human" checked>
-        <label for="demo-human">Remember Sign In</label>
-      </div>
-
-
-
-
     </div>
-  </section>
 
-  <p><b></b></p>
-  <iframe width="1000" height="563" src="https://app.powerbi.com/reportEmbed?reportId=7832fa72-8d42-47cb-9628-33c8514c7edc&autoAuth=true&ctid=9aee26d8-97c2-4fad-8900-96735f6dc73f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXNvdXRoLWVhc3QtYXNpYS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D" frameborder="0" allowFullScreen="true"></iframe>
+  </section>
 
   <!-- Footer -->
   <footer id="footer">
