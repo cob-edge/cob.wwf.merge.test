@@ -65,7 +65,6 @@ export class Eleven implements OnInit {
     this.createTestChart();
     this.createTestChart2();
     this.createTestChart3();
-    this.createTestChart4();
 
     this.updateSubscription = interval(3000).subscribe(
       (val) => { this.updateStats() });
@@ -108,7 +107,7 @@ export class Eleven implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: 'Average CarPark Costs'
+          text: 'Equivalent CarPark Costs of Past Day'
         },
         scales: {
 
@@ -132,60 +131,37 @@ export class Eleven implements OnInit {
   createTestChart3() {
     //chart creation
     this.chart3 = new Chart('canvas3', {
-      type: 'line',
+      type: 'radar',
+      data: this.data,
       options: {
-        responsive: true,
-        title: {
-          display: true,
-          text: 'Realtime Charts'
-        },
-        scales: {
-
+        elements: {
+          line: {
+            borderWidth: 3
+          }
         }
       },
-      data: {
-        labels: ['t-9', 't-8', 't-7', 't-6', 't-5', 't-4', 't-3', 't-2', 't-1', 't'],
-        datasets: [
-          {
-            type: 'line',
-            label: 'Live pause time (s) detected by sensor id 66',
-            data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            backgroundColor: '#3F3FBF',
-            fill: false
-          }
-        ]
-      }
     });
   }
 
-  createTestChart4() {
-    //chart creation
-    this.chart3 = new Chart('canvas4', {
-      type: 'line',
-      options: {
-        responsive: true,
-        title: {
-          display: true,
-          text: 'Realtime Charts'
-        },
-        scales: {
-
-        }
-      },
-      data: {
-        labels: ['t-9', 't-8', 't-7', 't-6', 't-5', 't-4', 't-3', 't-2', 't-1', 't'],
-        datasets: [
-          {
-            type: 'line',
-            label: 'Live pause time (s) detected by sensor id 66',
-            data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            backgroundColor: '#3F3FBF',
-            fill: false
-          }
-        ]
-      }
-    });
-  }
+  public data = {
+    labels: [
+      'Car Park 3 La Trobe',
+      'Epping Puma',
+      'T1, T2, T3 Car Park',
+      'Wilson Parking'
+    ],
+    datasets: [{
+      label: 'Total Costs Across Carparks (AUD)',
+      data: [1, 1, 1, 1],
+      fill: true,
+      backgroundColor: 'rgb(63,63,191, 0.2)',
+      borderColor: 'rgb(63,63,191)',
+      pointBackgroundColor: 'rgb(63,63,191)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgb(63,63,191)'
+    }]
+  };
 
   updateStats() { //this method here does the live data refresh
     //this.updateApiCall(this.http, this.baseUrl); //re runs the sql query to get 10 most recent v1 values
@@ -201,8 +177,8 @@ export class Eleven implements OnInit {
     this.chart2.update();
 
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-    //this.chart3.data.datasets[0].data = this.recentV3s[0].recent10;
-    //this.chart3.update();
+    this.chart3.data.datasets[0].data = [140, 203, 80, 16];
+    this.chart3.update();
   }
 }
 
