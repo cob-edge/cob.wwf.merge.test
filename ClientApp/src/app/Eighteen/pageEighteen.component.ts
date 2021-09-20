@@ -62,8 +62,8 @@ export class Eighteen implements OnInit {
 
   //run
   ngOnInit() {
-    this.createTestChart();
-    this.createTestChart2();
+    //this.createTestChart();
+    //this.createTestChart2();
     this.createTestChart3();
 
     this.updateSubscription = interval(3000).subscribe(
@@ -151,7 +151,7 @@ export class Eighteen implements OnInit {
       'Wilson Parking'
     ],
     datasets: [{
-      label: 'Total Costs Across Carparks (AUD)',
+      label: 'Total Cars Currently Parked Across Network',
       data: [1, 1, 1, 1],
       fill: true,
       backgroundColor: 'rgb(63,63,191, 0.2)',
@@ -168,13 +168,13 @@ export class Eighteen implements OnInit {
     //this.updateApiCall2(this.http, this.baseUrl);
     //this.updateApiCall3(this.http, this.baseUrl);
 
-    console.log("hello from update status chart : " + this.recentV1s[0].recent10);
-    this.chart.data.datasets[0].data = [1, 0.5, 1, 2, 1, 3, 1, 4, 2, 1];
-    this.chart.update();
+    //console.log("hello from update status chart : " + this.recentV1s[0].recent10);
+    //this.chart.data.datasets[0].data = [1, 0.5, 1, 2, 1, 3, 1, 4, 2, 1];
+    //this.chart.update();
 
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-    this.chart2.data.datasets[0].data = [2, 9, 3, 5, 9, 7, 13, 20, 12, 10];
-    this.chart2.update();
+    //this.chart2.data.datasets[0].data = [2, 9, 3, 5, 9, 7, 13, 20, 12, 10];
+    //this.chart2.update();
 
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
     this.chart3.data.datasets[0].data = [63, 20, 108, 27];
