@@ -124,7 +124,7 @@ export class Nineteen implements OnInit {
   createTestChart3() {
     //chart creation
     this.chart3 = new Chart('canvas3', {
-      type: 'radar',
+      type: 'bar',
       data: this.data3,
       options: {
         elements: {
@@ -144,18 +144,18 @@ export class Nineteen implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: '0TI-K06 Use of Petrol At Diffent Weeks',
+          text: 'Active Running IoT Sensor on Block Chain Network',
         },
         scales: {
 
         }
       },
       data: {
-        labels: ['t-3', 't-2', 't-1', 't'],
+        labels: ['Start of Sim', 'Mid Sim', 'Mid Sim', 'End of Sim'],
         datasets: [
           {
             type: 'line',
-            label: 'Live pause time (s) detected by sensor id 66',
+            label: 'Live Sensor Amount',
             data: [1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
             fill: false
@@ -167,18 +167,18 @@ export class Nineteen implements OnInit {
 
   updateStats() { //this method here does the live data refresh
     //this.updateApiCall(this.http, this.baseUrl); //re runs the sql query to get 10 most recent v1 values
-    this.updateApiCall2(this.http, this.baseUrl);
-    this.updateApiCall3(this.http, this.baseUrl);
+    //this.updateApiCall2(this.http, this.baseUrl);
+    //this.updateApiCall3(this.http, this.baseUrl);
 
     //console.log("hello from update status chart : " + this.recentV1s[0].recent10);
-    this.chart.data.datasets[0].data = [5, 1, 4, 8];
-    this.chart.update();
+    //this.chart.data.datasets[0].data = [5, 1, 4, 8];
+    //this.chart.update();
 
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-    this.chart2.data.datasets[0].data = [35, 7, 20, 40];
-    this.chart2.update();
+    //this.chart2.data.datasets[0].data = [35, 7, 20, 40];
+    //this.chart2.update();
 
-    this.chart4.data.datasets[0].data = [10, 23, 22, 21]
+    this.chart4.data.datasets[0].data = [0, 2, 50, 1]
     this.chart4.update();
 
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
@@ -190,10 +190,10 @@ export class Nineteen implements OnInit {
 
   public data1 = {
     labels: [
-      '6SR-D14',
-      '5NQ-D93',
-      '7MQ-F06',
-      '0TI-K06'
+      'id.libero.Donec@mauris.edu',
+      'ridiculus.mus@ipsum.com',
+      'sit.amet@Nullam.co.uk',
+      'aliquet.diam@semmollis.net'
     ],
     datasets: [{
       label: 'My First Dataset',
@@ -228,16 +228,16 @@ export class Nineteen implements OnInit {
 
   public data3 = {
     labels: [
-      '6SR-D14',
-      '5NQ-D93',
-      '7MQ-F06',
-      '0TI-K06'
+      'id.libero.Donec@mauris.edu',
+      'ridiculus.mus@ipsum.com',
+      'sit.amet@Nullam.co.uk',
+      'aliquet.diam@semmollis.net'
     ],
     datasets: [{
-      label: 'Total Costs Across Vehicles Weekly',
+      label: 'Total Costs For A User In a Run of The Simulator. Biggest Users of Network',
       data: [1, 1, 1, 1],
       fill: true,
-      backgroundColor: 'rgb(63,63,191, 0.2)',
+      backgroundColor: 'rgb(63,63,191)',
       borderColor: 'rgb(63,63,191)',
       pointBackgroundColor: 'rgb(63,63,191)',
       pointBorderColor: '#fff',
