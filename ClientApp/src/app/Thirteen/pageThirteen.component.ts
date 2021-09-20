@@ -78,109 +78,83 @@ export class Thirteen implements OnInit {
   createTestChart() {
     //chart creation
     this.chart = new Chart('canvas', {
-      type: 'bar',
+      type: 'doughnut',
       options: {
+        elements: {
+          arc: {
+            borderWidth: 0
+          }
+        },
         responsive: true,
         title: {
           display: true,
-          text: 'Cost Over Time For Etherum Carpark'
+          text: 'Cost Daily For Your Cars'
         },
         scales: {
 
         }
       },
-      data: {
-        labels: ['Dailey', 'Weekly', 'Monthly', 'Yearly'],
-        datasets: [
-          {
-            type: 'bar',
-            label: 'Cost (AUD)',
-            data: [1, 1, 1, 1],
-            backgroundColor: '#3F3FBF',
-            fill: false
-          }
-        ]
-      }
+      data: this.data1
     });
   }
 
   createTestChart2() {
     //chart creation
     this.chart2 = new Chart('canvas2', {
-      type: 'bar',
+      type: 'doughnut',
       options: {
+        elements: {
+          arc: {
+            borderWidth: 0
+          }
+        },
         responsive: true,
         title: {
           display: true,
-          text: 'Cost Over Time For Normal Carpark'
+          text: 'Cost Weekly For Your Cars'
         },
         scales: {
 
         }
       },
-      data: {
-        labels: ['Dailey', 'Weekly', 'Monthly', 'Yearly'],
-        datasets: [
-          {
-            type: 'bar',
-            label: 'Cost (AUD)',
-            data: [1, 1, 1, 1],
-            backgroundColor: '#3F3FBF',
-            fill: false
-          }
-        ]
-      }
+      data: this.data2
     });
   }
 
   createTestChart3() {
     //chart creation
     this.chart3 = new Chart('canvas3', {
-      type: 'line',
+      type: 'radar',
+      data: this.data3,
       options: {
-        responsive: true,
-        title: {
-          display: true,
-          text: 'Recent Charges on the Blockchain'
-        },
-        scales: {
-
+        elements: {
+          line: {
+            borderWidth: 3
+          }
         }
       },
-      data: {
-        labels: ['t-9', 't-8', 't-7', 't-6', 't-5', 't-4', 't-3', 't-2', 't-1', 't'],
-        datasets: [
-          {
-            type: 'line',
-            label: 'Cost (AUD)',
-            data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            backgroundColor: '#3F3FBF',
-            fill: false
-          }
-        ]
-      }
     });
   }
 
   createTestChart4() {
     //chart creation
     this.chart4 = new Chart('canvas4', {
-      type: 'bar',
+      type: 'line',
       options: {
         responsive: true,
         title: {
           display: true,
-          text: 'Use of Pertrol Over Time',
+          text: '0TI-K06 Use of Petrol At Diffent Weeks',
         },
         scales: {
 
         }
       },
       data: {
-        labels: ['Dailey', 'Weekly', 'Monthly', 'Yearly'],
+        labels: ['t-3', 't-2', 't-1', 't'],
         datasets: [
           {
-            type: 'bar',
+            type: 'line',
             label: 'Live pause time (s) detected by sensor id 66',
             data: [1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
@@ -197,22 +171,80 @@ export class Thirteen implements OnInit {
     this.updateApiCall3(this.http, this.baseUrl);
 
     //console.log("hello from update status chart : " + this.recentV1s[0].recent10);
-    this.chart.data.datasets[0].data = [5, 33, 132, 1584];
+    this.chart.data.datasets[0].data = [5, 1, 4, 8];
     this.chart.update();
 
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-    this.chart2.data.datasets[0].data = [10, 68, 272, 3264];
+    this.chart2.data.datasets[0].data = [35, 7, 20, 40];
     this.chart2.update();
 
-    this.chart4.data.datasets[0].data = [3500, 24500, 95000, 1176000]
+    this.chart4.data.datasets[0].data = [10, 23, 22, 21]
     this.chart4.update();
 
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-    this.chart3.data.datasets[0].data = this.recentV3s[0].recent10;
+    this.chart3.data.datasets[0].data = [35, 7, 20, 40]
     this.chart3.update();
 
 
   }
+
+  public data1 = {
+    labels: [
+      '6SR-D14',
+      '5NQ-D93',
+      '7MQ-F06',
+      '0TI-K06'
+    ],
+    datasets: [{
+      label: 'My First Dataset',
+      data: [1, 1, 1, 1],
+      backgroundColor: [
+        'rgb(63,63,191)',
+        'rgb(54,162,235)',
+        'rgb(129,161,242)',
+        'rgb(0,161,172)'
+      ]
+    }]
+  };
+
+  public data2 = {
+    labels: [
+      '6SR-D14',
+      '5NQ-D93',
+      '7MQ-F06',
+      '0TI-K06'
+    ],
+    datasets: [{
+      label: 'My First Dataset',
+      data: [1, 1, 1, 1],
+      backgroundColor: [
+        'rgb(63,63,191)',
+        'rgb(54,162,235)',
+        'rgb(129,161,242)',
+        'rgb(0,161,172)'
+      ]
+    }]
+  };
+
+  public data3 = {
+    labels: [
+      '6SR-D14',
+      '5NQ-D93',
+      '7MQ-F06',
+      '0TI-K06'
+    ],
+    datasets: [{
+      label: 'Total Costs Across Vehicles Weekly',
+      data: [1, 1, 1, 1],
+      fill: true,
+      backgroundColor: 'rgb(63,63,191, 0.2)',
+      borderColor: 'rgb(63,63,191)',
+      pointBackgroundColor: 'rgb(63,63,191)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgb(63,63,191)'
+    }]
+  };
 }
 
 interface RecentV1 {
@@ -226,6 +258,7 @@ interface RecentV2 {
 interface RecentV3 {
   recent10: number[];
 }
+
 
 
 
