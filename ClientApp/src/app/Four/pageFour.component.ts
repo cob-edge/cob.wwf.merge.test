@@ -94,6 +94,7 @@ export class Four implements OnInit {
   }
 }
 
+// This interface is for a graph on Page 4 that has been commented out
 interface IoT {
   sensorId: number;
   timeStamp: string;
