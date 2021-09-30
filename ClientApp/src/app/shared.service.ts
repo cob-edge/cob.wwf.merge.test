@@ -7,16 +7,18 @@ import { Component, OnInit, Inject } from '@angular/core';
   providedIn: 'root'
 })
 export class SharedService {
-  @Inject('BASE_URL') baseUrl: string
+  @Inject('BASE_URL') baseUrl: string;
+
+  hardCodeUrl: "https://localhost:44366/";
 
   constructor(private http: HttpClient) { }
 
   addUser(val: any) {
-    return this.http.post<User>(this.baseUrl+ 'user', val)
+    return this.http.post<User>("https://localhost:44366/"+ 'user', val)
   }
 
   checkUser(val: any) {
-    return this.http.post<User>(this.baseUrl + 'user', val)
+    return this.http.post<User>("https://localhost:44366/" + 'user', val)
   }
 }
 
