@@ -4,6 +4,10 @@ namespace Harley.UAT
 {
     public class User
     {
+        //public User(int v1, string v2, string v3, string v4, string v5, string v6, string v7, string v8, string v9, int v10, string v11, string v12)
+        //{
+        //}
+
         public int User_ID { get; set; }
 
         public string User_FirstName { get; set; }
@@ -26,6 +30,6 @@ namespace Harley.UAT
 
         public string User_LicenseNo { get; set; }
 
-        public DateTime User_LicenseExp { get; set; }
+        public string User_LicenseExp { get; set; }
     }
 }

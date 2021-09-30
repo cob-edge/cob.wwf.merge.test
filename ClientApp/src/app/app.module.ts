@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+
+import { SharedService } from './shared.service';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -32,6 +34,10 @@ import { Twenty } from './Twenty/pageTwenty.component';
 import { Twentyone } from './Twentyone/pageTwentyone.component';
 import { Twentytwo } from './Twentytwo/pageTwentytwo.component';
 import { Twentythree } from './Twentythree/pageTwentythree.component';
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +75,7 @@ import { Twentythree } from './Twentythree/pageTwentythree.component';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
@@ -98,7 +105,7 @@ import { Twentythree } from './Twentythree/pageTwentythree.component';
       { path: 'Twentythree', component: Twentythree },
     ])
   ],
-  providers: [],
+  providers: [SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

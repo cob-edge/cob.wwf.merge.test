@@ -20,26 +20,27 @@ namespace Harley.UAT.Controllers
         }
 
         private int i = 0;
-        private int NextInt()
-        {
-            return i++;
-        }
+        private int NextInt() { return i++; }
 
         [HttpGet]
         public IEnumerable<User> Get()
         {
-            Connect();
             Read();
 
-            return Enumerable.Range(5, 10).Select(index => new User
+            return Enumerable.Range(1, 10).Select(index => new User
             {
                 User_ID = UserData[i].User_ID,
                 User_FirstName = UserData[i].User_FirstName,
                 User_LastName = UserData[i].User_LastName,
                 User_Type = UserData[i].User_Type,
-                User_Email = UserData[NextInt()].User_Email
+                User_Email = UserData[i].User_Email,
+                User_PhoneNo = UserData[i].User_PhoneNo,
+                User_Address_Street = UserData[i].User_Address_Street,
+                User_Address_City = UserData[i].User_Address_City,
+                User_Address_Postcode = UserData[i].User_Address_Postcode,
+                User_LicenseNo = UserData[i].User_LicenseNo,
+                User_LicenseExp = UserData[NextInt()].User_LicenseExp
             })
-
             .ToArray();
         }
 
@@ -67,10 +68,11 @@ namespace Harley.UAT.Controllers
 
         public void Read()
         {
+            Connect();
+
             //Read DB table 
             SqlCommand cmd = new SqlCommand
             (@"SELECT TOP 10 * FROM [dbo].[User]", sqlc);
-            //(@"SELECT TOP 10 [User_ID], [User_FirstName], [User_LastName], [UserType] FROM [dbo].[User]", sqlc);
             DataTable Results = new DataTable();
 
             // Read table from database and store it
@@ -91,10 +93,42 @@ namespace Harley.UAT.Controllers
                     User_FirstName = row["User_FirstName"].ToString(),
                     User_LastName = row["User_LastName"].ToString(),
                     User_Type = row["UserType"].ToString(),
-                    User_Email = row["User_Email"].ToString()
+                    User_Email = row["User_Email"].ToString(),
+                    User_PhoneNo = row["User_PhoneNo"].ToString(),
+                    User_Address_Street = row["User_Address_Street"].ToString(),
+                    User_Address_City = row["User_Address_City"].ToString(),
+                    User_Address_Postcode = (int)row["User_Address_Postcode"],
+                    User_LicenseNo = row["User_LicenseNo"].ToString(),
+                    User_LicenseExp = row["User_LicenseExp"].ToString()
                 };
                 i++;
             }
-        }  
+        }
+
+        [HttpPost]
+        public string Post(User user)
+        {
+            try
+            {
+                //User temp = new User(6000, "Jarvis", "Cole", 'A'.ToString(), "jarv.cole1@gmail", "Password1", "0438021929", "69 Dres Road", "Melbourne", 3001, "9999", "09/10/2999");
+
+                Connect();
+                string query = @"INSERT INTO [dbo].[User] (User_ID, User_FirstName, User_LastName, UserType)
+VALUES(300, 'Test', 'Jarvis', 'A');";
+
+                DataTable Results = new DataTable();
+                using (var cmd = new SqlCommand(query, sqlc))
+                using (var da = new SqlDataAdapter(cmd))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    da.Fill(Results);
+                }
+                return "Succesful";
+            } 
+            catch (Exception)
+            {
+                return "Unsuccesful";
+            }
+        }
     }
 }
