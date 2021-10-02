@@ -68,9 +68,9 @@ export class Ten {
       User_Address_Postcode: this.User_Address_Postcode,
       User_LicenseNo: this.User_LicenseNo,
       User_LicenseExp: this.User_LicenseExp};
-    console.log("hello from ts: " + this.User_Email);
-    console.log("hello from ts: " + val.User_Password);
-    console.log("hello from ts: " + val.User_Address_Postcode);
+    console.log("User Email TS: " + this.User_Email);
+    console.log("User Password TS: " + val.User_Password);
+    console.log("User Postcode: " + val.User_Address_Postcode);
 
     this.service.checkUser(val).subscribe(res => {
       alert(res.toString());

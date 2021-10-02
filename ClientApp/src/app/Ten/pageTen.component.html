@@ -1,4 +1,3 @@
-
 <!-- Menu -->
 <nav id="menu">
   <ul class="links">
@@ -14,23 +13,24 @@
 
     <div class="inner">
       <header class="major">
-        <h1>Customer, Motorist and General User Login</h1>
+        <h1>General User & Motorist Login</h1>
       </header>
 
-      <div class="row gtr-uniform">
+      <form #uSign="ngForm">
+        <div class="row gtr-uniform">
           <div class="col-6 col-12-xsmall">
-              <label for="email">Login Email:</label>
-              <input type="text" class="form-control" name="email" id="email" value="" placeholder="Enter Customer Email" [(ngModel)]="User_Email"/>
+            <label for="email">Login Email:</label>
+            <input type="text" class="form-control" name="email" id="email" value="" placeholder="Enter Customer Email" [(ngModel)]="User_Email" />
           </div>
-          <div class="col-6 col-12-xsmall">
 
-              <label for="password">Password:</label>
-              <input type="password" id="password" name="password" minlength="8" required placeholder="Enter Customer Email" [(ngModel)]="User_Password">
+          <div class="col-6 col-12-xsmall">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" minlength="8" required placeholder="Enter Password" [(ngModel)]="User_Password">
           </div>
 
           <div class="col-6 col-12-small">
-              <input type="checkbox" id="demo-human" name="demo-human" checked>
-              <label for="demo-human">Remember Sign In</label>
+            <input type="checkbox" id="demo-human" name="demo-human" checked>
+            <label for="demo-human">Remember Sign In</label>
           </div>
 
           <ul class="actions">
@@ -39,15 +39,18 @@
                 Login
               </button>
             </li>
-              <li><input type="reset" value="Clear" /></li>
+            <li>
+              <button type="reset" value="">Clear</button>
+            </li>
           </ul>
 
           <div>
-              <li class="button primary fit" [routerLinkActive]="['link-active']">
-                  <a class="nav-link text-dark" [routerLink]="['/Eleven']">If You Do Not Have Login Details Please Click Here</a>
-              </li>
+            <li class="button primary fit" [routerLinkActive]="['link-active']">
+              <a class="nav-link text-dark" [routerLink]="['/Eleven']">If You Do Not Have Login Details Please Click Here</a>
+            </li>
           </div>
-      </div>
+        </div>
+      </form>
     </div>
 
   </section>
