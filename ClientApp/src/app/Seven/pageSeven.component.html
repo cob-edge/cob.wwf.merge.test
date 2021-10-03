@@ -21,12 +21,12 @@
         <div class="row gtr-uniform">
           <div class="col-6 col-12-xsmall">
             <label for="email">Login Email:</label>
-            <input type="text" class="form-control" name="email" id="email" value="" placeholder="Enter Admin Email" [(ngModel)]="User_Email" />
+            <input type="text" class="form-control" name="email" id="email" value="" placeholder="Enter Admin Email" [(ngModel)]="Admin_Email" />
           </div>
 
           <div class="col-6 col-12-xsmall">
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" minlength="8" required placeholder="Enter Password" [(ngModel)]="User_Password">
+            <input type="password" id="password" name="password" minlength="8" required placeholder="Enter Password" [(ngModel)]="Admin_Password">
           </div>
 
           <div class="col-6 col-12-small">
@@ -36,9 +36,9 @@
 
           <ul class="actions">
             <li>
-              <button (click)="checkUser()" class="button primary fit">
+              <!--button (click)="checkUser()" class="button primary fit">
                 Login
-              </button>
+              </!--button-->
             </li>
             <li>
               <button type="reset" value="">Clear</button>
