@@ -1,7 +1,9 @@
 using System;
 
 namespace Harley.UAT
-{
+{   
+
+    //block chain transactions class
     public class BlockTransactions 
     {
         public string Hash { get; set; }

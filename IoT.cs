@@ -2,6 +2,8 @@ using System;
 
 namespace Harley.UAT
 {
+
+    //block chain iot class
     public class IoT
     {
         public int SensorId { get; set; }

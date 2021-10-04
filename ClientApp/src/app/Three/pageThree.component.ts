@@ -78,7 +78,8 @@ export class Three implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: 'Realtime Charts'
+          text: 'Realtime Charts',
+          fontColor: 'white'
         },
         scales: {
 
@@ -92,7 +93,8 @@ export class Three implements OnInit {
             label: 'Live Speed (Km/Hr) detected by sensor id 66',
             data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
-            fill: false
+            fill: false,
+            borderColor: 'blue'
           }
         ]
       }
@@ -107,7 +109,8 @@ export class Three implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: 'Realtime Charts'
+          text: 'Realtime Charts',
+          fontColor: 'white'
         },
         scales: {
 
@@ -121,7 +124,8 @@ export class Three implements OnInit {
             label: 'Live fuel (mL) detected by sensor id 66',
             data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
-            fill: false
+            fill: false,
+            borderColor: 'blue'
           }
         ]
       }
@@ -136,7 +140,8 @@ export class Three implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: 'Realtime Charts'
+          text: 'Realtime Charts',
+          fontColor: 'white'
         },
         scales: {
 
@@ -150,7 +155,8 @@ export class Three implements OnInit {
             label: 'Live pause time (s) detected by sensor id 66',
             data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
-            fill: false
+            fill: false,
+            borderColor: 'blue'
           }
         ]
       }

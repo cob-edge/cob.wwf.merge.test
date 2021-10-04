@@ -158,7 +158,8 @@ export class Nineteen implements OnInit {
             label: 'Live Sensor Amount',
             data: [1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
-            fill: false
+            fill: false,
+            borderColor: 'blue'
           }
         ]
       }
