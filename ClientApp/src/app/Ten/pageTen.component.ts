@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-Ten',
   templateUrl: './pageTen.component.html',
@@ -8,7 +10,17 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class Ten {
 
-  constructor(private service: SharedService) { }
+  //constructor(private service: SharedService) { }
+
+  postData = {
+    test: 'my content'
+  };
+
+  constructor(private http: HttpClient) {
+    this.http.post('https://httpbin.org/post', this.postData).toPromise().then(data => {
+      console.log(data);
+    })
+  }
 
   @Input() user: any;
   User_ID: number;
@@ -72,9 +84,9 @@ export class Ten {
     console.log("User Password TS: " + val.User_Password);
     console.log("User Postcode: " + val.User_Address_Postcode);
 
-    this.service.checkUser(val).subscribe(res => {
-      alert(res.toString());
-    });
+    //this.service.checkUser(val).subscribe(res => {
+    //  alert(res.toString());
+    //});
   }
 }
 
