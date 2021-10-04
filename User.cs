@@ -18,7 +18,7 @@ namespace Harley.UAT
 
         public string User_Email { get; set; }
 
-        private string User_Password { get; set; } //password so should not be accessed at any point private
+        private string User_Password { get; set; } // password should not be accessed at any point private
 
         public string User_PhoneNo { get; set; }
 

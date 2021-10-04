@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 
 import { SharedService } from 'src/app/shared.service';
-
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -80,7 +79,7 @@ export class Ten {
       User_PhoneNo: "",
       User_Address_Street: "",
       User_Address_City: "",
-      User_Address_Postcode: -1,
+      User_Address_Postcode: "",
       User_LicenseNo: "",
       User_LicenseExp: ""
     }
@@ -113,13 +112,13 @@ export class Ten {
       User_Address_Postcode: this.User_Address_Postcode,
       User_LicenseNo: this.User_LicenseNo,
       User_LicenseExp: this.User_LicenseExp};
-    console.log("User Email TS: " + this.User_Email);
-    console.log("User Password TS: " + val.User_Password);
-    console.log("User Postcode: " + val.User_Address_Postcode);
+    console.log("User Email: " + this.User_Email);
+    console.log("User Password: " + val.User_Password);
+    //console.log("User Postcode: " + val.User_Address_Postcode);
 
-    //this.service.checkUser(val).subscribe(res => {
-    //  alert(res.toString());
-    //});
+    /*this.service.checkUser(val).subscribe(res => {
+      alert(res.toString());
+    });*/
   }
 }
 
@@ -137,6 +136,3 @@ interface User {
   User_LicenseNo: string;
   User_LicenseExp: string;
 }
-
-
-
