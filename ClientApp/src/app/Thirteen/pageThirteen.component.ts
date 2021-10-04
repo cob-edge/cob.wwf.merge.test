@@ -158,7 +158,8 @@ export class Thirteen implements OnInit {
             label: 'Live pause time (s) detected by sensor id 66',
             data: [1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
-            fill: false
+            fill: false,
+            borderColor: 'blue'
           }
         ]
       }

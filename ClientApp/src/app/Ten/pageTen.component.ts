@@ -30,17 +30,17 @@ export class Ten {
   //public recentV1s: RecentV1[];
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.user = {
-      "user_ID": 301,
-      "user_FirstName": "Hayley",
-      "user_LastName": "Mcmahon",
-      "user_Type": "M",
-      "user_Email": "natoque.penatibus@odiosagittis.org",
-      "user_PhoneNo": "0486 312 519        ",
-      "user_Address_Street": "974-1626 Elementum Rd.",
-      "user_Address_City": "Lewiston",
-      "user_Address_Postcode": 3837,
-      "user_LicenseNo": "533401519-00004     ",
-      "user_LicenseExp": "9/12/2024 12:00:00 AM"
+      user_ID: 301,
+      user_FirstName: "Hayley",
+      user_LastName: "Mcmahon",
+      user_Type: "M",
+      user_Email: "natoque.penatibus@odiosagittis.org",
+      user_PhoneNo: "0486 312 519        ",
+      user_Address_Street: "974-1626 Elementum Rd.",
+      user_Address_City: "Lewiston",
+      user_Address_Postcode: 3837,
+      user_LicenseNo: "533401519-00004     ",
+      user_LicenseExp: "9/12/2024 12:00:00 AM"
     }
 
     console.log(this.user);

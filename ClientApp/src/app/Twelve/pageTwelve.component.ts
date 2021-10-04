@@ -155,7 +155,8 @@ export class Twelve implements OnInit {
             label: 'Cost (AUD)',
             data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
-            fill: false
+            fill: false,
+            borderColor: 'blue'
           }
         ]
       }
