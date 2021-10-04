@@ -19,12 +19,14 @@ namespace Harley.UAT.Controllers
             _logger = logger;
         }
 
+        //iterator
         private int i = 0;
         private int NextInt()
         {
             return i++;
         }
 
+        //api get method 
         [HttpGet]
         public IEnumerable<IoT> Get()
         {
@@ -49,6 +51,7 @@ namespace Harley.UAT.Controllers
 
         private static SqlConnection sqlc;
 
+        //check connection to sql 
         public void Connect()
         {
             String connectionString = "Server=tcp:cob-edge.database.windows.net,1433;Initial Catalog=IoTDB;Persist Security Info=False;User ID=cob.edge.admin;Password=Aoed7Test;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
@@ -69,6 +72,7 @@ namespace Harley.UAT.Controllers
 
         private IoT[] IoTData;
 
+        //read off data base
         public void Read()
         {
             //Read DB table 
