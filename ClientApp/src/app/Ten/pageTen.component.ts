@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+
 import { SharedService } from 'src/app/shared.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -12,14 +13,46 @@ export class Ten {
   //constructor(private service: SharedService) { }
 
   postData = {
-    test: 'my content'
+    test: 'my content yoo'
   };
 
+  public users: User[];
+  /*
   constructor(private http: HttpClient) {
     this.http.post('https://httpbin.org/post', this.postData).toPromise().then(data => {
       console.log(data);
     })
   }
+  */
+
+  
+  //public recentV1s: RecentV1[];
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    this.user = {
+      "user_ID": 301,
+      "user_FirstName": "Hayley",
+      "user_LastName": "Mcmahon",
+      "user_Type": "M",
+      "user_Email": "natoque.penatibus@odiosagittis.org",
+      "user_PhoneNo": "0486 312 519        ",
+      "user_Address_Street": "974-1626 Elementum Rd.",
+      "user_Address_City": "Lewiston",
+      "user_Address_Postcode": 3837,
+      "user_LicenseNo": "533401519-00004     ",
+      "user_LicenseExp": "9/12/2024 12:00:00 AM"
+    }
+
+    console.log(this.user);
+
+    //this.users[0] = this.user
+
+    //console.log(this.users[0]);
+
+    this.http.post<User>(baseUrl + 'user', this.user).subscribe(res => {
+    alert(res.toString());
+    })
+  }
+  
 
   @Input() user: any;
   User_ID: number;
@@ -99,7 +132,7 @@ interface User {
   User_PhoneNo: string;
   User_Address_Street: string;
   User_Address_City: string;
-  User_Address_Postcode: string;
+  User_Address_Postcode: number;
   User_LicenseNo: string;
   User_LicenseExp: string;
 }
