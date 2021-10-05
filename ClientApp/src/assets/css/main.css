@@ -2169,6 +2169,12 @@ input, select, textarea {
 		position: relative;
 	}
 
+.avatar {
+  border-radius: 0% 30% 30% 30%;
+  border: 1px solid white;
+
+}
+
 		.image img {
 			display: block;
 		}

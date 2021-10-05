@@ -16,40 +16,39 @@
       <header class="major">
         <h1>Administration Login</h1>
       </header>
-
-        <div class="row gtr-uniform">
-          <div class="col-6 col-12-xsmall">
-            <label for="email">Login Email:</label>
-            <input type="text" class="form-control" name="email" id="email" value="" placeholder="Enter Admin Email" />
-          </div>
-
-          <div class="col-6 col-12-xsmall">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" minlength="8" required placeholder="Enter Password " >
-          </div>
-
-          <div class="col-6 col-12-small">
-            <input type="checkbox" id="demo-human" name="demo-human" checked>
-            <label for="demo-human">Remember Sign In</label>
-          </div>
-
-          <ul class="actions">
-            <li>
-              <button (click)="checkUser()" class="button primary fit">
-                Login
-              </button>
-            </li>
-            <li>
-              <button type="reset" value="">Clear</button>
-            </li>
-          </ul>
-
-          <div>
-            <li class="button primary fit" [routerLinkActive]="['link-active']">
-              <a class="nav-link text-dark" [routerLink]="['/Eighteen']">If You Do Not Have Login Details Please Click Here</a>
-            </li>
-          </div>
+      <div class="row gtr-uniform">
+        <div class="col-6 col-12-xsmall">
+          <label for="email">Login Email:</label>
+          <input type="text" class="form-control" name="email" id="email" value="" placeholder="Enter Admin Email" />
         </div>
+
+        <div class="col-6 col-12-xsmall">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" minlength="8" required placeholder="Enter Password " >
+        </div>
+
+        <div class="col-6 col-12-small">
+          <input type="checkbox" id="demo-human" name="demo-human" checked>
+          <label for="demo-human">Remember Sign In</label>
+        </div>
+
+        <ul class="actions">
+          <li>
+            <button (click)="checkUser()" class="button primary fit">
+              Login
+            </button>
+          </li>
+          <li>
+            <button type="reset" value="">Clear</button>
+          </li>
+        </ul>
+
+        <div>
+          <li class="button primary fit" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/Eighteen']">If You Do Not Have Login Details Please Click Here</a>
+          </li>
+        </div>
+      </div>
     </div>
 
   </section>

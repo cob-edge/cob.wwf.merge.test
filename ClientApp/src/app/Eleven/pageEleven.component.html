@@ -1,11 +1,8 @@
 <!-- Wrapper -->
 <div id="wrapper">
 
-
-
   <!-- Menu -->
   <nav id="menu">
-
     <ul class="actions stacked">
       <li><a href="customerindex.html" class="button primary fit"> Log In With Google </a> </li>
       <li><a href="employeeindex.html" class="button fit"> Administrator Sign In </a></li>
@@ -14,211 +11,214 @@
   </nav>
 
   <!-- Main -->
-  <div id="main">
+  <div class="inner">
+    <header class="major">
+      <h1>My Dashboard</h1>
+    </header>
 
-    <!-- One -->
-    <section id="one">
-
-      <div class="inner">
-        <header class="major">
-          <h1>My Dashboard</h1>
-        </header>
-
-        <section id="five" class="spotlights">
-          <section>
-
-            <div class="content">
-              <div class="inner">
-                <header class="major">
-                  <h3>My Default User</h3>
-                  <h4>Welcome Ryan Little, with User ID : 14 and User Email : dictum.Proin.eget@DonecegestasAliquam.org</h4>
-                </header>
-              </div>
-            </div>
-          </section>
-        </section>
-<!-- This div adds a table to compare Ethereum carpark costs to a normal carpark cost.-->
-        <div class="row gtr-uniform">
-          <div class="col-6 col-12-xsmall">
-            <div style="width:100%">
-              <canvas id="canvas"></canvas>
-            </div>
-          </div>
-          <div class="col-6 col-12-xsmall">
-            <div style="width:100%">
-              <canvas id="canvas2"></canvas>
-            </div>
+    <section id="five" class="spotlights">
+      <section>
+        <div class="content">
+          <div class="inner">
+            <header class="major">
+              <h3>Welcome, Keegan</h3>
+              <a class="image">
+                <img class="avatar" src="../../assets/images/AvatarK.jpeg" alt="avatar"
+                     align="left"
+                     width="150"
+                     height="171" />
+              </a>
+              <h4>
+                Full Name: Keegan Lindsay<br />
+                User Type: General<br />
+                Email: fermentum.convallis.ligula@ultrices.com<br /><hr />
+                Vehicle Make: <br />
+                Vehicle Model: <br />
+                Vehicle Registration: <br />
+              </h4>
+            </header>
           </div>
         </div>
-
-      </div>
-
+      </section>
     </section>
 
-    <div>
-      <div style="width:100%">
-        <canvas id="canvas3"></canvas>
+    <!-- This div adds a table to compare Ethereum carpark costs to a normal carpark cost.-->
+    <div class="row gtr-uniform">
+      <div class="col-6 col-12-xsmall">
+        <div style="width:100%">
+          <canvas id="canvas"></canvas>
+        </div>
+      </div>
+      <div class="col-6 col-12-xsmall">
+        <div style="width:100%">
+          <canvas id="canvas2"></canvas>
+        </div>
       </div>
     </div>
 
-
-    <!-- Five -->
-    <section id="five">
-      <div class="inner">
-        <header class="major">
-          <h1>Further Information</h1>
-        </header>
-        <p>
-          <b>
-
-          </b>
-        </p>
-      </div>
-    </section>
-
-    <!-- Two -->
-    <section id="two" class="spotlights">
-      <section>
-        <a class="image">
-          <img src="../../assets/images/blueusage.jpeg" alt="" data-position="center center" />
-        </a>
-
-        <!-- This div is to add a linking button to the word where when pressed will link to another page-->
-        <div class="content">
-          <div class="inner">
-            <header class="major">
-              <div class="text" [routerLinkActive]="['link-active']">
-                <a class="nav-link text-light" [routerLink]="['/Twelve']"><h3>See My Usage</h3></a>
-              </div>
-              <h4>Get a more accurate picture of your carpark costs</h4>
-            </header>
-          </div>
-        </div>
-      </section>
-      <section>
-        <a class="image">
-          <img src="../../assets/images/bluecar.jpeg" alt="" data-position="top center" />
-        </a>
-        <div class="content">
-          <div class="inner">
-            <header class="major">
-              <div class="text" [routerLinkActive]="['link-active']">
-                <a class="nav-link text-light" [routerLink]="['/Thirteen']"><h3>Find My Vehicle Costs</h3></a>
-              </div>
-              <h4>Find a carpark and the costs for it</h4>
-            </header>
-          </div>
-        </div>
-      </section>
-      <section>
-        <a class="image">
-          <img src="../../assets/images/blueprofile.jpeg" alt="" data-position="25% 25%" />
-        </a>
-        <div class="content">
-          <div class="inner">
-            <header class="major">
-              <div class="text" [routerLinkActive]="['link-active']">
-                <a class="nav-link text-light" [routerLink]="['/Twenty']"><h3>Change My Profile</h3></a>
-              </div>
-              <h4>Update your profile and vehicle information</h4>
-            </header>
-          </div>
-        </div>
-      </section>
-    </section>
-
-    <!-- Five -->
-    <section id="five">
-      <div class="inner">
-        <header class="major">
-          <h1>Thankyou For Using Team Edge's Carparks</h1>
-        </header>
-        <p>
-          <b>
-            The team at Edge Parking and our affiliate companies, thank you for using our parking services which are powered by the Ethereum Network, to help you save on your commute
-          </b>
-        </p>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
-      <div class="inner">
-        <section>
-          <form method="post" action="#">
-            <div class="fields">
-              <div class="field half">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" />
-              </div>
-              <div class="field half">
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email" />
-              </div>
-              <div class="field">
-                <label for="message">Message</label>
-                <textarea name="message" id="message" rows="6"></textarea>
-              </div>
-            </div>
-            <ul class="actions">
-              <li><input type="submit" value="Send Message" class="primary" /></li>
-              <li><input type="reset" value="Clear" /></li>
-            </ul>
-          </form>
-        </section>
-        <section class="split">
-          <section>
-            <div class="contact-method">
-              <span class="icon solid alt fa-envelope"></span>
-              <h3>Email</h3>
-              <b href="#">
-                  info@edgecity.com.au
-              </b>
-            </div>
-          </section>
-          <section>
-            <div class="contact-method">
-              <span class="icon solid alt fa-phone"></span>
-              <h3>Phone</h3>
-              <b>
-                  0400000000
-              </b>
-            </div>
-          </section>
-          <section>
-            <div class="contact-method">
-              <span class="icon solid alt fa-home"></span>
-              <h3>Address</h3>
-              <b>
-                  Plenty Road & Kingsbury Drive
-                  Bundoora VIC 3086
-                  Victoria Australia <br />
-                  
-              </b>
-            </div>
-          </section>
-        </section>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="footer">
-      <div class="inner">
-        <ul class="icons">
-          <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-          <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-          <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-          <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-          <li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-        </ul>
-        <ul class="copyright">
-          <li>&copy; Untitled</li>
-          <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
-        </ul>
-      </div>
-    </footer>
-
   </div>
+
+  <div>
+    <div style="width:100%">
+      <canvas id="canvas3"></canvas>
+    </div>
+  </div>
+
+  <!-- Five -->
+  <section id="five">
+    <div class="inner">
+      <header class="major">
+        <h1>Further Information</h1>
+      </header>
+      <p>
+        <b>
+
+        </b>
+      </p>
+    </div>
+  </section>
+
+  <!-- Two -->
+  <section id="two" class="spotlights">
+    <section>
+      <a class="image">
+        <img src="../../assets/images/blueusage.jpeg" alt="" data-position="center center" />
+      </a>
+
+      <!-- This div is to add a linking button to the word where when pressed will link to another page-->
+      <div class="content">
+        <div class="inner">
+          <header class="major">
+            <div class="text" [routerLinkActive]="['link-active']">
+              <a class="nav-link text-light" [routerLink]="['/Twelve']"><h3>See My Usage</h3></a>
+            </div>
+            <h4>Get a more accurate picture of your carpark costs</h4>
+          </header>
+        </div>
+      </div>
+    </section>
+    <section>
+      <a class="image">
+        <img src="../../assets/images/bluecar.jpeg" alt="" data-position="top center" />
+      </a>
+      <div class="content">
+        <div class="inner">
+          <header class="major">
+            <div class="text" [routerLinkActive]="['link-active']">
+              <a class="nav-link text-light" [routerLink]="['/Thirteen']"><h3>Find My Vehicle Costs</h3></a>
+            </div>
+            <h4>Find a carpark and the costs for it</h4>
+          </header>
+        </div>
+      </div>
+    </section>
+    <section>
+      <a class="image">
+        <img src="../../assets/images/blueprofile.jpeg" alt="" data-position="25% 25%" />
+      </a>
+      <div class="content">
+        <div class="inner">
+          <header class="major">
+            <div class="text" [routerLinkActive]="['link-active']">
+              <a class="nav-link text-light" [routerLink]="['/Twenty']"><h3>Change My Profile</h3></a>
+            </div>
+            <h4>Update your profile and vehicle information</h4>
+          </header>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- Five -->
+  <section id="five">
+    <div class="inner">
+      <header class="major">
+        <h1>Thankyou For Using Team Edge's Carparks</h1>
+      </header>
+      <p>
+        <b>
+          The team at Edge Parking and our affiliate companies, thank you for using our parking services which are powered by the Ethereum Network, to help you save on your commute
+        </b>
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="inner">
+      <section>
+        <form method="post" action="#">
+          <div class="fields">
+            <div class="field half">
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name" />
+            </div>
+            <div class="field half">
+              <label for="email">Email</label>
+              <input type="text" name="email" id="email" />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea name="message" id="message" rows="6"></textarea>
+            </div>
+          </div>
+          <ul class="actions">
+            <li><input type="submit" value="Send Message" class="primary" /></li>
+            <li><input type="reset" value="Clear" /></li>
+          </ul>
+        </form>
+      </section>
+      <section class="split">
+        <section>
+          <div class="contact-method">
+            <span class="icon solid alt fa-envelope"></span>
+            <h3>Email</h3>
+            <b href="#">
+                info@edgecity.com.au
+            </b>
+          </div>
+        </section>
+        <section>
+          <div class="contact-method">
+            <span class="icon solid alt fa-phone"></span>
+            <h3>Phone</h3>
+            <b>
+                0400000000
+            </b>
+          </div>
+        </section>
+        <section>
+          <div class="contact-method">
+            <span class="icon solid alt fa-home"></span>
+            <h3>Address</h3>
+            <b>
+                Plenty Road & Kingsbury Drive
+                Bundoora VIC 3086
+                Victoria Australia <br />
+                
+            </b>
+          </div>
+        </section>
+      </section>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="inner">
+      <ul class="icons">
+        <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+        <li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+      </ul>
+      <ul class="copyright">
+        <li>&copy; Untitled</li>
+        <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+      </ul>
+    </div>
+  </footer>
 
 </div> 
 
