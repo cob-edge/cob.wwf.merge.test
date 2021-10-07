@@ -11,14 +11,11 @@ export class Ten {
 
   //constructor(private service: SharedService) { }
 
-  
   //public recentV1s: RecentV1[];
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-
     this.baseUrl = baseUrl;    
   }
   baseUrl: string
-  
 
   @Input() user: any;
   user_ID: number;

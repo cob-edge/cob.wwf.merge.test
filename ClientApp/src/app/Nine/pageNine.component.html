@@ -17,7 +17,7 @@
 
   <!-- One -->
   <section id="one">
-    <div class="inner">
+    <div class="inner" >
       <header class="major">
         <h1>The Car Parks</h1>
       </header>
@@ -38,16 +38,22 @@
         <hr />
         <div class="fields">
           <div class="field">
-            <label for="address">Current Postcode</label>
+            <label for="address">Current Address or Postcode</label>
             <b>
-              <input type="text" name="address" id="address" />
+              <input type="text" id="address" name="address" minlength="4" required placeholder="Enter Current Address or Postcode" [(ngModel)] ="address"/>
             </b>
           </div>
         </div>
-        <ul class="actions">
-          <li><input type="submit" value="Submit data for a recommendation" class="primary" /></li>
-          <li><input type="reset" value="Clear" /></li>
-        </ul>
+        <div>
+          <ul class="actions">
+            <li>
+              <button (click)="checkAddress()" class="button primary fit">
+                Submit data for a recommendation
+              </button>
+            </li>
+            <li><input type="reset" value="Clear" /></li>
+          </ul>
+        </div>
       </form>
 
     </div>

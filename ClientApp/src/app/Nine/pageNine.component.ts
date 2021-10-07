@@ -1,27 +1,46 @@
-import { Component, Inject } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { SharedService } from 'src/app/shared.service';
 import { HttpClient } from '@angular/common/http';
 
-//calls for other page requirements to be validated 
 @Component({
   selector: 'app-Nine',
   templateUrl: './pageNine.component.html',
   styleUrls: ['../../assets/css/main.css']
 })
 export class Nine {
-  public users: User[];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<User[]>(baseUrl + 'user').subscribe(result => {
-      this.users = result;
-    }, error => console.error(error));
+  //constructor(private service: SharedService) { }
+
+  //public recentV1s: RecentV1[];
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
+  baseUrl: string
+
+  @Input() address: any;
+  address_Input: string;
+
+  ngOnInit(): void {
+    this.address = {
+      address_Input: ""
+    }
+
+    this.address_Input = this.address.address_Input;
+  }
+
+  checkAddress() {
+    var address = {
+      address_Input: this.address
+    }
+
+    console.log(this.address);
+
+    this.http.post<string>(this.baseUrl + 'carParkRecommendation', address).subscribe(res => {
+      alert(res.toString());
+      console.log(res.toString());
+    });
   }
 }
-
-interface User {
-  user_ID: number;
-  user_FirstName: string;
-  user_LastName: string;
-  userType: string;
-  user_Email: string;
+interface Address {
+  address_Input: string;
 }
-
