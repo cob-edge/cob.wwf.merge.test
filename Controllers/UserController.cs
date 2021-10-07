@@ -111,10 +111,12 @@ namespace Harley.UAT.Controllers
             try
             {
                 Connect();
-                string query = @"INSERT INTO [dbo].[User] (User_ID, User_FirstName, User_LastName, UserType)
-                VALUES(300, 'Test', 'Jarvis', 'A');";
-
-                Console.WriteLine("Hello from user : " + user.User_ID);
+                string query = @"INSERT INTO [dbo].[User] (User_ID, User_FirstName, User_LastName, UserType, User_Email)
+                VALUES('" + user.User_ID + @"', 
+                       '" + user.User_FirstName + @"', 
+                       '" + user.User_LastName + @"',
+                       '" + user.User_Type + @"',
+                       '" + user.User_Email + @"');";
 
                 DataTable Results = new DataTable();
                 using (var cmd = new SqlCommand(query, sqlc))

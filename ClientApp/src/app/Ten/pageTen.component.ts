@@ -66,10 +66,10 @@ export class Ten {
 
   checkUser() {
     var val = {
-      user_ID: this.user_ID, //dummy and defaults exist
-      user_FirstName: this.user_FirstName,
-      user_LastName: this.user_LastName,
-      user_Type: this.user_Type,
+      user_ID: /*this.user_ID*/ 401, //dummy and defaults exist
+      user_FirstName: /*this.user_FirstName*/ "TestJarvis",
+      user_LastName: /*this.user_LastName*/ "TestCole",
+      user_Type: /*this.user_Type*/ "A",
       user_Email: this.user_Email, //in html 
       user_Password: this.user_Password, //in html
       user_PhoneNo: this.user_PhoneNo,
