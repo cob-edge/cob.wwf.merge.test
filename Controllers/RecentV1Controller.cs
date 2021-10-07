@@ -20,6 +20,7 @@ namespace Harley.UAT.Controllers
             _logger = logger;
         }
 
+        //get method for api
         [HttpGet]
         public IEnumerable<RecentV1> Get()
         {
@@ -38,6 +39,7 @@ namespace Harley.UAT.Controllers
             return recentV1.Recent10;
         }
 
+        //connect to database object 
         private static SqlConnection sqlc;
         public void Connect()
         {

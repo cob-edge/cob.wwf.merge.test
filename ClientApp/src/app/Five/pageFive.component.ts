@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+//calls for other page requirements to be validated 
 @Component({
   selector: 'app-Five',
   templateUrl: './pageFive.component.html',

@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-
 import { SharedService } from 'src/app/shared.service';
-
 import { HttpClient } from '@angular/common/http';
 
 @Component({

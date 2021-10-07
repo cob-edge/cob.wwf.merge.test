@@ -38,6 +38,7 @@ namespace Harley.UAT.Controllers
             return recentV2.Recent10;
         }
 
+        //connect to database object 
         private static SqlConnection sqlc;
         public void Connect()
         {

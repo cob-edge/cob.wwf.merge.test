@@ -17,9 +17,11 @@ export class Three implements OnInit {
   title = 'livechart';
   chart;
 
+   //chart js declaration
   title2 = 'livechart';
   chart2;
 
+  //chart js declaration
   title3 = 'livechart';
   chart3;
 

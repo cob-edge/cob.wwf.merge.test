@@ -19,7 +19,7 @@ namespace Harley.UAT.Controllers
             _logger = logger;
         }
 
-        //iterator
+        //iterator for when the data is passed as an array 
         private int i = 0;
         private int NextInt()
         {

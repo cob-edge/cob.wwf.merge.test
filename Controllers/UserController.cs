@@ -114,6 +114,8 @@ namespace Harley.UAT.Controllers
                 string query = @"INSERT INTO [dbo].[User] (User_ID, User_FirstName, User_LastName, UserType)
                 VALUES(300, 'Test', 'Jarvis', 'A');";
 
+                Console.WriteLine("Hello from user : " + user.User_ID);
+
                 DataTable Results = new DataTable();
                 using (var cmd = new SqlCommand(query, sqlc))
                 using (var da = new SqlDataAdapter(cmd))
@@ -121,11 +123,11 @@ namespace Harley.UAT.Controllers
                     cmd.CommandType = CommandType.Text;
                     da.Fill(Results);
                 }
-                return "Succesful";
+                return "{\"Message\": \"Succesful\"}";
             } 
             catch (Exception)
             {
-                return "Unsuccesful";
+                return "{\"Message\": \"Unsucessful\"}";
             }
         }
     }

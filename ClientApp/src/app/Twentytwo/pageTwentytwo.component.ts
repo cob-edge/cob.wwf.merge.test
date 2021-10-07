@@ -17,12 +17,15 @@ export class Twentytwo implements OnInit {
   title = 'livechart';
   chart;
 
+  //chart js declaration
   title2 = 'livechart';
   chart2;
 
+  //chart js declaration
   title3 = 'livechart';
   chart3;
 
+  //chart js declaration
   title4 = 'livechart';
   chart4;
 
