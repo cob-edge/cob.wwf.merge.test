@@ -12,6 +12,11 @@ namespace Harley.UAT.Controllers
     [Route("[controller]")]
     public class LoginController : ControllerBase
     {
+        //GLOBAL VALUES FOR LOGIN INFORMATION ACCROSS WEBSITE
+
+        private int GlobalUser_ID = -1;
+
+        //GLOBAL VALUES FOR LOGIN INFORMATION ACCROSS WEBSITE
         private readonly ILogger<LoginController> _logger;
 
         public LoginController(ILogger<LoginController> logger)
@@ -25,7 +30,7 @@ namespace Harley.UAT.Controllers
         [HttpGet]
         public IEnumerable<User> Get() //get carpark recommendation
         {
-            Read(); //will need to read and get recommendation
+            ReadUserData(); //will need to read and get recommendation
 
             return Enumerable.Range(1, 1).Select(index => new User
             {
@@ -64,14 +69,13 @@ namespace Harley.UAT.Controllers
         }
 
         private User[] UserData;
-
-        public void Read()
+        public void ReadUserData()
         {
             Connect();
 
             //Read DB table 
             SqlCommand cmd = new SqlCommand
-            (@"SELECT TOP 10 * FROM [dbo].[User]", sqlc);
+            (@"SELECT * FROM [dbo].[User]", sqlc);
             DataTable Results = new DataTable();
 
             // Read table from database and store it
@@ -92,13 +96,7 @@ namespace Harley.UAT.Controllers
                     User_FirstName = row["User_FirstName"].ToString(),
                     User_LastName = row["User_LastName"].ToString(),
                     User_Type = row["UserType"].ToString(),
-                    User_Email = row["User_Email"].ToString(),
-                    User_PhoneNo = row["User_PhoneNo"].ToString(),
-                    User_Address_Street = row["User_Address_Street"].ToString(),
-                    User_Address_City = row["User_Address_City"].ToString(),
-                    User_Address_Postcode = (int)row["User_Address_Postcode"],
-                    User_LicenseNo = row["User_LicenseNo"].ToString(),
-                    User_LicenseExp = row["User_LicenseExp"].ToString()
+                    User_Email = row["User_Email"].ToString()
                 };
                 i++;
             }
@@ -107,41 +105,46 @@ namespace Harley.UAT.Controllers
         [HttpPost]
         public string Post(Login login)
         {
-            Console.WriteLine("helllloooooo >>> Email :" + login.login_Email_Input + " Password : " + login.login_Password_Input);
-
-            /*
-
-            try
+            Console.WriteLine("helllloooooo >>> Email : " + login.login_Email_Input + " Password : " + login.login_Password_Input);
+            
+            login.login_Email_Input.Trim();
+            if (login.login_Email_Input.Contains('@')) //check if valid email 
             {
-                Connect();
-
-                //dummy variable
-                string query = "";
-                
-                string query = @"INSERT INTO [dbo].[User] (User_ID, User_FirstName, User_LastName, UserType, User_Email)
-                VALUES('" + user.User_ID + @"', 
-                       '" + user.User_FirstName + @"', 
-                       '" + user.User_LastName + @"',
-                       '" + user.User_Type + @"',
-                       '" + user.User_Email + @"');";
-                
-
-                DataTable Results = new DataTable();
-                using (var cmd = new SqlCommand(query, sqlc))
-                using (var da = new SqlDataAdapter(cmd))
+                //check if it matches in sql data base
+                try
                 {
-                    cmd.CommandType = CommandType.Text;
-                    da.Fill(Results);
+                    int User_ID = GetUser_ID(login.login_Email_Input);
+                    if(User_ID != -1)
+                    {
+                        Console.WriteLine("helllloooooo >>> User_ID : " + User_ID);
+                        GlobalUser_ID = User_ID; //setting user id for accross multiple signed in graphs and queries
+                        return "{\"Message\": \"Sucessful\"}";
+                    }
+                    else
+                    {
+                        return "{\"Message\": \"Unsucessful\"}";
+                    }
                 }
-                return "{\"Message\": \"Succesful\"}";
-            } 
-            catch (Exception)
-            {
-                return "{\"Message\": \"Unsucessful\"}";
+                catch
+                {
+                    return "{\"Message\": \"Unsucessful\"}";
+                }
             }
+            return "{\"Message\": \"Unsucessful\"}";
+        }
 
-            */
-            return "{\"Message\": \"Succesful\"}";
+        public int GetUser_ID(string login_Email_Input)
+        {
+            ReadUserData();
+
+            foreach(User user in UserData)
+            {
+                if(user.User_Email.Trim().Equals(login_Email_Input))
+                {
+                    return user.User_ID;
+                }
+            }
+            return -1;
         }
     }
 
