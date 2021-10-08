@@ -20,12 +20,12 @@
         <div class="row gtr-uniform">
           <div class="col-6 col-12-xsmall">
             <label for="email">Login Email:</label>
-            <input type="text" class="form-control" name="email" id="email" value="" placeholder="Enter Customer Email" [(ngModel)]="user_Email" />
+            <input type="text" class="form-control" name="email" id="email" value="" placeholder="Enter Customer Email" [(ngModel)]="login_Email_Input" />
           </div>
 
           <div class="col-6 col-12-xsmall">
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" minlength="8" required placeholder="Enter Password" [(ngModel)]="user_Password">
+            <input type="password" id="password" name="password" minlength="8" required placeholder="Enter Password" [(ngModel)]="login_Password_Input">
           </div>
 
           <div class="col-6 col-12-small">
@@ -35,7 +35,7 @@
           <!-- This ul is to add the buttons login and clear-->
           <ul class="actions">
             <li>
-              <button (click)="checkUser()" class="button primary fit">
+              <button (click)="checkLogin()" class="button primary fit">
                 Login
               </button>
             </li>
