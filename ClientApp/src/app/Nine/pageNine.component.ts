@@ -11,7 +11,6 @@ export class Nine {
 
   //constructor(private service: SharedService) { }
 
-  //public recentV1s: RecentV1[];
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.baseUrl = baseUrl;
   }
@@ -33,11 +32,11 @@ export class Nine {
       address_Input: this.address
     }
 
-    console.log(this.address);
+    console.log("Input address: " + this.address);
 
     this.http.post<string>(this.baseUrl + 'carParkRecommendation', address).subscribe(res => {
-      alert(res.toString());
-      console.log(res.toString());
+      alert("Input address \"" + this.address + "\" received successfully");
+      //console.log("Response: " + res.toString());
     });
   }
 }
