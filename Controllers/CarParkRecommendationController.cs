@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace Harley.UAT.Controllers
 {
@@ -33,45 +34,65 @@ namespace Harley.UAT.Controllers
         [HttpGet]
         public void Check(Address address) //get carpark recommendation
         {
-            //will check and make recommendation
+            bool found = false;
+            int postCode;
 
-            for (int i = 0; i < MelbPC.Length; i++)
+            //split input string address to get postcode
+            //66-34 Norwood Dr, Keilor East VIC 3033
+            string[] parts = address.address_Input.Split(' ');
+            postCode = parts.Length - 1;
+
+            Console.WriteLine("Part: [" + parts[postCode] + "]");
+
+            //check length of input address
+            if (address.address_Input.Trim().Length == 4)
             {
-                if (address.address_Input.Equals(MelbPC[i].ToString()))
+                //will check and make recommendation
+                for (int i = 0; i < MelbPC.Length; i++)
                 {
-                    Console.WriteLine("Recommend LaTrobe Street Parking");
-                    break;
+                    if (address.address_Input.Trim().Equals(MelbPC[i].ToString()))
+                    {
+                        Console.WriteLine("Recommend LaTrobe Street Parking");
+                        found = true;
+                    }
+                }
+
+                for (int i = 0; i < LatrobePC.Length; i++)
+                {
+                    if (address.address_Input.Trim().Equals(LatrobePC[i].ToString()))
+                    {
+                        Console.WriteLine("Recommend LaTrobe University CP3");
+                        found = true;
+                    }
+                }
+
+                for (int i = 0; i < AirportPC.Length; i++)
+                {
+                    if (address.address_Input.Trim().Equals(AirportPC[i].ToString()))
+                    {
+                        Console.WriteLine("Recommend Melbourne Airport Parking");
+                        found = true;
+                    }
+                }
+
+                for (int i = 0; i < EppingPC.Length; i++)
+                {
+                    if (address.address_Input.Trim().Equals(EppingPC[i].ToString()))
+                    {
+                        Console.WriteLine("Recommend Puma Epping Parking");
+                        found = true;
+                    }
+                }
+
+                if (found == false)
+                {
+                    Console.WriteLine("Can't make a recommendation based on your current address");
                 }
             }
-
-            for (int i = 0; i < LatrobePC.Length; i++)
+            else
             {
-                if (address.address_Input.Equals(LatrobePC[i].ToString()))
-                {
-                    Console.WriteLine("Recommend LaTrobe University CP3");
-                    break;
-                }
+                Console.WriteLine("Please enter in a valid postcode");
             }
-
-            for (int i = 0; i < AirportPC.Length; i++)
-            {
-                if (address.address_Input.Equals(AirportPC[i].ToString()))
-                {
-                    Console.WriteLine("Recommend Melbourne Airport Parking");
-                    break;
-                }
-            }
-
-            for (int i = 0; i < EppingPC.Length; i++)
-            {
-                if (address.address_Input.Equals(EppingPC[i].ToString()))
-                {
-                    Console.WriteLine("Recommend Puma Epping Parking");
-                    break;
-                }
-            }
-
-            Console.WriteLine("Can't make a recommendation based on your current address");
         }
 
         [HttpPost]
