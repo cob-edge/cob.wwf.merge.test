@@ -3,6 +3,8 @@ import { Chart } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subscription, interval } from 'rxjs';
 
+import { SharedService } from 'src/app/shared.service';
+
 @Component({
   selector: 'app-eleven',
   templateUrl: './pageEleven.component.html',
@@ -38,6 +40,8 @@ export class Eleven implements OnInit {
   //api updates from database V1
   public http: HttpClient;
   public baseUrl: string;
+
+  //update adpi call 
   updateApiCall(http: HttpClient, baseUrl: string) {
     http.get<RecentV1[]>(baseUrl + 'recentV1').subscribe(result => {
       this.recentV1s = result;
@@ -179,6 +183,10 @@ export class Eleven implements OnInit {
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
     this.chart3.data.datasets[0].data = [140, 203, 80, 16];
     this.chart3.update();
+
+    this.http.get(this.baseUrl + 'login').subscribe(result => {
+      console.log(result.toString());
+    }, error => console.error(error));
   }
 }
 
@@ -192,6 +200,21 @@ interface RecentV2 {
 
 interface RecentV3 {
   recent10: number[];
+}
+
+interface User {
+  User_ID: number;
+  User_FirstName: string;
+  User_LastName: string;
+  User_Type: string;
+  User_Email: string;
+  User_Password: string;
+  User_PhoneNo: string;
+  User_Address_Street: string;
+  User_Address_City: string;
+  User_Address_Postcode: number;
+  User_LicenseNo: string;
+  User_LicenseExp: string;
 }
 
 

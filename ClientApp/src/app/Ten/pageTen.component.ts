@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { SharedService } from 'src/app/shared.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -8,8 +7,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['../../assets/css/main.css']
 })
 export class Ten {
-
-  //constructor(private service: SharedService) { }
+  ipAddress = '';
 
   //public recentV1s: RecentV1[];
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
@@ -38,10 +36,19 @@ export class Ten {
 
     }
     this.http.post<Login>(this.baseUrl + 'login', login).subscribe(res => {
-      alert(res.toString());
-      console.log(res.toString());
+      //alert(res.toString());
+      console.log(res.toString()); //the user id 
     });
-  } 
+
+    this.getIPAddress();
+    console.log("This is your ip " + this.ipAddress);
+  }
+
+  getIPAddress() {
+    this.http.get("https://api.ipify.org/?format=json").subscribe((res: any) => {
+      this.ipAddress = res.ip;
+    });
+  }
 }
 
 interface Login {

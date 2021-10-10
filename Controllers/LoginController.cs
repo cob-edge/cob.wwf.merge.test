@@ -17,6 +17,7 @@ namespace Harley.UAT.Controllers
         private int GlobalUser_ID = -1;
 
         //GLOBAL VALUES FOR LOGIN INFORMATION ACCROSS WEBSITE
+
         private readonly ILogger<LoginController> _logger;
 
         public LoginController(ILogger<LoginController> logger)
@@ -24,29 +25,10 @@ namespace Harley.UAT.Controllers
             _logger = logger;
         }
 
-        private int i = 0;
-        private int NextInt() { return i++; }
-
         [HttpGet]
-        public IEnumerable<User> Get() //get carpark recommendation
+        public int Get() //get user information after calling post method if need be
         {
-            ReadUserData(); //will need to read and get recommendation
-
-            return Enumerable.Range(1, 1).Select(index => new User
-            {
-                User_ID = UserData[i].User_ID,
-                User_FirstName = UserData[i].User_FirstName,
-                User_LastName = UserData[i].User_LastName,
-                User_Type = UserData[i].User_Type,
-                User_Email = UserData[i].User_Email,
-                User_PhoneNo = UserData[i].User_PhoneNo,
-                User_Address_Street = UserData[i].User_Address_Street,
-                User_Address_City = UserData[i].User_Address_City,
-                User_Address_Postcode = UserData[i].User_Address_Postcode,
-                User_LicenseNo = UserData[i].User_LicenseNo,
-                User_LicenseExp = UserData[NextInt()].User_LicenseExp
-            })
-            .ToArray();
+            return GlobalUser_ID; 
         }
 
         private static SqlConnection sqlc;
@@ -103,7 +85,7 @@ namespace Harley.UAT.Controllers
         }
 
         [HttpPost]
-        public string Post(Login login)
+        public int Post(Login login)
         {
             Console.WriteLine("helllloooooo >>> Email : " + login.login_Email_Input + " Password : " + login.login_Password_Input);
             
@@ -118,19 +100,19 @@ namespace Harley.UAT.Controllers
                     {
                         Console.WriteLine("helllloooooo >>> User_ID : " + User_ID);
                         GlobalUser_ID = User_ID; //setting user id for accross multiple signed in graphs and queries
-                        return "{\"Message\": \"Sucessful\"}";
+                        return GlobalUser_ID;
                     }
                     else
                     {
-                        return "{\"Message\": \"Unsucessful\"}";
+                        return -1;
                     }
                 }
                 catch
                 {
-                    return "{\"Message\": \"Unsucessful\"}";
+                    return -1;
                 }
             }
-            return "{\"Message\": \"Unsucessful\"}";
+            return -1;
         }
 
         public int GetUser_ID(string login_Email_Input)
