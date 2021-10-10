@@ -87,7 +87,7 @@ namespace Harley.UAT.Controllers
         [HttpPost]
         public int Post(Login login)
         {
-            Console.WriteLine("helllloooooo >>> Email : " + login.login_Email_Input + " Password : " + login.login_Password_Input);
+            //Console.WriteLine("helllloooooo >>> Email : " + login.login_Email_Input + " Password : " + login.login_Password_Input + " IP : " + login.login_IP_Address_Input);
             
             login.login_Email_Input.Trim();
             if (login.login_Email_Input.Contains('@')) //check if valid email 
@@ -99,8 +99,9 @@ namespace Harley.UAT.Controllers
                     if(User_ID != -1)
                     {
                         Console.WriteLine("helllloooooo >>> User_ID : " + User_ID);
-                        GlobalUser_ID = User_ID; //setting user id for accross multiple signed in graphs and queries
-                        return GlobalUser_ID;
+                        UpdateIPAddress(User_ID, login.login_IP_Address_Input);
+
+                        return User_ID; //setting user id for accross multiple signed in graphs and queries
                     }
                     else
                     {
@@ -128,10 +129,34 @@ namespace Harley.UAT.Controllers
             }
             return -1;
         }
+
+        public void UpdateIPAddress(int User_ID, string User_IP_Address)
+        {
+            try
+            {
+                Connect();
+                string query = @"UPDATE [dbo].[User]
+                                 SET [User_IP_Address] = '" + User_IP_Address + @"'
+                                 WHERE [User_ID] = '" + User_ID + @"';";
+
+                DataTable Results = new DataTable();
+                using (var cmd = new SqlCommand(query, sqlc))
+                using (var da = new SqlDataAdapter(cmd))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    da.Fill(Results);
+                }
+            }
+            catch (Exception)
+            {
+                //error
+            }
+        }
     }
 
     public class Login {
         public string login_Email_Input { get; set; }
         public string login_Password_Input { get; set; }
+        public string login_IP_Address_Input { get; set; }
     }
 }

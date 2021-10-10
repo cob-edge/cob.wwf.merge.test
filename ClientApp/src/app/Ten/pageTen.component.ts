@@ -18,29 +18,33 @@ export class Ten {
   @Input() login: any;
   login_Email_Input: string;
   login_Password_Input: string;
+  login_IP_Address_Input: string;
 
   ngOnInit(): void {
     this.login = {
       login_Email_Input: "",
-      login_Password_Input: ""
+      login_Password_Input: "",
+      login_IP_Address_Input: ""
     }
 
     this.login_Email_Input = this.login.login_Email_Input;
     this.login_Password_Input = this.login.login_Password_Input;
+    this.login_IP_Address_Input = this.login.login_IP_Adress_Input;
+
+    this.getIPAddress();
   }
 
   checkLogin() {
     var login = {
       login_Email_Input: this.login_Email_Input, //in html
       login_Password_Input: this.login_Password_Input, //in html
-
+      login_IP_Address_Input: this.ipAddress //from get method
     }
+    console.log(this.ipAddress);
     this.http.post<Login>(this.baseUrl + 'login', login).subscribe(res => {
       //alert(res.toString());
       console.log(res.toString()); //the user id 
     });
-
-    this.getIPAddress();
   }
 
   ipAddress: string;
