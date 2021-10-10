@@ -3,7 +3,6 @@ import { Chart } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subscription, interval } from 'rxjs';
 
-import { SharedService } from 'src/app/shared.service';
 
 @Component({
   selector: 'app-eleven',
@@ -13,7 +12,8 @@ import { SharedService } from 'src/app/shared.service';
 
 export class Eleven implements OnInit {
   //live data declaration
-  private updateSubscription: Subscription;
+  private updateSub: Subscription;
+  private updateSlowSub: Subscription;
 
   //chart js declaration
   title = 'livechart';
@@ -28,12 +28,13 @@ export class Eleven implements OnInit {
   //api declaration
   public recentV1s: RecentV1[];
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    this.http = http;
+    this.baseUrl = baseUrl;
+
     http.get<RecentV1[]>(baseUrl + 'recentV1').subscribe(result => {
       this.recentV1s = result;
       this.recentV2s = result;
       this.recentV3s = result;
-      this.http = http;
-      this.baseUrl = baseUrl;
     }, error => console.error(error));
   }
 
@@ -65,12 +66,14 @@ export class Eleven implements OnInit {
   }
 
   //run
-  ngOnInit() {
+  async ngOnInit() {
     this.createTestChart();
     this.createTestChart2();
     this.createTestChart3();
 
-    this.updateSubscription = interval(3000).subscribe(
+    await this.getIPAddress();
+
+    this.updateSub = interval(3000).subscribe(
       (val) => { this.updateStats() });
   }
 
@@ -184,9 +187,21 @@ export class Eleven implements OnInit {
     this.chart3.data.datasets[0].data = [140, 203, 80, 16];
     this.chart3.update();
 
-    this.http.get(this.baseUrl + 'login').subscribe(result => {
-      console.log(result.toString());
+    this.getUserData()
+  }
+
+  getUserData() {
+    this.http.get<User>(this.baseUrl + 'user/' + this.ipAddress).subscribe(result => {
+      console.log(result);
     }, error => console.error(error));
+  }
+
+  ipAddress: string;
+  async getIPAddress() {
+    this.http.get<{ ip: string }>('https://jsonip.com')
+      .subscribe(data => {
+        this.ipAddress = data.ip;
+      })
   }
 }
 
@@ -215,6 +230,7 @@ interface User {
   User_Address_Postcode: number;
   User_LicenseNo: string;
   User_LicenseExp: string;
+  User_IP_Address: string;
 }
 
 

@@ -19,33 +19,51 @@ namespace Harley.UAT.Controllers
             _logger = logger;
         }
 
-        private int i = 0;
-        private int NextInt() { return i++; }
+        [HttpGet("{ip}")]
+        public User Get(string ip)
+        {
+            int User_ID = GetUser_ID(ip);
+            int User_Pos = User_ID - 1;
 
-        [HttpGet]
-        public IEnumerable<User> Get()
+            if(User_ID != -1)
+            {
+                return new User
+                {
+                    User_ID = UserData[User_Pos].User_ID,
+                    User_FirstName = UserData[User_Pos].User_FirstName,
+                    User_LastName = UserData[User_Pos].User_LastName,
+                    User_Type = UserData[User_Pos].User_Type,
+                    User_Email = UserData[User_Pos].User_Email,
+                    User_PhoneNo = UserData[User_Pos].User_PhoneNo,
+                    User_Address_Street = UserData[User_Pos].User_Address_Street,
+                    User_Address_City = UserData[User_Pos].User_Address_City,
+                    User_Address_Postcode = UserData[User_Pos].User_Address_Postcode,
+                    User_LicenseNo = UserData[User_Pos].User_LicenseNo,
+                    User_LicenseExp = UserData[User_Pos].User_LicenseExp,
+                    User_IP_Address = UserData[User_Pos].User_IP_Address
+                };
+            }
+            Console.WriteLine("Here with the null!");
+            return null;
+        }
+
+        public int GetUser_ID(string ipAddress)
         {
             Read();
 
-            return Enumerable.Range(1, 10).Select(index => new User
+            foreach (User user in UserData)
             {
-                User_ID = UserData[i].User_ID,
-                User_FirstName = UserData[i].User_FirstName,
-                User_LastName = UserData[i].User_LastName,
-                User_Type = UserData[i].User_Type,
-                User_Email = UserData[i].User_Email,
-                User_PhoneNo = UserData[i].User_PhoneNo,
-                User_Address_Street = UserData[i].User_Address_Street,
-                User_Address_City = UserData[i].User_Address_City,
-                User_Address_Postcode = UserData[i].User_Address_Postcode,
-                User_LicenseNo = UserData[i].User_LicenseNo,
-                User_LicenseExp = UserData[NextInt()].User_LicenseExp
-            })
-            .ToArray();
+                if (user.User_IP_Address == null)
+                {
+                    //nothing
+                } if (user.User_IP_Address.Equals(ipAddress)) {
+                    return user.User_ID;
+                }
+            }
+            return -1;
         }
 
         private static SqlConnection sqlc;
-
         public void Connect()
         {
             String connectionString = "Server=tcp:cob-edge.database.windows.net,1433;Initial Catalog=IoTDB;Persist Security Info=False;User ID=cob.edge.admin;Password=Aoed7Test;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
@@ -58,21 +76,20 @@ namespace Harley.UAT.Controllers
                     Console.WriteLine("Connected to SQL Server");
                 }
             }
-            catch (Exception e2)
+            catch (Exception e)
             {
-                Console.WriteLine("SQL Connection Exception: " + e2.Message);
+                Console.WriteLine("SQL Connection Exception: " + e.Message);
             }
         }
 
         private User[] UserData;
-
         public void Read()
         {
             Connect();
 
             //Read DB table 
             SqlCommand cmd = new SqlCommand
-            (@"SELECT TOP 10 * FROM [dbo].[User]", sqlc);
+            (@"SELECT * FROM [dbo].[User]", sqlc);
             DataTable Results = new DataTable();
 
             // Read table from database and store it
@@ -99,10 +116,11 @@ namespace Harley.UAT.Controllers
                     User_Address_City = row["User_Address_City"].ToString(),
                     User_Address_Postcode = (int)row["User_Address_Postcode"],
                     User_LicenseNo = row["User_LicenseNo"].ToString(),
-                    User_LicenseExp = row["User_LicenseExp"].ToString()
+                    User_LicenseExp = row["User_LicenseExp"].ToString(),
+                    User_IP_Address = row["User_IP_Address"].ToString()
                 };
                 i++;
-            }
+            }    
         }
 
         [HttpPost]

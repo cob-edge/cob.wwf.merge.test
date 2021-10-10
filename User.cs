@@ -29,5 +29,7 @@ namespace Harley.UAT
         public string User_LicenseNo { get; set; }
 
         public string User_LicenseExp { get; set; }
+
+        public string User_IP_Address { get; set; }
     }
 }
