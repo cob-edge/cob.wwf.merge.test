@@ -1,14 +1,14 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { catchError, tap } from "rxjs/operators";
+
 @Component({
   selector: 'app-Ten',
   templateUrl: './pageTen.component.html',
   styleUrls: ['../../assets/css/main.css']
 })
 export class Ten {
-  ipAddress = '';
-
   //public recentV1s: RecentV1[];
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.baseUrl = baseUrl;
@@ -41,13 +41,15 @@ export class Ten {
     });
 
     this.getIPAddress();
-    console.log("This is your ip " + this.ipAddress);
   }
 
+  ipAddress: string;
   getIPAddress() {
-    this.http.get("https://api.ipify.org/?format=json").subscribe((res: any) => {
-      this.ipAddress = res.ip;
-    });
+    this.http.get<{ ip: string }>('https://jsonip.com')
+      .subscribe(data => {
+        //console.log('th data', data.ip);
+        this.ipAddress = data.ip;
+      })
   }
 }
 
