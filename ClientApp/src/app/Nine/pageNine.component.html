@@ -34,7 +34,7 @@
         </section>
       </section>
 
-      <form method="post" action="#">
+      <form method="post" action="#" #myForm="ngForm">
         <hr />
         <div class="fields">
           <div class="field">
@@ -47,7 +47,7 @@
         <div>
           <ul class="actions">
             <li>
-              <button (click)="checkAddress()" class="button primary fit">
+              <button (click)="checkAddress()" class="button primary fit" [disabled]="!myForm.form.valid">
                 Submit for a carpark recommendation
               </button>
             </li>

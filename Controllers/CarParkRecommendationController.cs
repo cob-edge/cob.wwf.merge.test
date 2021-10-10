@@ -30,19 +30,16 @@ namespace Harley.UAT.Controllers
             _logger = logger;
         }
 
-        private int i = 0;
-        private int NextInt() { return i++; }
-
         [HttpGet]
         public void Check(Address address) //get carpark recommendation
         {
             //will check and make recommendation
-            
+
             for (int i = 0; i < MelbPC.Length; i++)
             {
                 if (address.address_Input.Equals(MelbPC[i].ToString()))
                 {
-                    Console.WriteLine("Reccommend LaTrobe Street Parking");
+                    Console.WriteLine("Recommend LaTrobe Street Parking");
                     break;
                 }
             }
@@ -51,7 +48,7 @@ namespace Harley.UAT.Controllers
             {
                 if (address.address_Input.Equals(LatrobePC[i].ToString()))
                 {
-                    Console.WriteLine("Reccommend LaTrobe University CP3");
+                    Console.WriteLine("Recommend LaTrobe University CP3");
                     break;
                 }
             }
@@ -60,7 +57,7 @@ namespace Harley.UAT.Controllers
             {
                 if (address.address_Input.Equals(AirportPC[i].ToString()))
                 {
-                    Console.WriteLine("Reccommend Melbourne Airport Parking");
+                    Console.WriteLine("Recommend Melbourne Airport Parking");
                     break;
                 }
             }
@@ -69,12 +66,12 @@ namespace Harley.UAT.Controllers
             {
                 if (address.address_Input.Equals(EppingPC[i].ToString()))
                 {
-                    Console.WriteLine("Reccommend Puma Epping Parking");
+                    Console.WriteLine("Recommend Puma Epping Parking");
                     break;
                 }
             }
 
-            Console.WriteLine("Can't make a reccommendation based on your current address");
+            Console.WriteLine("Can't make a recommendation based on your current address");
         }
 
         [HttpPost]
