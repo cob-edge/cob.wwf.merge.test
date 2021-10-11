@@ -170,14 +170,24 @@ export class Eleven implements OnInit {
     }]
   };
 
-  updateStats() { //this method here does the live data refresh
+
+
+  User_ID: number;
+  updateStats() {
+    this.User_ID = 14;
+    this.getUserData();
+
+    //this method here does the live data refresh
     //this.updateApiCall(this.http, this.baseUrl); //re runs the sql query to get 10 most recent v1 values
     //this.updateApiCall2(this.http, this.baseUrl);
     //this.updateApiCall3(this.http, this.baseUrl);
 
     console.log("hello from update status chart : " + this.recentV1s[0].recent10);
-    this.chart.data.datasets[0].data = [1, 0.5, 1, 2, 1, 3, 1, 4, 2, 1];
+    this.getChartData();
     this.chart.update();
+
+
+
 
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
     this.chart2.data.datasets[0].data = [2, 9, 3, 5, 9, 7, 13, 20, 12, 10];
@@ -186,13 +196,17 @@ export class Eleven implements OnInit {
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
     this.chart3.data.datasets[0].data = [140, 203, 80, 16];
     this.chart3.update();
+  }
 
-    this.getUserData()
+  getChartData() {
+    this.http.get<RecentCost>(this.baseUrl + 'recentCost/' + this.User_ID).subscribe(result => {
+      this.chart.data.datasets[0].data = result.recent10;
+    }, error => console.error(error));
   }
 
   getUserData() {
     this.http.get<User>(this.baseUrl + 'user/' + this.ipAddress).subscribe(result => {
-      console.log(result);
+      this.User_ID = result.User_ID;
     }, error => console.error(error));
   }
 
@@ -203,6 +217,10 @@ export class Eleven implements OnInit {
         this.ipAddress = data.ip;
       })
   }
+}
+
+interface RecentCost {
+  recent10: number[];
 }
 
 interface RecentV1 {

@@ -43,7 +43,7 @@ namespace Harley.UAT.Controllers
                     User_IP_Address = UserData[User_Pos].User_IP_Address
                 };
             }
-            Console.WriteLine("Here with the null!");
+            //Console.WriteLine("Here with the null!");
             return null;
         }
 
