@@ -33,6 +33,7 @@
     <None Remove="ClientApp\src\assets\images\Report_2.JPG" />
     <None Remove="ClientApp\src\app\Five %28copy%29\" />
     <None Remove="ClientApp\src\app\Three %28copy%29\" />
+    <None Remove="ClientApp\src\app\Fifteen %28copy%29\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,6 +54,7 @@
     <Folder Include="ClientApp\src\app\Twentyone\" />
     <Folder Include="ClientApp\src\app\Twentytwo\" />
     <Folder Include="ClientApp\src\app\Twentythree\" />
+    <Folder Include="ClientApp\src\app\Review\" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->

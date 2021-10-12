@@ -34,6 +34,7 @@ import { Twenty } from './Twenty/pageTwenty.component';
 import { Twentyone } from './Twentyone/pageTwentyone.component';
 import { Twentytwo } from './Twentytwo/pageTwentytwo.component';
 import { Twentythree } from './Twentythree/pageTwentythree.component';
+import { Review } from './Review/pageReview.component';
 
 
 
@@ -67,7 +68,8 @@ import { Twentythree } from './Twentythree/pageTwentythree.component';
     Twenty,
     Twentyone,
     Twentytwo,
-    Twentythree
+    Twentythree,
+    Review
  
 
   ],
@@ -103,6 +105,7 @@ import { Twentythree } from './Twentythree/pageTwentythree.component';
       { path: 'Twentyone', component: Twentyone },
       { path: 'Twentytwo', component: Twentytwo },
       { path: 'Twentythree', component: Twentythree },
+      { path: 'Review', component: Review },
     ])
   ],
   providers: [SharedService],
