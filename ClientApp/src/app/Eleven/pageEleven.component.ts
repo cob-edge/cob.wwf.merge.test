@@ -9,7 +9,6 @@ import { Observable, Subscription, interval } from 'rxjs';
   templateUrl: './pageEleven.component.html',
   styleUrls: ['../../assets/css/main.css']
 })
-
 export class Eleven implements OnInit {
   //live data declaration
   private updateSub: Subscription;
@@ -170,8 +169,6 @@ export class Eleven implements OnInit {
     }]
   };
 
-
-
   User_ID: number;
   updateStats() {
     this.User_ID = 14;
@@ -185,9 +182,6 @@ export class Eleven implements OnInit {
     console.log("hello from update status chart : " + this.recentV1s[0].recent10);
     this.getChartData();
     this.chart.update();
-
-
-
 
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
     this.chart2.data.datasets[0].data = [2, 9, 3, 5, 9, 7, 13, 20, 12, 10];
