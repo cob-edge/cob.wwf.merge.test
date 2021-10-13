@@ -9,7 +9,6 @@ import { Observable, Subscription, interval } from 'rxjs';
   templateUrl: './pageEleven.component.html',
   styleUrls: ['../../assets/css/main.css']
 })
-
 export class Eleven implements OnInit {
   //live data declaration
   private updateSub: Subscription;
@@ -169,8 +168,6 @@ export class Eleven implements OnInit {
       pointHoverBorderColor: 'rgb(63,63,191)'
     }]
   };
-
-
 
   User_ID: number;
   updateStats() {

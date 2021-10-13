@@ -87,8 +87,6 @@ namespace Harley.UAT.Controllers
         [HttpPost]
         public int Post(Login login)
         {
-            //Console.WriteLine("helllloooooo >>> Email : " + login.login_Email_Input + " Password : " + login.login_Password_Input + " IP : " + login.login_IP_Address_Input);
-            
             login.login_Email_Input.Trim();
             if (login.login_Email_Input.Contains('@')) //check if valid email 
             {
