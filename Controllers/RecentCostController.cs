@@ -48,6 +48,7 @@ namespace Harley.UAT.Controllers
             }
         }
 
+        private static double WeiToAudRatio = 0.0000000000000045;
         private RecentCost recentCost;
         public void Read(int User_ID) //could me modified for specific queires, then just retreive whole table
         {
@@ -70,11 +71,20 @@ namespace Harley.UAT.Controllers
 
             //Set database objects into a array, that can then be passed to webpage
             recentCost = new RecentCost();
-            recentCost.Recent10 = new double[SizeRecent10];
+            recentCost.Recent10 = new int[SizeRecent10];
             int i = 0;
             foreach (DataRow row in Results.Rows)
             {
                 recentCost.Recent10[i] = (int)row["Gas"];
+                i++;
+            }
+
+            //Set secondary array with the aud values for api 
+            i = 0;
+            recentCost.Recent10Aud = new double[SizeRecent10];
+            foreach (DataRow row in Results.Rows)
+            {
+                recentCost.Recent10Aud[i] = recentCost.Recent10[i] * WeiToAudRatio;
                 i++;
             }
         }
@@ -83,5 +93,7 @@ namespace Harley.UAT.Controllers
 
 public class RecentCost
 {
-    public double[] Recent10 { get; set; }
+    public int[] Recent10 { get; set; }
+
+    public double[] Recent10Aud { get; set; }
 }

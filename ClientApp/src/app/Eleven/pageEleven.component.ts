@@ -182,15 +182,11 @@ export class Eleven implements OnInit {
     //this.updateApiCall2(this.http, this.baseUrl);
     //this.updateApiCall3(this.http, this.baseUrl);
 
-    console.log("hello from update status chart : " + this.recentV1s[0].recent10);
+    //console.log("hello from update status chart : " + this.recentV1s[0].recent10);
     this.getChartData();
     this.chart.update();
 
-
-
-
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-    this.chart2.data.datasets[0].data = [2, 9, 3, 5, 9, 7, 13, 20, 12, 10];
     this.chart2.update();
 
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
@@ -201,6 +197,8 @@ export class Eleven implements OnInit {
   getChartData() {
     this.http.get<RecentCost>(this.baseUrl + 'recentCost/' + this.User_ID).subscribe(result => {
       this.chart.data.datasets[0].data = result.recent10;
+
+      this.chart2.data.datasets[0].data = result.recent10Aud;
     }, error => console.error(error));
   }
 
@@ -221,6 +219,7 @@ export class Eleven implements OnInit {
 
 interface RecentCost {
   recent10: number[];
+  recent10Aud: number[];
 }
 
 interface RecentV1 {
