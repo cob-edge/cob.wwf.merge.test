@@ -49,7 +49,7 @@ export class Seven {
     //console.log(this.users[0]);
 
     this.http.post<User>(baseUrl + 'user', this.user).subscribe(res => {
-      alert(res.toString());
+      //alert(res.toString());
     })
   }
 
