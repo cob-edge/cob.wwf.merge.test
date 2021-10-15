@@ -28,48 +28,23 @@ export class Twelve implements OnInit {
 
 
   //api declaration
-  public recentV1s: RecentV1[];
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<RecentV1[]>(baseUrl + 'recentV1').subscribe(result => {
-      this.recentV1s = result;
-      this.recentV2s = result;
-      this.recentV3s = result;
       this.http = http;
       this.baseUrl = baseUrl;
-    }, error => console.error(error));
   }
 
-  //api updates from database V1
+  //api updates from database 
   public http: HttpClient;
   public baseUrl: string;
-  updateApiCall(http: HttpClient, baseUrl: string) {
-    http.get<RecentV1[]>(baseUrl + 'recentV1').subscribe(result => {
-      this.recentV1s = result;
-    }, error => console.error(error));
-  }
-
-  //other api updates from database V2
-  public recentV2s: RecentV2[];
-  updateApiCall2(http: HttpClient, baseUrl: string) {
-    http.get<RecentV2[]>(baseUrl + 'recentV2').subscribe(result => {
-      this.recentV2s = result;
-    }, error => console.error(error));
-  }
-
-  //other api updates from database V3
-  public recentV3s: RecentV2[];
-  updateApiCall3(http: HttpClient, baseUrl: string) {
-    http.get<RecentV3[]>(baseUrl + 'recentV3').subscribe(result => {
-      this.recentV3s = result;
-    }, error => console.error(error));
-  }
 
   //run
-  ngOnInit() {
+  async ngOnInit() {
     this.createTestChart();
     this.createTestChart2();
     this.createTestChart3();
     this.createTestChart4();
+
+    await this.getIPAddress();
 
     this.updateSubscription = interval(3000).subscribe(
       (val) => { this.updateStats() });
@@ -112,7 +87,7 @@ export class Twelve implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: 'Cost Over Time For Normal Carpark'
+          text: 'Cost Over Time For Normal Melbourne CBD Carpark'
         },
         scales: {
 
@@ -141,19 +116,19 @@ export class Twelve implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: 'Recent Charges on the Blockchain'
+          text: 'Sleep Time Over Time (How Long You Could be in Traffic For)',
         },
         scales: {
 
         }
       },
       data: {
-        labels: ['t-9', 't-8', 't-7', 't-6', 't-5', 't-4', 't-3', 't-2', 't-1', 't'],
+        labels: ['Dailey', 'Weekly', 'Monthly', 'Yearly'],
         datasets: [
           {
             type: 'line',
-            label: 'Cost (AUD)',
-            data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            label: 'Pause Time (hours)',
+            data: [1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
             fill: false,
             borderColor: 'blue'
@@ -166,7 +141,7 @@ export class Twelve implements OnInit {
   createTestChart4() {
     //chart creation
     this.chart4 = new Chart('canvas4', {
-      type: 'bar',
+      type: 'line',
       options: {
         responsive: true,
         title: {
@@ -181,51 +156,100 @@ export class Twelve implements OnInit {
         labels: ['Dailey', 'Weekly', 'Monthly', 'Yearly'],
         datasets: [
           {
-            type: 'bar',
-            label: 'Live pause time (s) detected by sensor id 66',
+            type: 'line',
+            label: 'Letres of Petrol',
             data: [1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
-            fill: false
+            fill: false,
+            borderColor: 'blue'
           }
         ]
       }
     });
   }
 
+  User_ID: number;
   updateStats() { //this method here does the live data refresh
-    //this.updateApiCall(this.http, this.baseUrl); //re runs the sql query to get 10 most recent v1 values
-    this.updateApiCall2(this.http, this.baseUrl);
-    this.updateApiCall3(this.http, this.baseUrl);
+    this.User_ID = 14;
+    this.getUserData();
 
-    //console.log("hello from update status chart : " + this.recentV1s[0].recent10);
-    this.chart.data.datasets[0].data = [5, 33, 132, 1584];
+    this.getChartDataChart1()
     this.chart.update();
 
-    //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-    this.chart2.data.datasets[0].data = [10, 68, 272, 3264];
+    this.chart2.data.datasets[0].data = [10.7, 75, 525, 6300]; // real data from cbd carpark
     this.chart2.update();
 
-    this.chart4.data.datasets[0].data = [3500, 24500, 95000, 1176000]
+    this.getChartDataChart4()
     this.chart4.update();
 
-    //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-    this.chart3.data.datasets[0].data = this.recentV3s[0].recent10;
+    this.getChartDataChart3()
     this.chart3.update();
+  }
 
-    
+  getChartDataChart1() {
+    this.User_ID = 14;
+    this.http.get<RecentCostOverTime>(this.baseUrl + 'recentCostOverTime/' + this.User_ID).subscribe(result => {
+      this.chart.data.datasets[0].data = result.recent4Aud;
+      console.log(result.recent4Aud);
+    }, error => console.error(error));
+  }
+
+  getChartDataChart4() {
+    this.http.get<RecentPetrolOverTime>(this.baseUrl + 'recentPetrolOverTime').subscribe(result => {
+      this.chart4.data.datasets[0].data = result.recent4;
+      console.log(result.recent4);
+    }, error => console.error(error));
+  }
+
+  getChartDataChart3() {
+    this.http.get<RecentSleepTimeOverTime>(this.baseUrl + 'recentSleepTimeOverTime').subscribe(result => {
+      this.chart3.data.datasets[0].data = result.recent4;
+      console.log(result.recent4);
+    }, error => console.error(error));
+  }
+
+  ipAddress: string;
+  async getIPAddress() {
+    this.http.get<{ ip: string }>('https://jsonip.com')
+      .subscribe(data => {
+        this.ipAddress = data.ip;
+      })
+  }
+
+  getUserData() {
+    this.http.get<User>(this.baseUrl + 'user/' + this.ipAddress).subscribe(result => {
+      this.User_ID = result.User_ID;
+    }, error => console.error(error));
   }
 }
 
-interface RecentV1 {
-  recent10: number[];
+interface RecentCostOverTime {
+  recent4: number[];
+  recent4Aud: number[];
 }
 
-interface RecentV2 {
-  recent10: number[];
+interface RecentPetrolOverTime {
+  recent4: number[];
 }
 
-interface RecentV3 {
-  recent10: number[];
+interface RecentSleepTimeOverTime {
+  recent4: number[];
+}
+
+interface User {
+  User_ID: number;
+  User_FirstName: string;
+  User_LastName: string;
+  User_Type: string;
+  User_Email: string;
+  User_Password: string;
+  User_PhoneNo: string;
+  User_Address_Street: string;
+  User_Address_City: string;
+  User_Address_Postcode: number;
+  User_LicenseNo: string;
+  User_LicenseExp: string;
+  User_IP_Address: string;
 }
 
 

@@ -11,22 +11,22 @@ namespace Harley.UAT.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RecentCostController : ControllerBase
+    public class RecentTotalCarParkCostController : ControllerBase
     {
-        private readonly ILogger<RecentCostController> _logger;
+        private readonly ILogger<RecentTotalCarParkCostController> _logger;
 
-        public RecentCostController(ILogger<RecentCostController> logger)
+        public RecentTotalCarParkCostController(ILogger<RecentTotalCarParkCostController> logger)
         {
             _logger = logger;
         }
 
-        //GET METHOD FOR PAGE ELEVEN CHART 1 CHART 2 
+        //GET METHOD FOR PAGE ELEVEN CHART 3
         [HttpGet("{id}")]
-        public RecentCost Get(int id)
+        public RecentTotalCarParkCost Get(int id)
         {
             Connect();
             Read(id);
-            return recentCost; 
+            return recentTotalCarParkCost; 
         }
 
         //connect to database object 
@@ -49,18 +49,12 @@ namespace Harley.UAT.Controllers
         }
 
         private static double WeiToAudRatio = 0.0000000000000045;
-        private RecentCost recentCost;
+        private RecentTotalCarParkCost recentTotalCarParkCost;
         public void Read(int User_ID) //could me modified for specific queires, then just retreive whole table
         {
             //Read DB table 
-            SqlCommand cmd = new SqlCommand(@"
-               SELECT TOP (10) From_Address, To_Address, Gas, Timestamp
-                  FROM [dbo].[Block Transactions]
-                  WHERE [From_Address] = (SELECT ew.Wallet_ID
-                                                FROM [dbo].[User] u
-                                          INNER JOIN [dbo].[Ethereum Wallet] ew ON u.[User_ID] = ew.[User_ID]
-                                                WHERE u.[User_ID] = '" + User_ID + @"')
-                  ORDER BY Timestamp DESC;", sqlc);
+            SqlCommand cmd = new SqlCommand(@" ", sqlc); //to be completed
+
             DataTable Results = new DataTable();
             // Read table from database and store it
             sqlc.Open();
@@ -70,12 +64,14 @@ namespace Harley.UAT.Controllers
             sqlc.Close();
 
             //Set database objects into a array, that can then be passed to webpage
+
+            /*
             recentCost = new RecentCost();
-            recentCost.Recent10 = new Int64[SizeRecent10];
+            recentCost.Recent10 = new int[SizeRecent10];
             int i = 0;
             foreach (DataRow row in Results.Rows)
             {
-                recentCost.Recent10[i] = (Int64)row["Gas"];
+                recentCost.Recent10[i] = (int)row["Gas"];
                 i++;
             }
 
@@ -87,13 +83,14 @@ namespace Harley.UAT.Controllers
                 recentCost.Recent10Aud[i] = recentCost.Recent10[i] * WeiToAudRatio;
                 i++;
             }
+            */
         }
     }
 }
 
-public class RecentCost
+public class RecentTotalCarParkCost
 {
-    public Int64[] Recent10 { get; set; }
+    public Int64[] Recent4 { get; set; }
 
-    public double[] Recent10Aud { get; set; }
+    public double[] Recent4Aud { get; set; }
 }

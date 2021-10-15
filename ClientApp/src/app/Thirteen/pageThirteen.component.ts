@@ -28,48 +28,23 @@ export class Thirteen implements OnInit {
 
 
   //api declaration
-  public recentV1s: RecentV1[];
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<RecentV1[]>(baseUrl + 'recentV1').subscribe(result => {
-      this.recentV1s = result;
-      this.recentV2s = result;
-      this.recentV3s = result;
-      this.http = http;
-      this.baseUrl = baseUrl;
-    }, error => console.error(error));
+    this.http = http;
+    this.baseUrl = baseUrl;
   }
 
   //api updates from database V1
   public http: HttpClient;
   public baseUrl: string;
-  updateApiCall(http: HttpClient, baseUrl: string) {
-    http.get<RecentV1[]>(baseUrl + 'recentV1').subscribe(result => {
-      this.recentV1s = result;
-    }, error => console.error(error));
-  }
-
-  //other api updates from database V2
-  public recentV2s: RecentV2[];
-  updateApiCall2(http: HttpClient, baseUrl: string) {
-    http.get<RecentV2[]>(baseUrl + 'recentV2').subscribe(result => {
-      this.recentV2s = result;
-    }, error => console.error(error));
-  }
-
-  //other api updates from database V3
-  public recentV3s: RecentV2[];
-  updateApiCall3(http: HttpClient, baseUrl: string) {
-    http.get<RecentV3[]>(baseUrl + 'recentV3').subscribe(result => {
-      this.recentV3s = result;
-    }, error => console.error(error));
-  }
 
   //run
-  ngOnInit() {
+  async ngOnInit() {
     this.createTestChart();
     this.createTestChart2();
     this.createTestChart3();
     this.createTestChart4();
+
+    await this.getIPAddress();
 
     this.updateSubscription = interval(3000).subscribe(
       (val) => { this.updateStats() });
@@ -166,11 +141,8 @@ export class Thirteen implements OnInit {
     });
   }
 
+  User_ID: number;
   updateStats() { //this method here does the live data refresh
-    //this.updateApiCall(this.http, this.baseUrl); //re runs the sql query to get 10 most recent v1 values
-    this.updateApiCall2(this.http, this.baseUrl);
-    this.updateApiCall3(this.http, this.baseUrl);
-
     //console.log("hello from update status chart : " + this.recentV1s[0].recent10);
     this.chart.data.datasets[0].data = [5, 1, 4, 8];
     this.chart.update();
@@ -185,8 +157,6 @@ export class Thirteen implements OnInit {
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
     this.chart3.data.datasets[0].data = [35, 7, 20, 40]
     this.chart3.update();
-
-
   }
 
   public data1 = {
@@ -246,18 +216,41 @@ export class Thirteen implements OnInit {
       pointHoverBorderColor: 'rgb(63,63,191)'
     }]
   };
+
+  ipAddress: string;
+  async getIPAddress() {
+    this.http.get<{ ip: string }>('https://jsonip.com')
+      .subscribe(data => {
+        this.ipAddress = data.ip;
+      })
+  }
+
+  getUserData() {
+    this.http.get<User>(this.baseUrl + 'user/' + this.ipAddress).subscribe(result => {
+      this.User_ID = result.User_ID;
+    }, error => console.error(error));
+  }
 }
 
-interface RecentV1 {
-  recent10: number[];
+interface RecentCostOverTime {
+  recent4: number[];
+  recent4Aud: number[];
 }
 
-interface RecentV2 {
-  recent10: number[];
-}
-
-interface RecentV3 {
-  recent10: number[];
+interface User {
+  User_ID: number;
+  User_FirstName: string;
+  User_LastName: string;
+  User_Type: string;
+  User_Email: string;
+  User_Password: string;
+  User_PhoneNo: string;
+  User_Address_Street: string;
+  User_Address_City: string;
+  User_Address_Postcode: number;
+  User_LicenseNo: string;
+  User_LicenseExp: string;
+  User_IP_Address: string;
 }
 
 

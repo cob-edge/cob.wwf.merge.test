@@ -11,22 +11,22 @@ namespace Harley.UAT.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RecentCostController : ControllerBase
+    public class RecentCostOverTimeController : ControllerBase
     {
-        private readonly ILogger<RecentCostController> _logger;
+        private readonly ILogger<RecentCostOverTimeController> _logger;
 
-        public RecentCostController(ILogger<RecentCostController> logger)
+        public RecentCostOverTimeController(ILogger<RecentCostOverTimeController> logger)
         {
             _logger = logger;
         }
 
-        //GET METHOD FOR PAGE ELEVEN CHART 1 CHART 2 
+        //GET METHOD FOR PAGE TWELVE CHART 1 CHART 2 
         [HttpGet("{id}")]
-        public RecentCost Get(int id)
+        public RecentCostOverTime Get(int id)
         {
             Connect();
             Read(id);
-            return recentCost; 
+            return recentCostOverTime; 
         }
 
         //connect to database object 
@@ -49,51 +49,45 @@ namespace Harley.UAT.Controllers
         }
 
         private static double WeiToAudRatio = 0.0000000000000045;
-        private RecentCost recentCost;
+        private RecentCostOverTime recentCostOverTime;
         public void Read(int User_ID) //could me modified for specific queires, then just retreive whole table
         {
             //Read DB table 
-            SqlCommand cmd = new SqlCommand(@"
-               SELECT TOP (10) From_Address, To_Address, Gas, Timestamp
-                  FROM [dbo].[Block Transactions]
-                  WHERE [From_Address] = (SELECT ew.Wallet_ID
-                                                FROM [dbo].[User] u
-                                          INNER JOIN [dbo].[Ethereum Wallet] ew ON u.[User_ID] = ew.[User_ID]
-                                                WHERE u.[User_ID] = '" + User_ID + @"')
-                  ORDER BY Timestamp DESC;", sqlc);
+            SqlCommand cmd = new SqlCommand(@" ", sqlc);
+
             DataTable Results = new DataTable();
             // Read table from database and store it
             sqlc.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             Results.Load(reader);
-            int SizeRecent10 = Results.Rows.Count;
+            int size = Results.Rows.Count;
             sqlc.Close();
 
             //Set database objects into a array, that can then be passed to webpage
-            recentCost = new RecentCost();
-            recentCost.Recent10 = new Int64[SizeRecent10];
-            int i = 0;
-            foreach (DataRow row in Results.Rows)
-            {
-                recentCost.Recent10[i] = (Int64)row["Gas"];
-                i++;
-            }
+            recentCostOverTime = new RecentCostOverTime();
 
-            //Set secondary array with the aud values for api 
-            i = 0;
-            recentCost.Recent10Aud = new double[SizeRecent10];
+            Int64 total = 0;
             foreach (DataRow row in Results.Rows)
             {
-                recentCost.Recent10Aud[i] = recentCost.Recent10[i] * WeiToAudRatio;
-                i++;
+                total = total + (int)row["Gas"];
             }
+            if(size == 0) { size = 1; } //incase of zero
+            Int64 average = total / size;
+
+            Int64 daily = average / 15 * 60 * 60 * 24; //sim is generate value every 15 seconds math to get dailey value
+            Int64 weekly = daily * 7;
+            Int64 monthly = weekly * 4;
+            Int64 yearly = monthly * 12;
+
+            recentCostOverTime.Recent4 = new Int64[]{ daily, weekly, monthly, yearly };
+            recentCostOverTime.Recent4Aud = new double[]{ (daily* WeiToAudRatio), (weekly* WeiToAudRatio), (monthly* WeiToAudRatio), (yearly* WeiToAudRatio) };
         }
     }
 }
 
-public class RecentCost
+public class RecentCostOverTime
 {
-    public Int64[] Recent10 { get; set; }
+    public Int64[] Recent4 { get; set; }
 
-    public double[] Recent10Aud { get; set; }
+    public double[] Recent4Aud { get; set; }
 }

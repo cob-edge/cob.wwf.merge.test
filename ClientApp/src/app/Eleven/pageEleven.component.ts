@@ -25,44 +25,14 @@ export class Eleven implements OnInit {
   chart3;
 
   //api declaration
-  public recentV1s: RecentV1[];
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.http = http;
     this.baseUrl = baseUrl;
-
-    http.get<RecentV1[]>(baseUrl + 'recentV1').subscribe(result => {
-      this.recentV1s = result;
-      this.recentV2s = result;
-      this.recentV3s = result;
-    }, error => console.error(error));
   }
 
-  //api updates from database V1
+  //api variables 
   public http: HttpClient;
   public baseUrl: string;
-
-  //update adpi call 
-  updateApiCall(http: HttpClient, baseUrl: string) {
-    http.get<RecentV1[]>(baseUrl + 'recentV1').subscribe(result => {
-      this.recentV1s = result;
-    }, error => console.error(error));
-  }
-
-  //other api updates from database V2
-  public recentV2s: RecentV2[];
-  updateApiCall2(http: HttpClient, baseUrl: string) {
-    http.get<RecentV2[]>(baseUrl + 'recentV2').subscribe(result => {
-      this.recentV2s = result;
-    }, error => console.error(error));
-  }
-
-  //other api updates from database V3
-  public recentV3s: RecentV2[];
-  updateApiCall3(http: HttpClient, baseUrl: string) {
-    http.get<RecentV3[]>(baseUrl + 'recentV3').subscribe(result => {
-      this.recentV3s = result;
-    }, error => console.error(error));
-  }
 
   //run
   async ngOnInit() {
@@ -174,13 +144,8 @@ export class Eleven implements OnInit {
     this.User_ID = 14;
     this.getUserData();
 
-    //this method here does the live data refresh
-    //this.updateApiCall(this.http, this.baseUrl); //re runs the sql query to get 10 most recent v1 values
-    //this.updateApiCall2(this.http, this.baseUrl);
-    //this.updateApiCall3(this.http, this.baseUrl);
-
     //console.log("hello from update status chart : " + this.recentV1s[0].recent10);
-    this.getChartData();
+    this.getChartDataChart1Chart2();
     this.chart.update();
 
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
@@ -191,11 +156,17 @@ export class Eleven implements OnInit {
     this.chart3.update();
   }
 
-  getChartData() {
+  getChartDataChart1Chart2() {
     this.http.get<RecentCost>(this.baseUrl + 'recentCost/' + this.User_ID).subscribe(result => {
       this.chart.data.datasets[0].data = result.recent10;
 
       this.chart2.data.datasets[0].data = result.recent10Aud;
+    }, error => console.error(error));
+  }
+
+  getChartDataChart3() { // to be tested
+    this.http.get<RecentTotalCarParkCost>(this.baseUrl + 'recentTotalCarParkCost/' + this.User_ID).subscribe(result => {
+      this.chart3.data.datasets[0].data = result.recent4Aud;
     }, error => console.error(error));
   }
 
@@ -214,21 +185,14 @@ export class Eleven implements OnInit {
   }
 }
 
+interface RecentTotalCarParkCost {
+  recent4: number[];
+  recent4Aud: number[];
+}
+
 interface RecentCost {
   recent10: number[];
   recent10Aud: number[];
-}
-
-interface RecentV1 {
-  recent10: number[];
-}
-
-interface RecentV2 {
-  recent10: number[];
-}
-
-interface RecentV3 {
-  recent10: number[];
 }
 
 interface User {
