@@ -16,17 +16,17 @@ export class Nine {
   baseUrl: string
 
   @Input() address: any;
+  @Input() recommendation: any;
   address_Input: string;
-  recommendation: string;
+  recommendation_Output: string;
 
   ngOnInit(): void {
     this.address = {
-      address_Input: "",
-      recommendation: ""
+      address_Input: ""
     }
 
     this.address_Input = this.address.address_Input;
-    this.recommendation = this.address.recommendation;
+    this.recommendation_Output = this.recommendation;
   }
 
   checkAddress() {
@@ -34,18 +34,17 @@ export class Nine {
       address_Input: this.address
     }
     var recommendation = {
-      recommendation: this.recommendation
+      recommendation_Output: this.recommendation
     }
 
     console.log("Input address: " + this.address);
 
     this.http.post<string>(this.baseUrl + 'carParkRecommendation', address).subscribe(res => {
-      if (this.recommendation == "") {
+      if (this.recommendation_Output == "") {
         alert("Can't make recommendation based on your input \"" + this.address + "\"");
       }
       else {
-        alert("We recommend \"" + recommendation + "\" based on your input");
-        //console.log("Response: " + res.toString());
+        alert("We recommend \"" + this.recommendation_Output + "\" based on your input");
       }
       
     });

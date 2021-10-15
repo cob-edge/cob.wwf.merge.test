@@ -105,17 +105,6 @@ namespace Harley.UAT.Controllers
             Console.WriteLine("User Input: " + address.address_Input + "\nRecommended parking: " + address.recommendation);
 
             return "{\"Recommended\": \" address.recommendation \"}";
-
-            /*try
-            {
-                return "{\"Message\": \"Succesful\"}";
-            } 
-            catch (Exception)
-            {
-                return "{\"Message\": \"Unsucessful\"}";
-            }*/
-
-            //return "{\"Message\": \"Succesful\"}";
         }
     }
 }
