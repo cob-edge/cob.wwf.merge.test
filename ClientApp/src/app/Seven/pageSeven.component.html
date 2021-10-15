@@ -21,14 +21,14 @@
         <div class="col-6 col-12-xsmall">
           <label for="email">Login Email:</label>
           <b>
-            <input type="text" class="form-control" name="email" id="email" value="" placeholder="Enter Admin Email" />
+            <input type="text" class="form-control" name="email" id="email" value="" placeholder="Enter Admin Email" [(ngModel)]="login_Email_Input" />
           </b>
         </div>
 
         <div class="col-6 col-12-xsmall">
           <label for="password">Password:</label>
           <b>
-            <input type="password" id="password" name="password" minlength="8" required placeholder="Enter Password ">
+            <input type="password" id="password" name="password" minlength="8" required placeholder="Enter Password" [(ngModel)]="login_Password_Input">
           </b>
         </div>
 
@@ -39,7 +39,7 @@
 
         <ul class="actions">
           <li>
-            <button (click)="checkUser()" class="button primary fit">
+            <button (click)="checkLogin()" class="button primary fit">
               Login
             </button>
           </li>

@@ -99,15 +99,51 @@ export class Thirteen implements OnInit {
   createTestChart3() {
     //chart creation
     this.chart3 = new Chart('canvas3', {
-      type: 'radar',
-      data: this.data3,
+      type: 'line',
       options: {
-        elements: {
-          line: {
-            borderWidth: 3
-          }
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Most Recent Costs (Aud)',
+        },
+        scales: {
+
         }
       },
+      data: {
+        labels: ['t-9', 't-8', 't-7', 't-6', 't-5', 't-4', 't-3', 't-2', 't-1', 't'],
+        datasets: [
+          {
+            type: 'line',
+            label: 'A',
+            backgroundColor: '#3F3FBF',
+            data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            fill: false,
+            borderColor: 'blue'
+          },
+          {
+            type: 'line',
+            label: 'B',
+            backgroundColor: '#3F3FBF',
+            fill: false,
+            borderColor: 'rgb(54,162,235)'
+          },
+          {
+            type: 'line',
+            label: 'C',
+            backgroundColor: '#3F3FBF',
+            fill: false,
+            borderColor: 'rgb(129,161,242)'
+          },
+          {
+            type: 'line',
+            label: 'D',
+            backgroundColor: '#3F3FBF',
+            fill: false,
+            borderColor: 'rgb(0,161,172)'
+          }
+        ]
+      }
     });
   }
 
@@ -119,22 +155,43 @@ export class Thirteen implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: '0TI-K06 Use of Petrol At Diffent Weeks',
+          text: 'Most Recent Costs (Wei)',
         },
         scales: {
 
         }
       },
       data: {
-        labels: ['t-3', 't-2', 't-1', 't'],
+        labels: ['t-9', 't-8', 't-7', 't-6', 't-5', 't-4', 't-3', 't-2', 't-1', 't'],
         datasets: [
           {
             type: 'line',
-            label: 'Live pause time (s) detected by sensor id 66',
-            data: [1, 1, 1, 1],
+            label: 'A',
+            data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
             fill: false,
             borderColor: 'blue'
+          },
+          {
+            type: 'line',
+            label: 'B',
+            backgroundColor: '#3F3FBF',
+            fill: false,
+            borderColor: 'rgb(54,162,235)'
+          },
+          {
+            type: 'line',
+            label: 'C',
+            backgroundColor: '#3F3FBF',
+            fill: false,
+            borderColor: 'rgb(129,161,242)'
+          },
+          {
+            type: 'line',
+            label: 'D',
+            backgroundColor: '#3F3FBF',
+            fill: false,
+            borderColor: 'rgb(0,161,172)'
           }
         ]
       }
@@ -142,29 +199,23 @@ export class Thirteen implements OnInit {
   }
 
   User_ID: number;
-  updateStats() { //this method here does the live data refresh
-    //console.log("hello from update status chart : " + this.recentV1s[0].recent10);
-    this.chart.data.datasets[0].data = [5, 1, 4, 8];
+  async updateStats() { //this method here does the live data refresh
+    this.getChartDataChart1Chart2()
     this.chart.update();
 
-    //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-    this.chart2.data.datasets[0].data = [35, 7, 20, 40];
     this.chart2.update();
 
-    this.chart4.data.datasets[0].data = [10, 23, 22, 21]
+    this.getChartDataChart3Chart4()
     this.chart4.update();
-
-    //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-    this.chart3.data.datasets[0].data = [35, 7, 20, 40]
     this.chart3.update();
   }
 
   public data1 = {
     labels: [
-      '6SR-D14',
-      '5NQ-D93',
-      '7MQ-F06',
-      '0TI-K06'
+      'A',
+      'B',
+      'C',
+      'D'
     ],
     datasets: [{
       label: 'My First Dataset',
@@ -180,10 +231,10 @@ export class Thirteen implements OnInit {
 
   public data2 = {
     labels: [
-      '6SR-D14',
-      '5NQ-D93',
-      '7MQ-F06',
-      '0TI-K06'
+      'A',
+      'B',
+      'C',
+      'D'
     ],
     datasets: [{
       label: 'My First Dataset',
@@ -197,25 +248,46 @@ export class Thirteen implements OnInit {
     }]
   };
 
-  public data3 = {
-    labels: [
-      '6SR-D14',
-      '5NQ-D93',
-      '7MQ-F06',
-      '0TI-K06'
-    ],
-    datasets: [{
-      label: 'Total Costs Across Vehicles Weekly',
-      data: [1, 1, 1, 1],
-      fill: true,
-      backgroundColor: 'rgb(63,63,191, 0.2)',
-      borderColor: 'rgb(63,63,191)',
-      pointBackgroundColor: 'rgb(63,63,191)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgb(63,63,191)'
-    }]
-  };
+  getChartDataChart1Chart2() {
+    this.User_ID = 14;
+    this.http.get<RecentCostVehicleOverTime>(this.baseUrl + 'recentCostVehicleOverTime/' + this.User_ID).subscribe(result => {
+      this.chart.data.labels = result.vehicle_Regs;
+      this.chart2.data.labels = result.vehicle_Regs;
+
+      this.chart.data.datasets[0].data = result.vehicle_CostDailyAuds;
+      this.chart2.data.datasets[0].data = result.vehicle_CostYearlyAuds;
+    }, error => console.error(error));
+  }
+
+  async getChartDataChart3Chart4() {
+    this.User_ID = 14;
+    this.http.get<RecentCostVehicle>(this.baseUrl + 'recentCostVehicle/' + this.User_ID).subscribe(result => {
+
+      this.chart4.data.datasets[0].data = result.vehicle_Costs[0];
+      this.chart4.data.datasets[1].data = result.vehicle_Costs[1];
+      this.chart4.data.datasets[2].data = result.vehicle_Costs[2];
+      this.chart4.data.datasets[3].data = result.vehicle_Costs[3];
+
+      this.chart3.data.datasets[0].data = result.vehicle_CostAuds[0];
+      this.chart3.data.datasets[1].data = result.vehicle_CostAuds[1];
+      this.chart3.data.datasets[2].data = result.vehicle_CostAuds[2];
+      this.chart3.data.datasets[3].data = result.vehicle_CostAuds[3];
+
+      this.chart4.data.datasets[0].label = result.vehicle_Regs[0]; //first reg number
+      this.chart4.data.datasets[1].label = result.vehicle_Regs[1]; //so on
+      this.chart4.data.datasets[2].label = result.vehicle_Regs[2]; 
+      this.chart4.data.datasets[3].label = result.vehicle_Regs[3];
+
+      this.chart3.data.datasets[0].label = result.vehicle_Regs[0]; //first reg number/
+      this.chart3.data.datasets[1].label = result.vehicle_Regs[1]; //so on
+      this.chart3.data.datasets[2].label = result.vehicle_Regs[2];
+      this.chart3.data.datasets[3].label = result.vehicle_Regs[3];
+    }, error => console.error(error));
+  }
+
+  timeout(ms) { //pass a time in milliseconds to this function
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
   ipAddress: string;
   async getIPAddress() {
@@ -232,9 +304,16 @@ export class Thirteen implements OnInit {
   }
 }
 
-interface RecentCostOverTime {
-  recent4: number[];
-  recent4Aud: number[];
+interface RecentCostVehicleOverTime{
+  vehicle_Regs: string[];
+  vehicle_CostDailyAuds: number[];
+  vehicle_CostYearlyAuds: number[];
+}
+
+interface RecentCostVehicle {
+  vehicle_Regs: string[];
+  vehicle_Costs: number[][];
+  vehicle_CostAuds: number[][];
 }
 
 interface User {
