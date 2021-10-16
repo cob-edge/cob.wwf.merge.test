@@ -40,8 +40,13 @@ export class Ten {
     }
     console.log(this.ipAddress);
     this.http.post<Login>(this.baseUrl + 'login', login).subscribe(res => {
-      //alert(res.toString());
-      console.log(res.toString()); //the user id 
+      console.log(res.toString()); //the user id
+
+      if (res.toString() == '-1') {
+        alert("Error email is not valid!")
+      } else {
+        alert("Welcome user <" + res.toString() + "> please click the NEXT button to continue")
+      }
     });
   }
 
@@ -49,7 +54,6 @@ export class Ten {
   getIPAddress() {
     this.http.get<{ ip: string }>('https://jsonip.com')
       .subscribe(data => {
-        //console.log('th data', data.ip);
         this.ipAddress = data.ip;
       })
   }

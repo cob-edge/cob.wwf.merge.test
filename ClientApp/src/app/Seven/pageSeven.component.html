@@ -43,16 +43,13 @@
               Login
             </button>
           </li>
+          <li [routerLinkActive]="['link-active']">
+            <button value="" class="button primary fit" [routerLink]="['/Eighteen']">Next</button>
+          </li>
           <li>
             <button type="reset" value="">Clear</button>
           </li>
         </ul>
-
-        <div>
-          <li class="button primary fit" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/Eighteen']">If You Do Not Have Login Details Please Click Here</a>
-          </li>
-        </div>
       </div>
     </div>
 

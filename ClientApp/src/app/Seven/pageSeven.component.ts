@@ -40,8 +40,13 @@ export class Seven {
     }
     console.log(this.ipAddress);
     this.http.post<Login>(this.baseUrl + 'login', login).subscribe(res => {
-      //alert(res.toString());
-      console.log(res.toString()); //the user id 
+      console.log(res.toString()); //the user id
+
+      if (res.toString() == '-1') {
+        alert("Error email is not valid!")
+      } else {
+        alert("Welcome user <" + res.toString() + "> please click the NEXT button to continue")
+      }
     });
   }
 

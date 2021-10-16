@@ -49,6 +49,12 @@ export class Twentytwo implements OnInit {
 
     this.segment5 = 0;
 
+    this.User_ID = -1; // initialisation
+
+    this.getIPAddress();
+
+    this.getUserData();
+
     this.updateSubscription = interval(3000).subscribe(
       (val) => { this.updateStats() });
   }
@@ -284,18 +290,21 @@ export class Twentytwo implements OnInit {
     }, error => console.error(error));
   }
 
+  async getUserData() {
+    await new Promise(f => setTimeout(f, 1000)); //wait for API to get address
+
+    this.http.get<User>(this.baseUrl + 'user/' + this.ipAddress).subscribe(result => {
+      console.log(result.user_ID);
+      this.User_ID = result.user_ID;
+    }, error => console.error(error));
+  }
+
   ipAddress: string;
-  async getIPAddress() {
+  getIPAddress() {
     this.http.get<{ ip: string }>('https://jsonip.com')
       .subscribe(data => {
         this.ipAddress = data.ip;
       })
-  }
-
-  getUserData() {
-    this.http.get<User>(this.baseUrl + 'user/' + this.ipAddress).subscribe(result => {
-      this.User_ID = result.User_ID;
-    }, error => console.error(error));
   }
 }
 
@@ -306,19 +315,19 @@ interface RecentCosts {
 }
 
 interface User {
-  User_ID: number;
-  User_FirstName: string;
-  User_LastName: string;
-  User_Type: string;
-  User_Email: string;
-  User_Password: string;
-  User_PhoneNo: string;
-  User_Address_Street: string;
-  User_Address_City: string;
-  User_Address_Postcode: number;
-  User_LicenseNo: string;
-  User_LicenseExp: string;
-  User_IP_Address: string;
+  user_ID: number;
+  user_FirstName: string;
+  user_LastName: string;
+  user_Type: string;
+  user_Email: string;
+  user_Password: string;
+  user_PhoneNo: string;
+  user_Address_Street: string;
+  user_Address_City: string;
+  user_Address_Postcode: number;
+  user_LicenseNo: string;
+  user_LicenseExp: string;
+  user_IP_Address: string;
 }
 
 
