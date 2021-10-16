@@ -47,6 +47,8 @@ export class Twentytwo implements OnInit {
     this.createTestChart3();
     this.createTestChart4();
 
+    this.segment5 = 0;
+
     this.updateSubscription = interval(3000).subscribe(
       (val) => { this.updateStats() });
   }
@@ -227,6 +229,11 @@ export class Twentytwo implements OnInit {
     });
   }
 
+  nextBatch() {
+    this.segment5++;
+  }
+
+  public segment5: number;
   User_ID: number;
   updateStats() { //this method here does the live data refresh
 
@@ -247,9 +254,8 @@ export class Twentytwo implements OnInit {
   }
 
   getChartDataChart3Chart4() {
-    this.http.get<RecentCosts>(this.baseUrl + 'recentCosts/' + 0).subscribe(result => {
+    this.http.get<RecentCosts>(this.baseUrl + 'recentCosts/' + this.segment5).subscribe(result => {
 
-      
       this.chart4.data.datasets[0].data = result.user_Costs[0];
       this.chart4.data.datasets[1].data = result.user_Costs[1];
       this.chart4.data.datasets[2].data = result.user_Costs[2];
