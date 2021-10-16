@@ -2278,6 +2278,12 @@ input, select, textarea {
 			margin-left: 2em;
 		}
 
+	widebutton {
+
+				text-align: center;
+
+	}
+
 /* Actions */
 
 	ul.actions {
