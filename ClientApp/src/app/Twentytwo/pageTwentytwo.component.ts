@@ -31,41 +31,14 @@ export class Twentytwo implements OnInit {
 
 
   //api declaration
-  public recentV1s: RecentV1[];
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<RecentV1[]>(baseUrl + 'recentV1').subscribe(result => {
-      this.recentV1s = result;
-      this.recentV2s = result;
-      this.recentV3s = result;
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {  
       this.http = http;
       this.baseUrl = baseUrl;
-    }, error => console.error(error));
   }
 
   //api updates from database V1
   public http: HttpClient;
   public baseUrl: string;
-  updateApiCall(http: HttpClient, baseUrl: string) {
-    http.get<RecentV1[]>(baseUrl + 'recentV1').subscribe(result => {
-      this.recentV1s = result;
-    }, error => console.error(error));
-  }
-
-  //other api updates from database V2
-  public recentV2s: RecentV2[];
-  updateApiCall2(http: HttpClient, baseUrl: string) {
-    http.get<RecentV2[]>(baseUrl + 'recentV2').subscribe(result => {
-      this.recentV2s = result;
-    }, error => console.error(error));
-  }
-
-  //other api updates from database V3
-  public recentV3s: RecentV2[];
-  updateApiCall3(http: HttpClient, baseUrl: string) {
-    http.get<RecentV3[]>(baseUrl + 'recentV3').subscribe(result => {
-      this.recentV3s = result;
-    }, error => console.error(error));
-  }
 
   //run
   ngOnInit() {
@@ -146,7 +119,7 @@ export class Twentytwo implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: 'Recent Charges on the Blockchain'
+          text: 'Most Recent Costs (Aud)',
         },
         scales: {
 
@@ -157,11 +130,39 @@ export class Twentytwo implements OnInit {
         datasets: [
           {
             type: 'line',
-            label: 'Cost (AUD)',
-            data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            label: 'A',
             backgroundColor: '#3F3FBF',
+            data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             fill: false,
             borderColor: 'blue'
+          },
+          {
+            type: 'line',
+            label: 'B',
+            backgroundColor: '#3F3FBF',
+            fill: false,
+            borderColor: 'rgb(54,162,235)'
+          },
+          {
+            type: 'line',
+            label: 'C',
+            backgroundColor: '#3F3FBF',
+            fill: false,
+            borderColor: 'rgb(129,161,242)'
+          },
+          {
+            type: 'line',
+            label: 'D',
+            backgroundColor: '#3F3FBF',
+            fill: false,
+            borderColor: 'rgb(0,161,172)'
+          },
+          {
+            type: 'line',
+            label: 'E',
+            backgroundColor: '#3F3FBF',
+            fill: false,
+            borderColor: 'rgb(0,242,227)'
           }
         ]
       }
@@ -171,12 +172,12 @@ export class Twentytwo implements OnInit {
   createTestChart4() {
     //chart creation
     this.chart4 = new Chart('canvas4', {
-      type: 'bar',
+      type: 'line',
       options: {
         responsive: true,
         title: {
           display: true,
-          text: 'Use of Pertrol Over Time',
+          text: 'Most Recent Costs (Wei)',
         },
         scales: {
 
@@ -186,53 +187,133 @@ export class Twentytwo implements OnInit {
         labels: ['t-9', 't-8', 't-7', 't-6', 't-5', 't-4', 't-3', 't-2', 't-1', 't'],
         datasets: [
           {
-            type: 'bar',
-            label: 'Pausetime of User, Time they have spent waiting for a carpark, Recently (s) dictum.Proin.eget@DonecegestasAliquam.org',
-            data: [1, 1, 1, 1],
+            type: 'line',
+            label: 'A',
+            data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
-            fill: false
+            fill: false,
+            borderColor: 'blue'
+          },
+          {
+            type: 'line',
+            label: 'B',
+            backgroundColor: '#3F3FBF',
+            fill: false,
+            borderColor: 'rgb(54,162,235)'
+          },
+          {
+            type: 'line',
+            label: 'C',
+            backgroundColor: '#3F3FBF',
+            fill: false,
+            borderColor: 'rgb(129,161,242)'
+          },
+          {
+            type: 'line',
+            label: 'D',
+            backgroundColor: '#3F3FBF',
+            fill: false,
+            borderColor: 'rgb(0,161,172)'
+          },
+          {
+            type: 'line',
+            label: 'E',
+            backgroundColor: '#3F3FBF',
+            fill: false,
+            borderColor: 'rgb(0,242,227)'
           }
         ]
       }
     });
   }
 
+  User_ID: number;
   updateStats() { //this method here does the live data refresh
-    //this.updateApiCall(this.http, this.baseUrl); //re runs the sql query to get 10 most recent v1 values
-    this.updateApiCall2(this.http, this.baseUrl);
-    this.updateApiCall3(this.http, this.baseUrl);
 
     //console.log("hello from update status chart : " + this.recentV1s[0].recent10);
     this.chart.data.datasets[0].data = [0.25, 0.35, 0.26, 0.10];
     this.chart.update();
 
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-      this.chart2.data.datasets[0].data = [0.000060, 0.000085, 0.000063, 0.000024];
+    this.chart2.data.datasets[0].data = [0.000060, 0.000085, 0.000063, 0.000024];
     this.chart2.update();
 
-    this.chart4.data.datasets[0].data = [8, 5, 3, 5, 6, 2, 7, 3, 5, 6]
     this.chart4.update();
 
     //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-    this.chart3.data.datasets[0].data = this.recentV3s[0].recent10;
     this.chart3.update();
 
+    this.getChartDataChart3Chart4();
+  }
 
+  getChartDataChart3Chart4() {
+    this.http.get<RecentCosts>(this.baseUrl + 'recentCosts/' + 0).subscribe(result => {
+
+      
+      this.chart4.data.datasets[0].data = result.user_Costs[0];
+      this.chart4.data.datasets[1].data = result.user_Costs[1];
+      this.chart4.data.datasets[2].data = result.user_Costs[2];
+      this.chart4.data.datasets[3].data = result.user_Costs[3];
+      this.chart4.data.datasets[4].data = result.user_Costs[4];
+
+      this.chart3.data.datasets[0].data = result.user_CostAuds[0];
+      this.chart3.data.datasets[1].data = result.user_CostAuds[1];
+      this.chart3.data.datasets[2].data = result.user_CostAuds[2];
+      this.chart3.data.datasets[3].data = result.user_CostAuds[3];
+      this.chart3.data.datasets[4].data = result.user_CostAuds[4];
+
+      this.chart4.data.datasets[0].label = result.user_Emails[0]; //first email 
+      this.chart4.data.datasets[1].label = result.user_Emails[1]; //so on
+      this.chart4.data.datasets[2].label = result.user_Emails[2];
+      this.chart4.data.datasets[3].label = result.user_Emails[3];
+      this.chart4.data.datasets[4].label = result.user_Emails[4];
+
+      this.chart3.data.datasets[0].label = result.user_Emails[0]; //first email 
+      this.chart3.data.datasets[1].label = result.user_Emails[1]; //so on
+      this.chart3.data.datasets[2].label = result.user_Emails[2];
+      this.chart3.data.datasets[3].label = result.user_Emails[3];
+      this.chart3.data.datasets[4].label = result.user_Emails[4];
+      
+
+    }, error => console.error(error));
+  }
+
+  ipAddress: string;
+  async getIPAddress() {
+    this.http.get<{ ip: string }>('https://jsonip.com')
+      .subscribe(data => {
+        this.ipAddress = data.ip;
+      })
+  }
+
+  getUserData() {
+    this.http.get<User>(this.baseUrl + 'user/' + this.ipAddress).subscribe(result => {
+      this.User_ID = result.User_ID;
+    }, error => console.error(error));
   }
 }
 
-interface RecentV1 {
-  recent10: number[];
+interface RecentCosts {
+  user_Emails: string[];
+  user_Costs: number[][];
+  user_CostAuds: number[][];
 }
 
-interface RecentV2 {
-  recent10: number[];
+interface User {
+  User_ID: number;
+  User_FirstName: string;
+  User_LastName: string;
+  User_Type: string;
+  User_Email: string;
+  User_Password: string;
+  User_PhoneNo: string;
+  User_Address_Street: string;
+  User_Address_City: string;
+  User_Address_Postcode: number;
+  User_LicenseNo: string;
+  User_LicenseExp: string;
+  User_IP_Address: string;
 }
-
-interface RecentV3 {
-  recent10: number[];
-}
-
 
 
 

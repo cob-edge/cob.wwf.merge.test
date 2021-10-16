@@ -259,7 +259,7 @@ export class Thirteen implements OnInit {
     }, error => console.error(error));
   }
 
-  async getChartDataChart3Chart4() {
+  getChartDataChart3Chart4() {
     this.User_ID = 14;
     this.http.get<RecentCostVehicle>(this.baseUrl + 'recentCostVehicle/' + this.User_ID).subscribe(result => {
 
