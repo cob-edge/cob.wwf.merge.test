@@ -13,7 +13,7 @@ namespace Harley.UAT
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+             CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
