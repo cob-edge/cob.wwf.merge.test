@@ -1,7 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { Chart } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subscription, interval } from 'rxjs';
+import { Observable, Subscription, interval, Subject } from 'rxjs';
+import { takeUntil } from "rxjs/operators"
 
 @Component({
   selector: 'app-three',
@@ -9,9 +10,10 @@ import { Observable, Subscription, interval } from 'rxjs';
   styleUrls: ['../../assets/css/main.css']
 })
 
-export class Three implements OnInit {
+export class Three implements OnInit, OnDestroy {
   //live data declaration
   private updateSubscription: Subscription;
+  componentDestroyed$: Subject<boolean> = new Subject()
 
   //chart js declaration
   title = 'livechart';
@@ -68,8 +70,15 @@ export class Three implements OnInit {
     this.createTestChart2();
     this.createTestChart3();
 
-    this.updateSubscription = interval(3000).subscribe(
+    this.updateSubscription = interval(15000)
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe(
       (val) => { this.updateStats() });
+  }
+
+  ngOnDestroy() {
+    this.componentDestroyed$.next(true)
+    this.componentDestroyed$.complete()
   }
 
   createTestChart() {
@@ -166,11 +175,12 @@ export class Three implements OnInit {
   }
 
   updateStats() { //this method here does the live data refresh
+    console.log("Hello from update data! Page Three");
+
     this.updateApiCall(this.http, this.baseUrl); //re runs the sql query to get 10 most recent v1 values
     this.updateApiCall2(this.http, this.baseUrl);
     this.updateApiCall3(this.http, this.baseUrl);
 
-    console.log("hello from update status chart : " + this.recentV1s[0].recent10);
     this.chart.data.datasets[0].data = this.recentV1s[0].recent10;
     this.chart.update();
 
