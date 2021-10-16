@@ -28,111 +28,82 @@ export class Nineteen implements OnInit {
 
 
   //api declaration
-  public recentV1s: RecentV1[];
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<RecentV1[]>(baseUrl + 'recentV1').subscribe(result => {
-      this.recentV1s = result;
-      this.recentV2s = result;
-      this.recentV3s = result;
       this.http = http;
       this.baseUrl = baseUrl;
-    }, error => console.error(error));
   }
 
   //api updates from database V1
   public http: HttpClient;
   public baseUrl: string;
-  updateApiCall(http: HttpClient, baseUrl: string) {
-    http.get<RecentV1[]>(baseUrl + 'recentV1').subscribe(result => {
-      this.recentV1s = result;
-    }, error => console.error(error));
-  }
-
-  //other api updates from database V2
-  public recentV2s: RecentV2[];
-  updateApiCall2(http: HttpClient, baseUrl: string) {
-    http.get<RecentV2[]>(baseUrl + 'recentV2').subscribe(result => {
-      this.recentV2s = result;
-    }, error => console.error(error));
-  }
-
-  //other api updates from database V3
-  public recentV3s: RecentV2[];
-  updateApiCall3(http: HttpClient, baseUrl: string) {
-    http.get<RecentV3[]>(baseUrl + 'recentV3').subscribe(result => {
-      this.recentV3s = result;
-    }, error => console.error(error));
-  }
 
   //run
   ngOnInit() {
-    this.createTestChart();
-    this.createTestChart2();
     this.createTestChart3();
     this.createTestChart4();
+    this.createTestChart2();
 
     this.updateSubscription = interval(3000).subscribe(
       (val) => { this.updateStats() });
   }
 
-  createTestChart() {
-    //chart creation
-    this.chart = new Chart('canvas', {
-      type: 'doughnut',
-      options: {
-        elements: {
-          arc: {
-            borderWidth: 0
-          }
-        },
-        responsive: true,
-        title: {
-          display: true,
-          text: 'Cost Daily For Your Cars'
-        },
-        scales: {
-
-        }
-      },
-      data: this.data1
-    });
-  }
-
   createTestChart2() {
     //chart creation
     this.chart2 = new Chart('canvas2', {
-      type: 'doughnut',
+      type: 'line',
       options: {
-        elements: {
-          arc: {
-            borderWidth: 0
-          }
-        },
         responsive: true,
         title: {
           display: true,
-          text: 'Cost Weekly For Your Cars'
+          text: 'Amount of Passengers Entering the Car Parks Over Time',
         },
         scales: {
 
         }
       },
-      data: this.data2
+      data: {
+        labels: ['Dailey', 'Weekly', 'Monthly', 'Yearly'],
+        datasets: [
+          {
+            type: 'line',
+            label: 'Amount of passengers',
+            data: [1, 1, 1, 1],
+            backgroundColor: '#3F3FBF',
+            fill: false,
+            borderColor: 'blue'
+          }
+        ]
+      }
     });
   }
 
   createTestChart3() {
     //chart creation
     this.chart3 = new Chart('canvas3', {
-      type: 'bar',
-      data: this.data3,
+      type: 'line',
       options: {
-        elements: {
-          line: {
-            borderWidth: 3
-          }
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Amount of Vehicles Entering the Car Parks Over Time',
+        },
+        scales: {
+
         }
       },
+      data: {
+        labels: ['Dailey', 'Weekly', 'Monthly', 'Yearly'],
+        datasets: [
+          {
+            type: 'line',
+            label: 'Amount of cars',
+            data: [1, 1, 1, 1],
+            backgroundColor: '#3F3FBF',
+            fill: false,
+            borderColor: 'blue'
+          }
+        ]
+      }
     });
   }
 
@@ -166,100 +137,68 @@ export class Nineteen implements OnInit {
     });
   }
 
+  User_ID: number;
   updateStats() { //this method here does the live data refresh
-    //this.updateApiCall(this.http, this.baseUrl); //re runs the sql query to get 10 most recent v1 values
-    //this.updateApiCall2(this.http, this.baseUrl);
-    //this.updateApiCall3(this.http, this.baseUrl);
-
-    //console.log("hello from update status chart : " + this.recentV1s[0].recent10);
-    //this.chart.data.datasets[0].data = [5, 1, 4, 8];
-    //this.chart.update();
-
-    //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-    //this.chart2.data.datasets[0].data = [35, 7, 20, 40];
-    //this.chart2.update();
-
-    this.chart4.data.datasets[0].data = [0, 2, 50, 1]
+    this.chart4.data.datasets[0].data = [0, 100, 2000, 0] //real value from the xml and script
     this.chart4.update();
 
-    //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-    this.chart3.data.datasets[0].data = [35, 7, 20, 40]
+    this.getChartDataChart3();
     this.chart3.update();
 
-
+    this.getChartDataChart2();
+    this.chart2.update();
   }
 
-  public data1 = {
-    labels: [
-      'id.libero.Donec@mauris.edu',
-      'ridiculus.mus@ipsum.com',
-      'sit.amet@Nullam.co.uk',
-      'aliquet.diam@semmollis.net'
-    ],
-    datasets: [{
-      label: 'My First Dataset',
-      data: [1, 1, 1, 1],
-      backgroundColor: [
-        'rgb(63,63,191)',
-        'rgb(54,162,235)',
-        'rgb(129,161,242)',
-        'rgb(0,161,172)'
-      ]
-    }]
-  };
+  getChartDataChart2() {
+    this.http.get<RecentPassengerAmountOverTime>(this.baseUrl + 'recentPassengerAmountOverTime').subscribe(result => {
+      this.chart2.data.datasets[0].data = result.recent4;
+    }, error => console.error(error));
+  }
 
-  public data2 = {
-    labels: [
-      '6SR-D14',
-      '5NQ-D93',
-      '7MQ-F06',
-      '0TI-K06'
-    ],
-    datasets: [{
-      label: 'My First Dataset',
-      data: [1, 1, 1, 1],
-      backgroundColor: [
-        'rgb(63,63,191)',
-        'rgb(54,162,235)',
-        'rgb(129,161,242)',
-        'rgb(0,161,172)'
-      ]
-    }]
-  };
+  getChartDataChart3() {
+    this.http.get<RecentVehicleAmountOverTime>(this.baseUrl + 'recentVehicleAmountOverTime').subscribe(result => {
+      this.chart3.data.datasets[0].data = result.recent4;
+    }, error => console.error(error));
+  }
 
-  public data3 = {
-    labels: [
-      'id.libero.Donec@mauris.edu',
-      'ridiculus.mus@ipsum.com',
-      'sit.amet@Nullam.co.uk',
-      'aliquet.diam@semmollis.net'
-    ],
-    datasets: [{
-      label: 'Total Costs For A User In a Run of The Simulator. Biggest Users of Network',
-      data: [1, 1, 1, 1],
-      fill: true,
-      backgroundColor: 'rgb(63,63,191)',
-      borderColor: 'rgb(63,63,191)',
-      pointBackgroundColor: 'rgb(63,63,191)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgb(63,63,191)'
-    }]
-  };
+  ipAddress: string;
+  async getIPAddress() {
+    this.http.get<{ ip: string }>('https://jsonip.com')
+      .subscribe(data => {
+        this.ipAddress = data.ip;
+      })
+  }
+
+  getUserData() {
+    this.http.get<User>(this.baseUrl + 'user/' + this.ipAddress).subscribe(result => {
+      this.User_ID = result.User_ID;
+    }, error => console.error(error));
+  }
 }
 
-interface RecentV1 {
-  recent10: number[];
+interface RecentVehicleAmountOverTime {
+  recent4: number[];
 }
 
-interface RecentV2 {
-  recent10: number[];
+interface RecentPassengerAmountOverTime {
+  recent4: number[];
 }
 
-interface RecentV3 {
-  recent10: number[];
+interface User {
+  User_ID: number;
+  User_FirstName: string;
+  User_LastName: string;
+  User_Type: string;
+  User_Email: string;
+  User_Password: string;
+  User_PhoneNo: string;
+  User_Address_Street: string;
+  User_Address_City: string;
+  User_Address_Postcode: number;
+  User_LicenseNo: string;
+  User_LicenseExp: string;
+  User_IP_Address: string;
 }
-
 
 
 
