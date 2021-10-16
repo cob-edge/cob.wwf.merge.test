@@ -1,8 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { Chart } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subscription, interval } from 'rxjs';
-
+import { Observable, Subscription, interval, Subject } from 'rxjs';
+import { takeUntil } from "rxjs/operators";
 
 @Component({
   selector: 'app-eleven',
@@ -12,7 +12,7 @@ import { Observable, Subscription, interval } from 'rxjs';
 export class Eleven implements OnInit {
   //live data declaration
   private updateSub: Subscription;
-  private updateSlowSub: Subscription;
+  componentDestroyed$: Subject<boolean> = new Subject()
 
   //chart js declaration
   title = 'livechart';
@@ -46,8 +46,15 @@ export class Eleven implements OnInit {
 
     this.getUserData();
 
-    this.updateSub = interval(3000).subscribe(
-      (val) => { this.updateStats() });
+    this.updateSub = interval(3000)
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe(
+        (val) => { this.updateStats() });
+  }
+
+  ngOnDestroy() {
+    this.componentDestroyed$.next(true)
+    this.componentDestroyed$.complete()
   }
 
   createTestChart() {
@@ -145,8 +152,8 @@ export class Eleven implements OnInit {
 
   User_ID: number;
   updateStats() {
+    console.log("Hello from update data! Page Eleven. Your ipAddress: " + this.ipAddress);
 
-    //console.log("hello from update status chart : " + this.recentV1s[0].recent10);
     this.getChartDataChart1Chart2();
     this.chart.update();
 

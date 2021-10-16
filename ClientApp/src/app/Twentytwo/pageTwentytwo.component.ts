@@ -1,7 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { Chart } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subscription, interval } from 'rxjs';
+import { Observable, Subscription, interval, Subject } from 'rxjs';
+import { takeUntil } from "rxjs/operators";
 
 @Component({
   selector: 'app-twentytwo',
@@ -12,6 +13,7 @@ import { Observable, Subscription, interval } from 'rxjs';
 export class Twentytwo implements OnInit {
   //live data declaration
   private updateSubscription: Subscription;
+  componentDestroyed$: Subject<boolean> = new Subject()
 
   //chart js declaration
   title = 'livechart';
@@ -55,8 +57,15 @@ export class Twentytwo implements OnInit {
 
     this.getUserData();
 
-    this.updateSubscription = interval(3000).subscribe(
-      (val) => { this.updateStats() });
+    this.updateSubscription = interval(3000)
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe(
+        (val) => { this.updateStats() });
+  }
+
+  ngOnDestroy() {
+    this.componentDestroyed$.next(true)
+    this.componentDestroyed$.complete()
   }
 
   createTestChart() {
@@ -242,8 +251,8 @@ export class Twentytwo implements OnInit {
   public segment5: number;
   User_ID: number;
   updateStats() { //this method here does the live data refresh
-
-    //console.log("hello from update status chart : " + this.recentV1s[0].recent10);
+    console.log("Hello from update data! Page Twentytwo");
+    
     this.chart.data.datasets[0].data = [0.25, 0.35, 0.26, 0.10];
     this.chart.update();
 
