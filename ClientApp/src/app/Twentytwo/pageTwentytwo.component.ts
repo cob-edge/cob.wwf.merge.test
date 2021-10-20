@@ -16,10 +16,6 @@ export class Twentytwo implements OnInit {
   componentDestroyed$: Subject<boolean> = new Subject()
 
   //chart js declaration
-  title = 'livechart';
-  chart;
-
-  //chart js declaration
   title2 = 'livechart';
   chart2;
 
@@ -44,7 +40,6 @@ export class Twentytwo implements OnInit {
 
   //run
   ngOnInit() {
-    this.createTestChart();
     this.createTestChart2();
     this.createTestChart3();
     this.createTestChart4();
@@ -68,36 +63,6 @@ export class Twentytwo implements OnInit {
     this.componentDestroyed$.complete()
   }
 
-  createTestChart() {
-    //chart creation
-    this.chart = new Chart('canvas', {
-      type: 'line',
-      options: {
-        responsive: true,
-        title: {
-          display: true,
-          text: 'Cost Over Time For User dictum.Proin.eget@DonecegestasAliquam.org'
-        },
-        scales: {
-
-        }
-      },
-      data: {
-        labels: ['t-3', 't-2', 't-1', 't'],
-        datasets: [
-          {
-            type: 'line',
-            label: 'Cost (AUD)',
-            data: [1, 1, 1, 1],
-            backgroundColor: '#3F3FBF',
-            fill: false,
-            borderColor: 'blue'
-          }
-        ]
-      }
-    });
-  }
-
   createTestChart2() {
     //chart creation
     this.chart2 = new Chart('canvas2', {
@@ -106,19 +71,19 @@ export class Twentytwo implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: 'Cost Over Time For User dictum.Proin.eget@DonecegestasAliquam.org'
+          text: 'Recent Processing Times For Each of the Users Blocks'
         },
         scales: {
 
         }
       },
       data: {
-        labels: ['t-3', 't-2', 't-1', 't'],
+        labels: ['t-9', 't-8', 't-7', 't-6', 't-5', 't-4', 't-3', 't-2', 't-1', 't'],
         datasets: [
           {
             type: 'line',
-            label: 'Cost (ETH)',
-            data: [1, 1, 1, 1],
+            label: 'Time (seconds)',
+            data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
             fill: false,
             borderColor: 'blue'
@@ -252,20 +217,20 @@ export class Twentytwo implements OnInit {
   User_ID: number;
   updateStats() { //this method here does the live data refresh
     console.log("Hello from update data! Page Twentytwo");
-    
-    this.chart.data.datasets[0].data = [0.25, 0.35, 0.26, 0.10];
-    this.chart.update();
 
-    //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-    this.chart2.data.datasets[0].data = [0.000060, 0.000085, 0.000063, 0.000024];
+    this.getChartDataChart2();
     this.chart2.update();
 
-    this.chart4.update();
-
-    //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-    this.chart3.update();
-
     this.getChartDataChart3Chart4();
+    this.chart4.update();
+    this.chart3.update();
+  }
+
+  getChartDataChart2() {
+    this.http.get<RecentBlockTimeDif>(this.baseUrl + 'recentBlockTimeDif').subscribe(result => {
+      this.chart2.data.datasets[0].data = result.recent10;
+      //console.log(result.Recent10);
+    }, error => console.error(error));
   }
 
   getChartDataChart3Chart4() {
@@ -321,6 +286,10 @@ interface RecentCosts {
   user_Emails: string[];
   user_Costs: number[][];
   user_CostAuds: number[][];
+}
+
+interface RecentBlockTimeDif {
+  recent10: number[][];
 }
 
 interface User {

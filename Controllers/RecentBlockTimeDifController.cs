@@ -11,31 +11,22 @@ namespace Harley.UAT.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RecentV2Controller : ControllerBase
+    public class RecentBlockTimeDifController : ControllerBase
     {
-        private readonly ILogger<RecentV2Controller> _logger;
+        private readonly ILogger<RecentBlockTimeDifController> _logger;
 
-        public RecentV2Controller(ILogger<RecentV2Controller> logger)
+        public RecentBlockTimeDifController(ILogger<RecentBlockTimeDifController> logger)
         {
             _logger = logger;
         }
 
+        //GET METHOD FOR PAGE TwentyTwo CHART 1 
         [HttpGet]
-        public IEnumerable<RecentV2> Get()
+        public RecentBlockTimeDif Get()
         {
             Connect();
-            //Read();
-            return Enumerable.Range(1, 1).Select(index => new RecentV2
-            {
-                Recent10 = getRecent10()
-            })
-            .ToArray();
-        }
-
-        public double[] getRecent10()
-        {
             Read();
-            return recentV2.Recent10;
+            return recentBlockTimeDif; 
         }
 
         //connect to database object 
@@ -57,33 +48,45 @@ namespace Harley.UAT.Controllers
             }
         }
 
-        private RecentV2 recentV2;
+        private static double WeiToAudRatio = 0.0000000000000045;
+        private RecentBlockTimeDif recentBlockTimeDif;
         public void Read() //could me modified for specific queires, then just retreive whole table
         {
             //Read DB table 
-            SqlCommand cmd = new SqlCommand(@"
-               SELECT TOP (10) [SensorId], [V2], [TimeStamp] 
-                  FROM [dbo].[IOT]
-	              WHERE [Type]='Vehicle' AND [SensorId]=800
-	              ORDER BY [TimeStamp] DESC
-               ", sqlc);
+            SqlCommand cmd = new SqlCommand(@"SELECT TOP (11) [Timestamp] FROM [dbo].[Block Transactions] 
+	                                            ORDER BY [Timestamp] DESC;", sqlc);
             DataTable Results = new DataTable();
             // Read table from database and store it
             sqlc.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             Results.Load(reader);
-            int SizeRecent10 = Results.Rows.Count;
+            int size = Results.Rows.Count;
             sqlc.Close();
 
             //Set database objects into a array, that can then be passed to webpage
-            recentV2 = new RecentV2();
-            recentV2.Recent10 = new double[SizeRecent10];
+            int []recentTimeStampRecent11 = new int[size];
             int i = 0;
             foreach (DataRow row in Results.Rows)
             {
-                recentV2.Recent10[i] = (int)row["V2"];
+                recentTimeStampRecent11[i] = (int)row["Timestamp"];
+                i++;
+            }
+
+            //Set actuall array to have difference in values
+            recentBlockTimeDif = new RecentBlockTimeDif();
+            recentBlockTimeDif.Recent10 = new int[size - 1]; //-1 becuase array will be subtracting against values 
+            for(i = 0; i < (size - 1); i++)
+            {
+                recentBlockTimeDif.Recent10[i] = recentTimeStampRecent11[i] - recentTimeStampRecent11[i + 1];
                 i++;
             }
         }
     }
 }
+
+public class RecentBlockTimeDif
+{
+    public int []Recent10 { get; set; }
+}
+
+

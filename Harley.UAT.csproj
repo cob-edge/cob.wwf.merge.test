@@ -29,6 +29,7 @@
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     <None Remove="ClientApp\src\assets\images\archectureDiagram.png" />
     <None Remove="ClientApp\src\assets\images\bannerlatrobe.png" />
+    <None Remove="ClientApp\src\assets\images\defualtprofile.png" />
     <None Remove="ClientApp\src\assets\images\latrobelandscape.jpg" />
     <None Remove="ClientApp\src\assets\images\latrobeman.jpg" />
     <None Remove="ClientApp\src\assets\images\Report_2.JPG" />

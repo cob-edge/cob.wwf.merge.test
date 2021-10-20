@@ -25,187 +25,173 @@
       </div>
     </section>
 
-    <!-- LIVE DATA DISPLAY V1-->
-    <section id="two">
-      <!--
-    <header class="major">
-      <h3>Live Speed Data From the Simulator</h3>
-    </header>
-    -->
+      <!-- LIVE DATA DISPLAY V1-->
+      <section id="five">
 
-      <section id="five" class="spotlights">
-        <section>
+        <section id="five" class="spotlights">
+          <section>
 
-          <div class="content">
-            <div class="inner">
-              <header class="major">
-                <h3>Recemt Costs data For The below user</h3>
-                <h4>Compare current costs for an user in Ethereum</h4>
-              </header>
+            <div class="content">
+              <div class="inner">
+                <header class="major">
+                  <h3>Most Recent Time Delays for Processing a Block</h3>
+                  <h4>Block Transactions are calculated as part of the blockchain processing</h4>
+                </header>
+              </div>
             </div>
-          </div>
+          </section>
         </section>
-      </section>
 
-      <div class="row gtr-uniform">
-        <div class="col-6 col-12-xsmall">
-          <div style="width:100%">
-            <canvas id="canvas"></canvas>
-          </div>
+        <div style="width:100%">
+          <canvas id="canvas2"></canvas>
         </div>
-        <div class="col-6 col-12-xsmall">
-          <div style="width:100%">
-            <canvas id="canvas2"></canvas>
-          </div>
+      </section>
+
+      <!-- LIVE DATA DISPLAY V2-->
+      <section id="three">
+        <p>
+          <b>Where (t) is the most recent and (t-9) is the least recent</b>
+        </p>
+
+        <section id="five" class="spotlights">
+          <section>
+
+            <div class="content">
+              <div class="inner">
+                <header class="major">
+                  <h3>Most Recent Costs in Wei for Multiple Users</h3>
+                  <h4>Costs are calculated as part of blockchain processing</h4>
+                </header>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <div style="width:100%">
+          <canvas id="canvas4"></canvas>
         </div>
-      </div>
-    </section>
-
-    <!-- LIVE DATA DISPLAY V2-->
-    <section id="three">
-      <p>
-        <b>Where (t) is the most recent and (t-9) is the least recent</b>
-      </p>
-
-      <section id="five" class="spotlights">
-        <section>
-
-          <div class="content">
-            <div class="inner">
-              <header class="major">
-                <h3>Most Recent Costs in Wei for Multiple Users</h3>
-                <h4>Costs are calculated as part of blockchain processing</h4>
-              </header>
-            </div>
-          </div>
-        </section>
       </section>
 
-      <div style="width:100%">
-        <canvas id="canvas4"></canvas>
-      </div>
-    </section>
+      <!-- LIVE DATA DISPLAY V3-->
+      <section id="four">
+        <p>
+          <b>Where (t) is the most recent and (t-9) is the least recent</b>
+        </p>
 
-    <!-- LIVE DATA DISPLAY V3-->
-    <section id="four">
-      <p>
-        <b>Where (t) is the most recent and (t-9) is the least recent</b>
-      </p>
+        <section id="five" class="spotlights">
+          <section>
 
-      <section id="five" class="spotlights">
-        <section>
-
-          <div class="content">
-            <div class="inner">
-              <header class="major">
-                <h3>Most Recent Costs in Australian Dollars for Multiple Users</h3>
-                <h4>Costs are calculated as part of blockchain processing</h4>
-              </header>
+            <div class="content">
+              <div class="inner">
+                <header class="major">
+                  <h3>Most Recent Costs in Australian Dollars for Multiple Users</h3>
+                  <h4>Costs are calculated as part of blockchain processing</h4>
+                </header>
+              </div>
             </div>
-          </div>
+          </section>
         </section>
+
+        <div style="width:100%">
+          <canvas id="canvas3"></canvas>
+        </div>
       </section>
 
-      <div style="width:100%">
-        <canvas id="canvas3"></canvas>
-      </div>
-    </section>
-
-    <!-- LIVE DATA DISPLAY -->
-    <section id="five">
+      <!-- LIVE DATA DISPLAY -->
+      <section id="five">
         <div>
+          <p>
+            <b>Where (t) is the most recent and (t-9) is the least recent</b>
+          </p>
+
+          <ul class="widebutton">
             <p>
-                <b>Where (t) is the most recent and (t-9) is the least recent</b>
+              <button (click)="nextBatch()" class="button primary fit">
+                See Next Batch Of Users Marcus, Five Users At a Time
+              </button>
             </p>
-
-            <ul class="widebutton">
-                <p>
-                    <button (click)="nextBatch()" class="button primary fit">
-                        See Next Batch Of Users Marcus, Five Users At a Time
-                    </button>
-                </p>
-            </ul>
+          </ul>
         </div>
-    </section>
+      </section>
 
-    <!-- Contact -->
-    <section id="contact">
-      <div class="inner">
-        <section>
-          <form method="post" action="#">
-            <div class="fields">
-              <div class="field half">
-                <label for="name">Name</label>
+      <!-- Contact -->
+      <section id="contact">
+        <div class="inner">
+          <section>
+            <form method="post" action="#">
+              <div class="fields">
+                <div class="field half">
+                  <label for="name">Name</label>
+                  <b>
+                    <input type="text" name="name" id="name" />
+                  </b>
+                </div>
+                <div class="field half">
+                  <label for="email">Email</label>
+                  <b>
+                    <input type="text" name="email" id="email" />
+                  </b>
+                </div>
+                <div class="field">
+                  <label for="message">Message</label>
+                  <b>
+                    <textarea name="message" id="message" rows="6"></textarea>
+                  </b>
+                </div>
+              </div>
+              <ul class="actions">
+                <li><input type="submit" value="Send Message" class="primary" /></li>
+                <li><input type="reset" value="Clear" /></li>
+              </ul>
+            </form>
+          </section>
+          <section class="split">
+            <section>
+              <div class="contact-method">
+                <span class="icon solid alt fa-envelope"></span>
+                <h3>Email</h3>
+                <b href="#">info@edgecity.edu.au</b>
+              </div>
+            </section>
+            <section>
+              <div class="contact-method">
+                <span class="icon solid alt fa-phone"></span>
+                <h3>Phone</h3>
+                <b>(000) 000-0000 x12387</b>
+              </div>
+            </section>
+            <section>
+              <div class="contact-method">
+                <span class="icon solid alt fa-home"></span>
+                <h3>Address</h3>
                 <b>
-                  <input type="text" name="name" id="name" />
+                  Plenty Road<br />
+                  Bundoora 3083<br />
+                  Victoria, Australia
                 </b>
               </div>
-              <div class="field half">
-                <label for="email">Email</label>
-                <b>
-                  <input type="text" name="email" id="email" />
-                </b>
-              </div>
-              <div class="field">
-                <label for="message">Message</label>
-                <b>
-                  <textarea name="message" id="message" rows="6"></textarea>
-                </b>
-              </div>
-            </div>
-            <ul class="actions">
-              <li><input type="submit" value="Send Message" class="primary" /></li>
-              <li><input type="reset" value="Clear" /></li>
-            </ul>
-          </form>
-        </section>
-        <section class="split">
-          <section>
-            <div class="contact-method">
-              <span class="icon solid alt fa-envelope"></span>
-              <h3>Email</h3>
-              <b href="#">info@edgecity.edu.au</b>
-            </div>
+            </section>
           </section>
-          <section>
-            <div class="contact-method">
-              <span class="icon solid alt fa-phone"></span>
-              <h3>Phone</h3>
-              <b>(000) 000-0000 x12387</b>
-            </div>
-          </section>
-          <section>
-            <div class="contact-method">
-              <span class="icon solid alt fa-home"></span>
-              <h3>Address</h3>
-              <b>
-                Plenty Road<br />
-                Bundoora 3083<br />
-                Victoria, Australia
-              </b>
-            </div>
-          </section>
-        </section>
-      </div>
-    </section>
+        </div>
+      </section>
 
-    <!-- Footer -->
-    <footer id="footer">
-      <div class="inner">
-        <ul class="icons">
-          <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-          <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-          <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-          <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-          <li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-        </ul>
-        <ul class="copyright">
-          <li>&copy; Edge 2021</li>
-        </ul>
-      </div>
-    </footer>
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="icons">
+            <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+          </ul>
+          <ul class="copyright">
+            <li>&copy; Edge 2021</li>
+          </ul>
+        </div>
+      </footer>
 
-  </div>
+</div>
 
   <!-- Scripts -->
   <script src="assets/js/jquery.min.js"></script>
