@@ -64,7 +64,7 @@ namespace Harley.UAT.Controllers
             SqlCommand cmd = new SqlCommand(@"
                SELECT TOP (10) [SensorId], [V2], [TimeStamp] 
                   FROM [dbo].[IOT]
-	              WHERE [Type]='Vehicle' AND [SensorId]=800
+	              WHERE [Type]='Vehicle' 
 	              ORDER BY [TimeStamp] DESC
                ", sqlc);
             DataTable Results = new DataTable();
