@@ -227,9 +227,11 @@ export class Eleven implements OnInit {
 
     this.http.get<User>(this.baseUrl + 'user/' + this.ipAddress).subscribe(result => {
       console.log(result.user_ID);
+      //result = this.user;
       this.User_ID = result.user_ID;
     }, error => console.error(error));
   }
+  private user: User;
 
   ipAddress: string;
   getIPAddress() {
