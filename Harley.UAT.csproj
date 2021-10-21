@@ -36,6 +36,7 @@
     <None Remove="ClientApp\src\app\Five %28copy%29\" />
     <None Remove="ClientApp\src\app\Three %28copy%29\" />
     <None Remove="ClientApp\src\app\Fifteen %28copy%29\" />
+    <None Remove="ClientApp\src\assets\images\routeMap.PNG" />
   </ItemGroup>
 
   <ItemGroup>

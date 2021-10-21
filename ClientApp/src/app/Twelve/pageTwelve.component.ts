@@ -243,7 +243,7 @@ export class Twelve implements OnInit {
 
   User_ID: number;
   updateStats() { //this method here does the live data refresh
-    console.log("Hello from update data! Page Twelve. Your ipAddress: " + this.ipAddress);
+    console.log("Hello from update data! Page Twelve");
 
     this.getChartDataChart1()
     this.chart.update();

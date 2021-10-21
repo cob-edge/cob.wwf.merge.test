@@ -195,7 +195,7 @@ export class Eleven implements OnInit {
 
   User_ID: number;
   updateStats() {
-    console.log("Hello from update data! Page Eleven. Your ipAddress: " + this.ipAddress);
+    console.log("Hello from update data! Page Eleven");
 
     this.getChartDataChart1Chart2();
     this.chart.update();

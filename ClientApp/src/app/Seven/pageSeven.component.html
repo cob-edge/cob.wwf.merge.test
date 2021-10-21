@@ -17,40 +17,44 @@
         <h1>Carpark Council & Administrator Login</h1>
       </header>
 
-      <div class="row gtr-uniform">
-        <div class="col-6 col-12-xsmall">
-          <label for="email">Login Email:</label>
-          <b>
-            <input type="text" class="form-control" name="email" id="email" value="" placeholder="Enter Admin Email" [(ngModel)]="login_Email_Input" />
-          </b>
-        </div>
+      <form method="post" action="#" #myForm="ngForm">
+        <div class="row gtr-uniform">
+          <div class="col-6 col-12-xsmall">
+            <label for="email">Login Email:</label>
+            <b>
+              <input type="text" class="form-control" name="email" id="email" value="" placeholder="Enter Admin Email" [(ngModel)]="login_Email_Input" />
+            </b>
+          </div>
 
-        <div class="col-6 col-12-xsmall">
-          <label for="password">Password:</label>
-          <b>
-            <input type="password" id="password" name="password" minlength="8" required placeholder="Enter Password" [(ngModel)]="login_Password_Input">
-          </b>
-        </div>
+          <div class="col-6 col-12-xsmall">
+            <label for="password">Password:</label>
+            <b>
+              <input type="password" id="password" name="password" required placeholder="Enter Password" [(ngModel)]="login_Password_Input">
+            </b>
+          </div>
 
-        <div class="col-6 col-12-small">
-          <input type="checkbox" id="demo-human" name="demo-human" checked>
-          <label for="demo-human">Remember Sign In</label>
-        </div>
+          <div class="col-6 col-12-small">
+            <input type="checkbox" id="demo-human" name="demo-human" checked>
+            <label for="demo-human">Remember Sign In</label>
+          </div>
 
-        <ul class="actions">
-          <li>
-            <button (click)="checkLogin()" class="button primary fit">
-              Login
-            </button>
-          </li>
-          <li [routerLinkActive]="['link-active']">
-            <button value="" class="button primary fit" [routerLink]="['/Eighteen']">Next</button>
-          </li>
-          <li>
-            <button type="reset" value="">Clear</button>
-          </li>
-        </ul>
-      </div>
+
+          <ul class="actions">
+            <li>
+              <button (click)="checkLogin()" class="button primary fit">
+                Login
+              </button>
+            </li>
+            <li [routerLinkActive]="['link-active']">
+              <button value="" class="button primary fit" [routerLink]="['/Eighteen']" >Next</button>
+            </li>
+            <li>
+              <button type="reset" value="">Clear</button>
+            </li>
+          </ul>
+
+        </div>
+      </form>
     </div>
 
   </section>

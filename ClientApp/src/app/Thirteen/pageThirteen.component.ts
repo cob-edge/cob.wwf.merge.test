@@ -293,7 +293,7 @@ export class Thirteen implements OnInit {
 
   User_ID: number;
   async updateStats() { //this method here does the live data refresh
-    console.log("Hello from update data! Page Thirteen. Your ipAddress: " + this.ipAddress);
+    console.log("Hello from update data!");
 
     this.getChartDataChart1Chart2()
     this.chart.update();
