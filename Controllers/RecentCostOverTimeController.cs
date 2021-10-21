@@ -20,13 +20,13 @@ namespace Harley.UAT.Controllers
             _logger = logger;
         }
 
-        //GET METHOD FOR PAGE TWELVE CHART 1 CHART 2 
+        //GET METHOD FOR PAGE TWELVE CHART 1 
         [HttpGet("{id}")]
         public RecentCostOverTime Get(int id)
         {
             Connect();
             Read(id);
-            return recentCostOverTime; 
+            return recentCostOverTime;
         }
 
         //connect to database object 
