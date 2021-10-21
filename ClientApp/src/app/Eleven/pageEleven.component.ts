@@ -60,12 +60,12 @@ export class Eleven implements OnInit {
   createTestChart() {
     //chart creation
     this.chart = new Chart('canvas', {
-      type: 'bar',
+      type: 'line',
       options: {
         responsive: true,
         title: {
           display: true,
-          text: 'My Ethereum Costs (AUD) of Past Day'
+          text: 'My Recent Ethereum Costs'
         },
         scales: {
 
@@ -75,10 +75,11 @@ export class Eleven implements OnInit {
         labels: ['t-9', 't-8', 't-7', 't-6', 't-5', 't-4', 't-3', 't-2', 't-1', 't'],
         datasets: [
           {
-            type: 'bar',
-            label: 'Costs (AUD) of Past Day',
+            type: 'line',
+            label: 'Costs (Wei)',
             data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
+            borderColor: 'rgb(63,63,191)',
             fill: false
           }
         ]
@@ -89,12 +90,12 @@ export class Eleven implements OnInit {
   createTestChart2() {
     //chart creation
     this.chart2 = new Chart('canvas2', {
-      type: 'bar',
+      type: 'line',
       options: {
         responsive: true,
         title: {
           display: true,
-          text: 'Equivalent CarPark Costs of Past Day'
+          text: 'My Recent Costs In Australian Dollars'
         },
         scales: {
 
@@ -104,10 +105,11 @@ export class Eleven implements OnInit {
         labels: ['t-9', 't-8', 't-7', 't-6', 't-5', 't-4', 't-3', 't-2', 't-1', 't'],
         datasets: [
           {
-            type: 'bar',
-            label: 'Costs (AUD) of Past Day',
+            type: 'line',
+            label: 'Costs (AUD)',
             data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
+            borderColor: 'rgb(63,63,191)',
             fill: false
           }
         ]

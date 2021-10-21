@@ -54,12 +54,9 @@ namespace Harley.UAT.Controllers
         {
             //Read DB table 
             SqlCommand cmd = new SqlCommand(@"
-               SELECT TOP (10) From_Address, To_Address, Gas, Timestamp
+               SELECT TOP (10) [Gas]
                   FROM [dbo].[Block Transactions]
-                  WHERE [From_Address] = (SELECT ew.Wallet_ID
-                                                FROM [dbo].[User] u
-                                          INNER JOIN [dbo].[Ethereum Wallet] ew ON u.[User_ID] = ew.[User_ID]
-                                                WHERE u.[User_ID] = '" + User_ID + @"')
+                  WHERE [User_ID] = '" + User_ID + @"'
                   ORDER BY Timestamp DESC;", sqlc);
             DataTable Results = new DataTable();
             // Read table from database and store it

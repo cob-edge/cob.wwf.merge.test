@@ -53,7 +53,11 @@ namespace Harley.UAT.Controllers
         public void Read(int User_ID) //could me modified for specific queires, then just retreive whole table
         {
             //Read DB table 
-            SqlCommand cmd = new SqlCommand(@" ", sqlc);
+            SqlCommand cmd = new SqlCommand(@"
+                SELECT TOP (100000) [Gas]
+                  FROM [dbo].[Block Transactions]
+                  WHERE [User_ID] = '" + User_ID + @"'
+                  ORDER BY Timestamp DESC;", sqlc);
 
             DataTable Results = new DataTable();
             // Read table from database and store it
@@ -69,7 +73,7 @@ namespace Harley.UAT.Controllers
             Int64 total = 0;
             foreach (DataRow row in Results.Rows)
             {
-                total = total + (int)row["Gas"];
+                total = total + (Int64)row["Gas"];
             }
             if(size == 0) { size = 1; } //incase of zero
             Int64 average = total / size;
