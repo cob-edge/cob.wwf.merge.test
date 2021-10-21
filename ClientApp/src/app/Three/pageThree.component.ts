@@ -115,7 +115,7 @@ export class Three implements OnInit, OnDestroy {
         datasets: [
           {
             type: 'line',
-            label: 'Speed (Km/Hr) detected by sensor id 800',
+            label: 'Speed (Km/Hr) detected',
             data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
             fill: false,
@@ -160,7 +160,7 @@ export class Three implements OnInit, OnDestroy {
         datasets: [
           {
             type: 'line',
-            label: 'Fuel (mL) detected by sensor id 800',
+            label: 'Fuel (mL) detected',
             data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
             fill: false,
@@ -205,7 +205,7 @@ export class Three implements OnInit, OnDestroy {
         datasets: [
           {
             type: 'line',
-            label: 'Pause time (s) detected by sensor id 800',
+            label: 'Pause time (seconds) detected',
             data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
             fill: false,

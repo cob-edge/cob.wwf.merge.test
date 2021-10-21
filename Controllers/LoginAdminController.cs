@@ -10,7 +10,7 @@ namespace Harley.UAT.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class LoginController : ControllerBase
+    public class LoginAdminController : ControllerBase
     {
         //GLOBAL VALUES FOR LOGIN INFORMATION ACCROSS WEBSITE
 
@@ -18,9 +18,9 @@ namespace Harley.UAT.Controllers
 
         //GLOBAL VALUES FOR LOGIN INFORMATION ACCROSS WEBSITE
 
-        private readonly ILogger<LoginController> _logger;
+        private readonly ILogger<LoginAdminController> _logger;
 
-        public LoginController(ILogger<LoginController> logger)
+        public LoginAdminController(ILogger<LoginAdminController> logger)
         {
             _logger = logger;
         }
@@ -85,18 +85,18 @@ namespace Harley.UAT.Controllers
         }
 
         [HttpPost]
-        public int Post(Login login)
+        public int Post(LoginAdmin loginAdmin)
         {
-            login.login_Email_Input.Trim();
-            if (login.login_Email_Input.Contains('@')) //check if valid email 
+            loginAdmin.login_Email_Input.Trim();
+            if (loginAdmin.login_Email_Input.Contains('@')) //check if valid email 
             {
                 //check if it matches in sql data base
                 try
                 {
-                    int User_ID = GetUser_ID(login.login_Email_Input);
+                    int User_ID = GetUser_ID(loginAdmin.login_Email_Input);
                     if(User_ID != -1)
                     {
-                        UpdateIPAddress(User_ID, login.login_IP_Address_Input);
+                        UpdateIPAddress(User_ID, loginAdmin.login_IP_Address_Input);
 
                         return User_ID; //setting user id for accross multiple signed in graphs and queries
                     }
@@ -119,7 +119,7 @@ namespace Harley.UAT.Controllers
 
             foreach(User user in UserData)
             {
-                if(user.User_Email.Trim().Equals(login_Email_Input))
+                if(user.User_Email.Trim().Equals(login_Email_Input) && (user.User_Type.Equals("A") || user.User_Type.Equals("C"))) // check user for admin rights
                 {
                     return user.User_ID;
                 }
@@ -151,7 +151,7 @@ namespace Harley.UAT.Controllers
         }
     }
 
-    public class Login {
+    public class LoginAdmin {
         public string login_Email_Input { get; set; }
         public string login_Password_Input { get; set; }
         public string login_IP_Address_Input { get; set; }

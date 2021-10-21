@@ -39,7 +39,7 @@ export class Seven {
       login_IP_Address_Input: this.ipAddress //from get method
     }
     console.log(this.ipAddress);
-    this.http.post<Login>(this.baseUrl + 'login', login).subscribe(res => {
+    this.http.post<AdminLogin>(this.baseUrl + 'adminLogin', login).subscribe(res => {
       console.log(res.toString()); //the user id
 
       if (res.toString() == '-1') {
@@ -60,7 +60,7 @@ export class Seven {
   }
 }
 
-interface Login {
+interface AdminLogin {
   Login_Email_Input: string;
   Login_Password_Input: string;
 }
