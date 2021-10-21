@@ -40,7 +40,7 @@
           <div class="field">
             <label for="address">Current Address or Postcode</label>
             <b>
-              <input type="text" id="address" name="address" minlength="4" required placeholder="Enter Current Address or Postcode" [(ngModel)]="address" />
+              <input type="text" id="address" name="address" minlength="4" required placeholder="Enter Current Address or Postcode E.g. (66-34 Norwood Dr, Keilor East VIC 3033)" [(ngModel)]="address" />
             </b>
           </div>
         </div>
@@ -58,35 +58,6 @@
     </div>
   </section>
 
-  <!-- One -->
-  <!--div class="tableFixHead">
-    <header class="major">
-      <h1>User Information</h1>
-    </header>
-    <p *ngIf="!users"><em>Loading...</em></p>
-    <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="users">
-      <b>
-      <thead>
-        <tr>
-          <th>User ID</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>User Type</th>
-          <th>Email Address</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users">
-          <td>{{ user.user_ID }}</td>
-          <td>{{ user.user_FirstName }}</td>
-          <td>{{ user.user_LastName }}</td>
-          <td>{{ user.userType }}</td>
-          <td>{{ user.user_Email }}</td>
-        </tr>
-      </tbody>
-      </b>
-    </table>
-  </div-->
   <!-- Two -->
   <section id="two">
     <div class="inner">

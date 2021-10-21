@@ -37,14 +37,12 @@ export class Nine {
       recommendation_Output: this.recommendation
     }
 
-    console.log("Input address: " + this.address);
-
-    this.http.post<string>(this.baseUrl + 'carParkRecommendation', address).subscribe(res => {
-      if (this.recommendation_Output == "") {
+    this.http.post<Address>(this.baseUrl + 'carParkRecommendation', address).subscribe(res => {
+      if (res.recommendation == null) {
         alert("Can't make recommendation based on your input \"" + this.address + "\"");
       }
       else {
-        alert("We recommend \"" + this.recommendation_Output + "\" based on your input");
+        alert("We recommend \"" + res.recommendation + "\" based on your input");
       }
       
     });

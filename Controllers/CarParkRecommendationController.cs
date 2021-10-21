@@ -9,12 +9,6 @@ using System.Text.RegularExpressions;
 
 namespace Harley.UAT.Controllers
 {
-    public class Address
-    {
-        public string address_Input { get; set; }
-
-        public string recommendation { get; set; }
-    }
 
     [ApiController]
     [Route("[controller]")]
@@ -46,15 +40,13 @@ namespace Harley.UAT.Controllers
 
             address.address_Input = parts[postCode];
 
-            //Console.WriteLine("Part: [" + parts[postCode] + "]");
-
             //will check and make recommendation
             for (int i = 0; i < MelbPC.Length; i++)
             {
                 if (address.address_Input.Trim().Equals(MelbPC[i].ToString()))
                 {
-                    address.recommendation = "LaTrobe Street Wilson's Parking";
-                    Console.WriteLine(address.recommendation);
+                    address.recommendation = "Wilson Parking Melbourne CBD";
+                    //Console.WriteLine(address.recommendation);
                     found = true;
                 }
             }
@@ -64,7 +56,7 @@ namespace Harley.UAT.Controllers
                 if (address.address_Input.Trim().Equals(LatrobePC[i].ToString()))
                 {
                     address.recommendation = "LaTrobe Bundoora Campus, Car Park 3";
-                    Console.WriteLine(address.recommendation);
+                    //Console.WriteLine(address.recommendation);
                     found = true;
                 }
             }
@@ -74,7 +66,7 @@ namespace Harley.UAT.Controllers
                 if (address.address_Input.Trim().Equals(AirportPC[i].ToString()))
                 {
                     address.recommendation = "Melbourne Airport Parking";
-                    Console.WriteLine(address.recommendation);
+                    //Console.WriteLine(address.recommendation);
                     found = true;
                 }
             }
@@ -84,7 +76,7 @@ namespace Harley.UAT.Controllers
                 if (address.address_Input.Trim().Equals(EppingPC[i].ToString()))
                 {
                     address.recommendation = "Puma Epping Parking";
-                    Console.WriteLine(address.recommendation);
+                    //Console.WriteLine(address.recommendation);
                     found = true;
                 }
             }
@@ -96,7 +88,7 @@ namespace Harley.UAT.Controllers
         }
 
         [HttpPost]
-        public string Post(Address address)
+        public Address Post(Address address)
         {
             //checks the user input address to make parking reccommendation
             Check(address);
@@ -104,7 +96,14 @@ namespace Harley.UAT.Controllers
             //prints user address input and recommendation to console
             Console.WriteLine("User Input: " + address.address_Input + "\nRecommended parking: " + address.recommendation);
 
-            return "{\"Recommended\": \" address.recommendation \"}";
+            return address;
+        }
+
+        public class Address
+        {
+            public string address_Input { get; set; }
+
+            public string recommendation { get; set; }
         }
     }
 }
