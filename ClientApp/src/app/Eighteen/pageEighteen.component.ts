@@ -60,6 +60,17 @@ export class Eighteen implements OnInit {
           line: {
             borderWidth: 3
           }
+        },
+        scale: {
+          pointLabels: {
+            fontColor: 'white',
+            fontSize: 12
+          }
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
         }
       },
     });

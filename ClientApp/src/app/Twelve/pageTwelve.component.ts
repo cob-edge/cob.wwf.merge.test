@@ -71,14 +71,29 @@ export class Twelve implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: 'Cost Over Time For Etherum Carpark'
+          text: 'Cost Over Time For Etherum Carpark',
+          fontColor: 'white'
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
         },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {
-        labels: ['Dailey', 'Weekly', 'Monthly', 'Yearly'],
+        labels: ['Daily', 'Weekly', 'Monthly', 'Yearly'],
         datasets: [
           {
             type: 'bar',
@@ -100,14 +115,29 @@ export class Twelve implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: 'Cost Over Time For Normal Melbourne CBD Carpark'
+          text: 'Cost Over Time For Normal Melbourne CBD Carpark',
+          fontColor: 'white'
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
         },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {
-        labels: ['Dailey', 'Weekly', 'Monthly', 'Yearly'],
+        labels: ['Daily', 'Weekly', 'Monthly', 'Yearly'],
         datasets: [
           {
             type: 'bar',
@@ -130,13 +160,28 @@ export class Twelve implements OnInit {
         title: {
           display: true,
           text: 'Sleep Time Over Time (How Long You Could be in Traffic For)',
+          fontColor: 'white'
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
         },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {
-        labels: ['Dailey', 'Weekly', 'Monthly', 'Yearly'],
+        labels: ['Daily', 'Weekly', 'Monthly', 'Yearly'],
         datasets: [
           {
             type: 'line',
@@ -159,14 +204,29 @@ export class Twelve implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: 'Use of Pertrol Over Time', 
+          text: 'Use of Pertrol Over Time',
+          fontColor: 'white'
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
         },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {
-        labels: ['Dailey', 'Weekly', 'Monthly', 'Yearly'],
+        labels: ['Daily', 'Weekly', 'Monthly', 'Yearly'],
         datasets: [
           {
             type: 'line',

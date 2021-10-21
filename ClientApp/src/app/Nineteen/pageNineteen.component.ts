@@ -71,9 +71,24 @@ export class Nineteen implements OnInit {
         title: {
           display: true,
           text: 'Amount of Passengers Entering the Car Parks Over Time',
+          fontColor: 'white'
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
         },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {
@@ -101,9 +116,24 @@ export class Nineteen implements OnInit {
         title: {
           display: true,
           text: 'Amount of Vehicles Entering the Car Parks Over Time',
+          fontColor: 'white'
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
         },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {
@@ -131,9 +161,24 @@ export class Nineteen implements OnInit {
         title: {
           display: true,
           text: 'Active Running IoT Sensor on Block Chain Network',
+          fontColor: 'white'
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
         },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {

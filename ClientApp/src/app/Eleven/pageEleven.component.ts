@@ -65,10 +65,25 @@ export class Eleven implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: 'My Recent Ethereum Costs'
+          text: 'My Recent Ethereum Costs',
+          fontColor: 'white'
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
         },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {
@@ -95,10 +110,25 @@ export class Eleven implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: 'My Recent Costs In Australian Dollars'
+          text: 'My Recent Costs In Australian Dollars',
+          fontColor: 'white'
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
         },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {
@@ -127,8 +157,19 @@ export class Eleven implements OnInit {
           line: {
             borderWidth: 3
           }
+        },
+        scale: {
+          pointLabels: {
+            fontColor: 'white',
+            fontSize: 12
+          }
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
         }
-      },
+      }
     });
   }
 

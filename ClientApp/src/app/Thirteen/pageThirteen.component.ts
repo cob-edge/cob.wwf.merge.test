@@ -73,10 +73,16 @@ export class Thirteen implements OnInit {
             borderWidth: 0
           }
         },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
+        },
         responsive: true,
         title: {
           display: true,
-          text: 'Cost Daily For Your Cars'
+          text: 'Cost Daily For Your Cars',
+          fontColor: 'white'
         },
         scales: {
 
@@ -96,10 +102,16 @@ export class Thirteen implements OnInit {
             borderWidth: 0
           }
         },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
+        },
         responsive: true,
         title: {
           display: true,
-          text: 'Cost Weekly For Your Cars'
+          text: 'Cost Weekly For Your Cars',
+          fontColor: 'white'
         },
         scales: {
 
@@ -118,9 +130,24 @@ export class Thirteen implements OnInit {
         title: {
           display: true,
           text: 'Most Recent Costs (Aud)',
+          fontColor: 'white'
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
         },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {
@@ -169,9 +196,24 @@ export class Thirteen implements OnInit {
         title: {
           display: true,
           text: 'Most Recent Costs (Wei)',
+          fontColor: 'white'
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
         },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {

@@ -88,12 +88,26 @@ export class Three implements OnInit, OnDestroy {
       options: {
         responsive: true,
         title: {
-          display: true,
+          display: false,
           text: 'Realtime Charts',
           fontColor: 'white'
         },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
+        },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {
@@ -101,7 +115,7 @@ export class Three implements OnInit, OnDestroy {
         datasets: [
           {
             type: 'line',
-            label: 'Live Speed (Km/Hr) detected by sensor id 66',
+            label: 'Speed (Km/Hr) detected by sensor id 800',
             data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
             fill: false,
@@ -119,12 +133,26 @@ export class Three implements OnInit, OnDestroy {
       options: {
         responsive: true,
         title: {
-          display: true,
+          display: false,
           text: 'Realtime Charts',
           fontColor: 'white'
         },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
+        },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {
@@ -132,7 +160,7 @@ export class Three implements OnInit, OnDestroy {
         datasets: [
           {
             type: 'line',
-            label: 'Live fuel (mL) detected by sensor id 66',
+            label: 'Fuel (mL) detected by sensor id 800',
             data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
             fill: false,
@@ -150,12 +178,26 @@ export class Three implements OnInit, OnDestroy {
       options: {
         responsive: true,
         title: {
-          display: true,
+          display: false,
           text: 'Realtime Charts',
           fontColor: 'white'
         },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
+        },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {
@@ -163,7 +205,7 @@ export class Three implements OnInit, OnDestroy {
         datasets: [
           {
             type: 'line',
-            label: 'Live pause time (s) detected by sensor id 66',
+            label: 'Pause time (s) detected by sensor id 800',
             data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             backgroundColor: '#3F3FBF',
             fill: false,

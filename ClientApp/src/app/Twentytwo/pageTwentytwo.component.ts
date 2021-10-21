@@ -71,10 +71,25 @@ export class Twentytwo implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: 'Recent Processing Times For Each of the Users Blocks'
+          text: 'Recent Processing Times For Each of the Users Blocks',
+          fontColor: 'white'
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
         },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {
@@ -102,9 +117,24 @@ export class Twentytwo implements OnInit {
         title: {
           display: true,
           text: 'Most Recent Costs (Aud)',
+          fontColor: 'white'
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
         },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {
@@ -160,9 +190,24 @@ export class Twentytwo implements OnInit {
         title: {
           display: true,
           text: 'Most Recent Costs (Wei)',
+          fontColor: 'white'
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
         },
         scales: {
-
+          yAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: "white",
+            }
+          }]
         }
       },
       data: {
