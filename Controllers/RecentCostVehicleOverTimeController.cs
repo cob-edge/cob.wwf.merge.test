@@ -77,7 +77,7 @@ namespace Harley.UAT.Controllers
                 int Vehicle_ID = (int)row["Vehicle_ID"];
                 Int64 average = getGasCar(Vehicle_ID);
 
-                Int64 daily = average / 15 * 60 * 60; //sim is generate value every 15 seconds math to get dailey value
+                Int64 daily = average / 15 * 60 * 60 * 6; //sim is generate value every 15 seconds math to get dailey value driving is using cars 6 hours per day 
                 Int64 yearly = daily * 7 * 4 * 12;
 
                 recentCostVehicleOverTime.Vehicle_Regs[i] = row["VehicleReg"].ToString();

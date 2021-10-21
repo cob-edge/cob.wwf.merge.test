@@ -79,7 +79,7 @@ namespace Harley.UAT.Controllers
             if(size == 0) { size = 1; } //incase of zero
             double average = total / size;
 
-            double daily = average / 15.0 * 60 * 60 * 24; //sim is generate value every 15 seconds math to get dailey value
+            double daily = average / 15.0 * 60 * 60 * 6 /1000.0; //sim is generate value every 15 seconds math to get dailey value ... ALSO TO GET IN LITES .. and six hours a day of driving 
             double weekly = daily * 7;
             double monthly = weekly * 4;
             double yearly = monthly * 12;

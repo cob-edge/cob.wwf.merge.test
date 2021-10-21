@@ -28,7 +28,7 @@ namespace Harley.UAT.Controllers
         [HttpGet]
         public int Get() //get user information after calling post method if need be
         {
-            return GlobalUser_ID;
+            return GlobalUser_ID; 
         }
 
         private static SqlConnection sqlc;
@@ -94,7 +94,7 @@ namespace Harley.UAT.Controllers
                 try
                 {
                     int User_ID = GetUser_ID(loginAdmin.login_Email_Input);
-                    if (User_ID != -1)
+                    if(User_ID != -1)
                     {
                         UpdateIPAddress(User_ID, loginAdmin.login_IP_Address_Input);
 
@@ -117,9 +117,9 @@ namespace Harley.UAT.Controllers
         {
             ReadUserData();
 
-            foreach (User user in UserData)
+            foreach(User user in UserData)
             {
-                if (user.User_Email.Trim().Equals(login_Email_Input) && (user.User_Type.Equals("A") || user.User_Type.Equals("C"))) // check user for admin rights
+                if(user.User_Email.Trim().Equals(login_Email_Input) && (user.User_Type.Equals("A") || user.User_Type.Equals("C"))) // check user for admin rights
                 {
                     return user.User_ID;
                 }
@@ -151,10 +151,9 @@ namespace Harley.UAT.Controllers
         }
     }
 
-    public class LoginAdmin
-    {
+    public class LoginAdmin {
         public string login_Email_Input { get; set; }
         public string login_Password_Input { get; set; }
         public string login_IP_Address_Input { get; set; }
     }
-}
+} 

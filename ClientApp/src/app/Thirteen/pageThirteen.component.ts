@@ -110,7 +110,7 @@ export class Thirteen implements OnInit {
         responsive: true,
         title: {
           display: true,
-          text: 'Cost Weekly For Your Cars',
+          text: 'Cost Yearly For Your Cars',
           fontColor: 'white'
         },
         scales: {
