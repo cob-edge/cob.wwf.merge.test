@@ -13,37 +13,37 @@ export class Seven {
   }
   baseUrl: string
 
-  @Input() login: any;
+  @Input() loginAdmin: any;
   login_Email_Input: string;
   login_Password_Input: string;
   login_IP_Address_Input: string;
 
   ngOnInit(): void {
-    this.login = {
+    this.loginAdmin = {
       login_Email_Input: "",
       login_Password_Input: "",
       login_IP_Address_Input: ""
     }
 
-    this.login_Email_Input = this.login.login_Email_Input;
-    this.login_Password_Input = this.login.login_Password_Input;
-    this.login_IP_Address_Input = this.login.login_IP_Adress_Input;
+    this.login_Email_Input = this.loginAdmin.login_Email_Input;
+    this.login_Password_Input = this.loginAdmin.login_Password_Input;
+    this.login_IP_Address_Input = this.loginAdmin.login_IP_Adress_Input;
 
     this.getIPAddress();
   }
 
   checkLogin() {
-    var login = {
+    var loginAdmin = {
       login_Email_Input: this.login_Email_Input, //in html
       login_Password_Input: this.login_Password_Input, //in html
       login_IP_Address_Input: this.ipAddress //from get method
     }
     console.log(this.ipAddress);
-    this.http.post<Login>(this.baseUrl + 'login', login).subscribe(res => {
+    this.http.post<LoginAdmin>(this.baseUrl + 'loginAdmin', loginAdmin).subscribe(res => {
       console.log(res.toString()); //the user id
 
       if (res.toString() == '-1') {
-        alert("Error email is not valid!")
+        alert("Error email is not valid! Or you are not a Admin or Council Member!")
       } else {
         alert("Welcome user <" + res.toString() + "> please click the NEXT button to continue")
       }
@@ -60,7 +60,7 @@ export class Seven {
   }
 }
 
-interface Login {
+interface LoginAdmin {
   Login_Email_Input: string;
   Login_Password_Input: string;
 }
