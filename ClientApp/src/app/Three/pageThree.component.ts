@@ -70,7 +70,7 @@ export class Three implements OnInit, OnDestroy {
     this.createTestChart2();
     this.createTestChart3();
 
-    this.updateSubscription = interval(15000)
+    this.updateSubscription = interval(5000)
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(
       (val) => { this.updateStats() });
