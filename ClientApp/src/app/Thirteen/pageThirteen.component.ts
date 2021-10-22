@@ -297,7 +297,6 @@ export class Thirteen implements OnInit {
 
     this.getChartDataChart1Chart2()
     this.chart.update();
-
     this.chart2.update();
 
     this.getChartDataChart3Chart4()
@@ -316,7 +315,6 @@ export class Thirteen implements OnInit {
   }
 
   getChartDataChart3Chart4() {
-    this.User_ID = 14;
     this.http.get<RecentCostVehicle>(this.baseUrl + 'recentCostVehicle/' + this.User_ID).subscribe(result => {
 
       this.chart4.data.datasets[0].data = result.vehicle_Costs[0];

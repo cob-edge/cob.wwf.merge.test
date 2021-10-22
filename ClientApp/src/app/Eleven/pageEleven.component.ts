@@ -200,11 +200,9 @@ export class Eleven implements OnInit {
     this.getChartDataChart1Chart2();
     this.chart.update();
 
-    //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
     this.chart2.update();
 
-    //console.log("hello from update status chart2 : " + this.recentV2s[0].recent10);
-    this.chart3.data.datasets[0].data = [140, 203, 80, 16];
+    this.chart3.data.datasets[0].data = [0.25623219, 0.25631231, 0.252132131, 0.259312334];
     this.chart3.update();
   }
 
